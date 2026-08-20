@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+	<title>Áo Bóng Đá Thiết Kế</title>
+	<rect width="800" height="600" fill="#0B1F3A"/>
+	<polygon points="800,0 800,420 480,0" fill="#146EF5" opacity="0.18"/>
+	<g transform="translate(400,300)" stroke="#EAF2FF" stroke-width="3" fill="none" stroke-opacity="0.9">
+		<path d="M-150,-165 L-71,-197 C-47,-158 47,-158 71,-197 L150,-165 L182,-63 L119,-30 L119,197 L-119,197 L-119,-30 L-182,-63 Z"/>
+		<path d="M-119,-30 L-40,20 L40,-40 L119,-30" stroke="#146EF5"/>
+	</g>
+</svg>

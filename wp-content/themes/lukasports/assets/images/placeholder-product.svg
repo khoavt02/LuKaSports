@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" width="640" height="800" role="img" aria-label="Hinh anh dang cap nhat">
+	<title>Development placeholder — replace with product photography</title>
+	<rect width="640" height="800" fill="#F7F5F1"/>
+	<g transform="translate(320,360)" stroke="#D8D2C4" stroke-width="2" fill="none">
+		<path d="M-135,-185 L-64,-213 C-42,-178 42,-178 64,-213 L135,-185 L163,-100 L107,-68 L107,213 L-107,213 L-107,-68 L-163,-100 Z"/>
+	</g>
+	<rect x="270" y="700" width="100" height="2" fill="#A6813F"/>
+</svg>

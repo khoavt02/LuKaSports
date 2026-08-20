@@ -1,0 +1,73 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-linea}
+      MYSQL_USER: ${MYSQL_USER:-linea}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-linea_dev_password}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-linea_root_password}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "${DB_PORT:-3308}:3306"
+
+  wordpress:
+    image: wordpress:php8.2-apache
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-linea}
+      WORDPRESS_DB_USER: ${MYSQL_USER:-linea}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-linea_dev_password}
+      WORDPRESS_TABLE_PREFIX: ${WP_TABLE_PREFIX:-wp_}
+      WORDPRESS_DEBUG: ${WP_DEBUG:-true}
+    volumes:
+      - wp_data:/var/www/html
+      - ./wp-content/themes/lukasports:/var/www/html/wp-content/themes/lukasports
+      - ./wp-content/plugins/lukasports-core:/var/www/html/wp-content/plugins/lukasports-core
+      - ./docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    ports:
+      - "${WP_PORT:-8090}:80"
+
+  wpcli:
+    image: wordpress:cli-php8.2
+    # Match the apache image's www-data UID (33) — the official cli
+    # image defaults to UID 82, which can't write files the apache
+    # container already created as UID 33 in the shared wp_data volume.
+    user: "33:33"
+    depends_on:
+      - db
+      - wordpress
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-linea}
+      WORDPRESS_DB_USER: ${MYSQL_USER:-linea}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-linea_dev_password}
+      WORDPRESS_TABLE_PREFIX: ${WP_TABLE_PREFIX:-wp_}
+    volumes:
+      - wp_data:/var/www/html
+      - ./wp-content/themes/lukasports:/var/www/html/wp-content/themes/lukasports
+      - ./wp-content/plugins/lukasports-core:/var/www/html/wp-content/plugins/lukasports-core
+      - ./bin:/var/www/html/lukasports-bin
+      - ./docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    entrypoint: ["wp"]
+    profiles: ["cli"]
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "${PHPMYADMIN_PORT:-8091}:80"
+    profiles: ["tools"]
+
+volumes:
+  db_data:
+  wp_data:

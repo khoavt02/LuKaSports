@@ -1,0 +1,12 @@
+# Secrets / local env
+.env
+
+# Claude Code local tooling (not project code)
+.claude/
+
+# WordPress core, uploads, DB — managed by Docker volumes, not tracked (see README)
+wp-content/uploads/
+
+# OS / editor
+.DS_Store
+Thumbs.db

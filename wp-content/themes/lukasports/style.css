@@ -1,0 +1,19 @@
+/*
+Theme Name: LukaSports
+Theme URI: https://example.com/lukasports
+Author: LukaSports Team
+Author URI: https://example.com
+Description: Custom modern/bold sports-brand commerce theme for LukaSports — editorial layout, blue/navy identity. Built from scratch for WooCommerce, mobile-first, consultation-led conversion flow. No page builder dependency.
+Version: 0.1.0
+Requires at least: 6.4
+Requires PHP: 8.2
+Tested up to: 6.6
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: lukasports
+Tags: e-commerce, custom-theme, mobile-first
+*/
+
+/* Actual styles live in assets/css/*.css, enqueued from inc/enqueue.php.
+   This file only needs to exist with the header above for WordPress to
+   recognize the theme; keeping it empty avoids a second source of truth. */

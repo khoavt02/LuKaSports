@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+	<title>Phụ Kiện</title>
+	<rect width="800" height="600" fill="#0B1F3A"/>
+	<rect x="0" y="0" width="800" height="4" fill="#146EF5"/>
+	<g fill="none" stroke="#EAF2FF" stroke-width="3" stroke-opacity="0.9">
+		<path d="M330,190 L470,190 L470,340 C470,400 420,430 400,430 C380,430 330,400 330,340 Z" transform="translate(-70,0)"/>
+		<path d="M330,190 L470,190 L470,340 C470,400 420,430 400,430 C380,430 330,400 330,340 Z" transform="translate(70,0)" stroke="#146EF5"/>
+	</g>
+</svg>

@@ -1,0 +1,405 @@
+/* Breadcrumb and shop header/toolbar are also used by the category
+   landing page templates (template-category.php), which is a plain
+   Page and therefore doesn't load this stylesheet — see core.css. */
+
+/* ==========================================================================
+   Archive / category / shop
+   ========================================================================== */
+.sk-shop__header { margin-bottom: var(--sk-space-6); }
+.sk-shop__title { font-size: var(--sk-text-3xl); text-transform: uppercase; }
+.sk-shop__intro { color: var(--sk-muted); max-width: 70ch; font-size: var(--sk-text-lg); }
+
+.sk-shop__toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--sk-space-3);
+	margin-bottom: var(--sk-space-6);
+	padding-bottom: var(--sk-space-4);
+	border-bottom: 1px solid var(--sk-line);
+}
+.woocommerce-result-count { margin: 0; font-size: var(--sk-text-sm); color: var(--sk-muted); }
+.woocommerce-ordering select.orderby { padding: 0.5rem 0.75rem; border: 1px solid var(--sk-line); border-radius: var(--sk-radius-md); background: var(--sk-paper); }
+
+.woocommerce-pagination { margin-top: var(--sk-space-10); }
+.woocommerce-pagination ul.page-numbers { display: flex; justify-content: center; gap: var(--sk-space-2); flex-wrap: wrap; }
+.woocommerce-pagination .page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; border: 1px solid var(--sk-line); border-radius: var(--sk-radius-md); font-weight: 700; }
+.woocommerce-pagination .page-numbers.current { background: var(--sk-ink); color: #fff; border-color: var(--sk-ink); }
+
+.woocommerce-info { padding: var(--sk-space-8); text-align: center; border: 1px dashed var(--sk-line); border-radius: var(--sk-radius-md); color: var(--sk-muted); }
+
+/* ==========================================================================
+   Single product
+   ========================================================================== */
+.sk-product { display: grid; gap: var(--sk-space-8); }
+@media (min-width: 1024px) {
+	.sk-product { grid-template-columns: 1.5fr 1fr; gap: var(--sk-space-12); }
+	.sk-product__gallery { position: sticky; top: calc(var(--sk-header-h) + var(--sk-space-6)); align-self: start; }
+}
+
+/* Gallery: native horizontal scroll-snap, no JS required for swipe */
+.sk-gallery__main {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	border-radius: var(--sk-radius-lg);
+	background: var(--sk-surface);
+	scrollbar-width: none;
+}
+.sk-gallery__main::-webkit-scrollbar { display: none; }
+.sk-gallery__slide { flex: 0 0 100%; scroll-snap-align: start; aspect-ratio: 4 / 5; }
+.sk-gallery__slide img { width: 100%; height: 100%; object-fit: cover; }
+.sk-gallery__thumbs { display: flex; gap: var(--sk-space-2); margin-top: var(--sk-space-3); overflow-x: auto; }
+.sk-gallery__thumb { flex: 0 0 64px; width: 64px; height: 80px; padding: 0; border: 1px solid transparent; border-radius: var(--sk-radius-sm); overflow: hidden; cursor: pointer; background: var(--sk-surface); }
+.sk-gallery__thumb:hover, .sk-gallery__thumb:focus-visible { border-color: var(--sk-accent); }
+.sk-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Info column */
+.sk-product__cat {
+	display: inline-block;
+	font-size: var(--sk-text-xs);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--sk-accent-dark);
+	background: var(--sk-surface);
+	padding: 0.3rem 0.7rem;
+	border-radius: var(--sk-radius-sm);
+	margin-bottom: var(--sk-space-3);
+}
+.sk-product__info .product_title { font-size: var(--sk-text-2xl); text-transform: none; margin-bottom: var(--sk-space-3); }
+.sk-product__price .price { font-size: var(--sk-text-xl); font-weight: 800; font-variant-numeric: tabular-nums; }
+.sk-product__price .price del { color: var(--sk-muted); font-weight: 400; font-size: var(--sk-text-base); margin-right: var(--sk-space-2); }
+.sk-product__price .price ins { text-decoration: none; color: var(--sk-accent); }
+
+/* Star rating — WooCommerce's own frontend stylesheet is dequeued
+   (woocommerce_enqueue_styles filter), so its default star-icon font
+   never loads; this replicates the same width-clipped overlay trick
+   with plain Unicode stars instead. */
+.woocommerce-product-rating { display: flex; align-items: center; gap: var(--sk-space-2); margin-bottom: var(--sk-space-3); }
+.star-rating { position: relative; display: inline-block; overflow: hidden; height: 1em; line-height: 1; font-size: 1rem; width: 5.4em; letter-spacing: 2px; color: var(--sk-line); }
+.star-rating::before { content: "\2605\2605\2605\2605\2605"; position: absolute; top: 0; left: 0; }
+.star-rating span { overflow: hidden; position: absolute; top: 0; left: 0; padding-top: 1.5em; color: var(--sk-accent); }
+.star-rating span::before { content: "\2605\2605\2605\2605\2605"; position: absolute; top: 0; left: 0; }
+.woocommerce-review-link { font-size: var(--sk-text-sm); color: var(--sk-muted); }
+
+/* Promotions — inline tags rather than a boxed "deal ticket" card. */
+.sk-product__tags { display: flex; flex-wrap: wrap; gap: var(--sk-space-2); margin: var(--sk-space-4) 0 0; }
+.sk-tag {
+	display: inline-flex;
+	align-items: center;
+	font-size: var(--sk-text-xs);
+	font-weight: 600;
+	color: var(--sk-accent-dark);
+	background: var(--sk-surface);
+	border-radius: var(--sk-radius-sm);
+	padding: 0.35rem 0.65rem;
+}
+
+/* Benefit tiles — a 2-column grid of small feature tiles rather than
+   a vertical checklist. */
+.sk-product__features {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sk-space-3);
+	margin: var(--sk-space-6) 0;
+}
+.sk-feature {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--sk-space-2);
+	padding: var(--sk-space-3);
+	background: var(--sk-surface);
+	border-radius: var(--sk-radius-md);
+	font-size: var(--sk-text-sm);
+	font-weight: 600;
+}
+.sk-feature__icon { color: var(--sk-accent); flex: 0 0 auto; margin-top: 1px; }
+
+/* Consult strip — full-bleed dark navy band, not a bordered card. */
+.sk-product-cta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--sk-space-4);
+	margin: var(--sk-space-6) calc(-1 * var(--sk-gutter));
+	padding: var(--sk-space-5) var(--sk-gutter);
+	background: var(--sk-navy);
+}
+@media (min-width: 1024px) {
+	.sk-product-cta { margin-inline: 0; border-radius: var(--sk-radius-lg); }
+}
+.sk-product-cta__primary {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--sk-space-2);
+	border: 0;
+	background: transparent;
+	color: #fff;
+	font-family: var(--sk-font-display);
+	font-weight: 700;
+	font-size: var(--sk-text-lg);
+	cursor: pointer;
+	padding: 0;
+}
+.sk-product-cta__primary:hover { color: var(--sk-accent); }
+.sk-product-cta__links { display: flex; flex-wrap: wrap; gap: var(--sk-space-4); }
+.sk-product-cta__links a {
+	font-size: var(--sk-text-sm);
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.75);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	padding-bottom: 1px;
+}
+.sk-product-cta__links a:hover { color: #fff; border-color: #fff; }
+
+.woocommerce-product-details__short-description { color: var(--sk-muted); margin-bottom: var(--sk-space-5); }
+.woocommerce-product-details__short-description > *:last-child { margin-bottom: 0; }
+
+/* Native add-to-cart form: present and functional, deliberately quiet
+   relative to the consult CTA above it. */
+.sk-product__order-form { margin-top: var(--sk-space-5); }
+table.variations { width: 100%; border-collapse: collapse; margin-bottom: var(--sk-space-3); }
+table.variations tr { display: flex; align-items: center; gap: var(--sk-space-3); margin-bottom: var(--sk-space-2); }
+table.variations .label { font-size: var(--sk-text-sm); font-weight: 700; min-width: 70px; }
+table.variations .value select { padding: 0.55rem 1rem; border: 1px solid var(--sk-line); border-radius: var(--sk-radius-pill); min-width: 140px; }
+
+/* Swatch buttons (assets/js/product-variations.js) replace the native
+   select visually once JS runs — .sk-has-swatches is only added after
+   the swatches are built, so without JS the dropdown stays visible
+   and the form still works. */
+table.variations .value.sk-has-swatches select {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	pointer-events: none;
+}
+.sk-variation-swatches { display: flex; flex-wrap: wrap; gap: var(--sk-space-2); }
+.sk-swatch {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	height: 40px;
+	padding: 0 var(--sk-space-3);
+	border: 1px solid var(--sk-line);
+	border-radius: var(--sk-radius-pill);
+	background: var(--sk-paper);
+	color: var(--sk-ink);
+	font-family: var(--sk-font-display);
+	font-weight: 700;
+	font-size: var(--sk-text-sm);
+	cursor: pointer;
+	transition: border-color var(--sk-motion-fast), background-color var(--sk-motion-fast), color var(--sk-motion-fast), transform var(--sk-motion-fast);
+}
+.sk-swatch:hover { border-color: var(--sk-ink); transform: translateY(-1px); }
+.sk-swatch.is-active { background: var(--sk-ink); border-color: var(--sk-ink); color: #fff; }
+
+.sk-swatch--color {
+	width: 44px;
+	min-width: 0;
+	height: 44px;
+	padding: 0;
+	border-radius: 50%;
+}
+.sk-swatch--color.is-active {
+	border-color: var(--sk-paper);
+	box-shadow: 0 0 0 2px var(--sk-paper), 0 0 0 4px var(--sk-accent);
+}
+.woocommerce-variation-add-to-cart { margin-top: var(--sk-space-2); }
+.reset_variations { display: inline-block; margin-left: var(--sk-space-2); font-size: var(--sk-text-xs); color: var(--sk-muted); }
+.sk-has-swatches .reset_variations { display: block; margin: var(--sk-space-2) 0 0; }
+
+.cart .quantity { display: inline-block; margin-right: var(--sk-space-2); }
+.cart .qty { width: 64px; padding: 0.6rem; border: 1px solid var(--sk-line); border-radius: var(--sk-radius-pill); text-align: center; }
+.single_add_to_cart_button {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.7rem 1.5rem;
+	border: 1px solid var(--sk-ink);
+	border-radius: var(--sk-radius-pill);
+	background: transparent;
+	color: var(--sk-ink);
+	font-family: var(--sk-font-display);
+	font-weight: 700;
+	font-size: var(--sk-text-sm);
+	letter-spacing: 0.03em;
+	text-transform: none;
+	cursor: pointer;
+	transition: transform var(--sk-motion-fast), background-color var(--sk-motion-fast), color var(--sk-motion-fast), box-shadow var(--sk-motion-fast);
+}
+.single_add_to_cart_button:hover { background: var(--sk-ink); color: #fff; transform: translateY(-2px); box-shadow: var(--sk-shadow-md); }
+.single_add_to_cart_button.disabled { opacity: 0.4; cursor: not-allowed; }
+
+.product_meta { font-size: var(--sk-text-xs); color: var(--sk-muted); display: flex; flex-direction: column; gap: var(--sk-space-1); }
+.product_meta a { color: var(--sk-muted); text-decoration: underline; }
+
+/* Product data accordion — replaces WooCommerce's default horizontal
+   tab bar. Native <details>/<summary>, no JS. */
+.sk-accordion { margin-top: var(--sk-space-12); max-width: 70ch; }
+.sk-accordion__item { border-bottom: 1px solid var(--sk-line); }
+.sk-accordion__item:first-child { border-top: 1px solid var(--sk-line); }
+.sk-accordion__summary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--sk-space-4);
+	padding-block: var(--sk-space-4);
+	font-family: var(--sk-font-display);
+	font-weight: 700;
+	font-size: var(--sk-text-lg);
+	cursor: pointer;
+	list-style: none;
+}
+.sk-accordion__summary::-webkit-details-marker { display: none; }
+.sk-accordion__icon {
+	position: relative;
+	flex: 0 0 auto;
+	width: 18px;
+	height: 18px;
+}
+.sk-accordion__icon::before,
+.sk-accordion__icon::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: var(--sk-ink);
+	transform: translate(-50%, -50%);
+}
+.sk-accordion__icon::before { width: 14px; height: 2px; }
+.sk-accordion__icon::after { width: 2px; height: 14px; transition: transform var(--sk-motion-fast); }
+.sk-accordion__item[open] .sk-accordion__icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+.sk-accordion__panel { padding-bottom: var(--sk-space-6); color: var(--sk-muted); }
+.woocommerce-Tabs-panel--additional_information table { width: 100%; border-collapse: collapse; }
+.woocommerce-Tabs-panel--additional_information th,
+.woocommerce-Tabs-panel--additional_information td { padding: var(--sk-space-2) var(--sk-space-3); border-bottom: 1px solid var(--sk-line); text-align: left; }
+
+/* Size guide table */
+.sk-size-guide__table { width: 100%; border-collapse: collapse; min-width: 480px; }
+.sk-size-guide__table th, .sk-size-guide__table td { padding: var(--sk-space-2) var(--sk-space-3); border-bottom: 1px solid var(--sk-line); text-align: center; }
+.sk-size-guide__table th { text-transform: none; font-size: var(--sk-text-xs); color: var(--sk-muted); }
+
+.sk-related-products { padding-top: var(--sk-space-12); border-top: 1px solid var(--sk-line); }
+
+/* ==========================================================================
+   Cart + Checkout (classic shortcode templates — [woocommerce_cart] /
+   [woocommerce_checkout]). Neither page had any theme styling before,
+   so every selector below is WooCommerce's own default markup, themed
+   to match the rest of the site rather than left at browser defaults.
+   ========================================================================== */
+table.shop_table { width: 100%; border-collapse: collapse; margin-bottom: var(--sk-space-8); }
+table.shop_table th { padding: var(--sk-space-3); text-align: left; font-size: var(--sk-text-xs); text-transform: none; letter-spacing: 0.03em; color: var(--sk-muted); border-bottom: 1px solid var(--sk-line); }
+table.shop_table td { padding: var(--sk-space-4) var(--sk-space-3); border-bottom: 1px solid var(--sk-line); vertical-align: middle; }
+table.shop_table tfoot th, table.shop_table tfoot td { border-bottom: 0; }
+table.shop_table .product-thumbnail img { width: 72px; height: 90px; object-fit: cover; border-radius: var(--sk-radius-md); background: var(--sk-surface); }
+table.shop_table .product-name a { font-weight: 700; }
+table.shop_table .product-remove a.remove {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background: var(--sk-surface);
+	color: var(--sk-ink) !important;
+	font-size: 1.1rem;
+	line-height: 1;
+	text-decoration: none !important;
+}
+table.shop_table .product-remove a.remove:hover { background: var(--sk-accent); color: #fff !important; }
+table.shop_table .quantity .qty { width: 64px; padding: 0.5rem; border: 1px solid var(--sk-line); border-radius: var(--sk-radius-pill); text-align: center; }
+
+.woocommerce-cart-form .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sk-space-3); padding-top: var(--sk-space-4); }
+.woocommerce-cart-form .coupon { display: flex; gap: var(--sk-space-2); flex: 1 1 auto; }
+#coupon_code { padding: 0.7rem 1rem; border: 1px solid var(--sk-line); border-radius: var(--sk-radius-pill); min-width: 180px; }
+.woocommerce-cart-form .button,
+.woocommerce-checkout .button,
+#place_order {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.7rem 1.5rem;
+	border: 1px solid var(--sk-ink);
+	border-radius: var(--sk-radius-pill);
+	background: var(--sk-ink);
+	color: #fff;
+	font-family: var(--sk-font-display);
+	font-weight: 700;
+	font-size: var(--sk-text-sm);
+	letter-spacing: 0.03em;
+	text-transform: none;
+	cursor: pointer;
+	transition: transform var(--sk-motion-fast), box-shadow var(--sk-motion-fast);
+}
+.woocommerce-cart-form .button:hover,
+.woocommerce-checkout .button:hover,
+#place_order:hover { transform: translateY(-2px); box-shadow: var(--sk-shadow-md); background: #000; }
+.woocommerce-cart-form .button.disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.cart-collaterals { display: flex; flex-wrap: wrap; gap: var(--sk-space-8); }
+.cart_totals, #order_review { flex: 1 1 320px; background: var(--sk-surface); border-radius: var(--sk-radius-lg); padding: var(--sk-space-6); }
+.cart_totals h2, #order_review_heading { font-size: var(--sk-text-xl); text-transform: none; margin-bottom: var(--sk-space-4); }
+.cart_totals .shop_table, #order_review .shop_table { margin-bottom: var(--sk-space-4); }
+.cart_totals .order-total .amount, .woocommerce-checkout-review-order .order-total .amount { font-size: var(--sk-text-xl); font-weight: 800; color: var(--sk-ink); }
+.wc-proceed-to-checkout .checkout-button { width: 100%; padding: 1rem; }
+
+/* Checkout form fields */
+.woocommerce-billing-fields h3,
+.woocommerce-additional-fields h3,
+.woocommerce-checkout .woocommerce-shipping-fields h3 { font-size: var(--sk-text-xl); text-transform: none; margin-bottom: var(--sk-space-4); }
+.form-row { margin-bottom: var(--sk-space-4); }
+.form-row label { display: block; font-size: var(--sk-text-sm); font-weight: 700; margin-bottom: var(--sk-space-2); }
+.form-row label .required { color: var(--sk-accent); text-decoration: none; }
+.form-row .input-text,
+.form-row select,
+.form-row textarea,
+.woocommerce-checkout select {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	border: 1px solid var(--sk-line);
+	border-radius: var(--sk-radius-md);
+	background: var(--sk-paper);
+	font: inherit;
+}
+.form-row .input-text:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--sk-ink); outline: none; }
+.form-row.woocommerce-invalid .input-text { border-color: var(--sk-accent); }
+.woocommerce-form-login-toggle, .woocommerce-info { background: var(--sk-surface); border: 1px solid var(--sk-line); border-radius: var(--sk-radius-md); padding: var(--sk-space-4); }
+
+#payment { background: var(--sk-surface); border-radius: var(--sk-radius-lg); padding: var(--sk-space-6); margin-top: var(--sk-space-6); }
+#payment ul.payment_methods { list-style: none; padding: 0; margin: 0 0 var(--sk-space-4); border-bottom: 1px solid var(--sk-line); }
+#payment ul.payment_methods li { padding: var(--sk-space-3) 0; border-top: 1px solid var(--sk-line); }
+#payment ul.payment_methods li:first-child { border-top: 0; }
+#payment .payment_box { margin-top: var(--sk-space-3); padding: var(--sk-space-4); background: var(--sk-paper); border-radius: var(--sk-radius-md); color: var(--sk-muted); font-size: var(--sk-text-sm); }
+
+.woocommerce-notices-wrapper .woocommerce-error,
+.woocommerce-notices-wrapper .woocommerce-message,
+.woocommerce-notices-wrapper .woocommerce-info {
+	list-style: none;
+	padding: var(--sk-space-4) var(--sk-space-5);
+	margin-bottom: var(--sk-space-6);
+	border-radius: var(--sk-radius-md);
+	background: var(--sk-surface);
+	border-left: 3px solid var(--sk-accent);
+}
+.woocommerce-error li, .woocommerce-message, .woocommerce-info { list-style: none; }
+
+@media (min-width: 1024px) {
+	.woocommerce-checkout .col2-set { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sk-space-4); }
+	/* Explicit grid placement, not DOM order — #order_review_heading and
+	   #order_review are separate siblings after .col2-set, so a plain
+	   2-column grid would wrap the order table under column 1 instead of
+	   keeping it beside the billing fields. */
+	form.checkout {
+		display: grid;
+		grid-template-columns: 1.1fr 1fr;
+		gap: var(--sk-space-12);
+		align-items: start;
+	}
+	.woocommerce-checkout .col2-set { grid-column: 1; grid-row: 1 / 3; }
+	.woocommerce-checkout #order_review_heading { grid-column: 2; grid-row: 1; }
+	.woocommerce-checkout #order_review { grid-column: 2; grid-row: 2; }
+}

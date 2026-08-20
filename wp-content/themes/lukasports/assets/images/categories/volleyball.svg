@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+	<title>Áo Bóng Chuyền</title>
+	<rect width="800" height="600" fill="#0B1F3A"/>
+	<rect x="0" y="560" width="800" height="4" fill="#146EF5"/>
+	<g transform="translate(400,270)" fill="none" stroke="#EAF2FF" stroke-width="3" stroke-opacity="0.9">
+		<circle r="130"/>
+		<path d="M-130,0 C-70,-60 70,-60 130,0"/>
+		<path d="M-130,0 C-70,60 70,60 130,0"/>
+		<path d="M0,-130 C-30,-70 -30,70 0,130"/>
+		<path d="M0,-130 C30,-70 30,70 0,130" stroke="#146EF5"/>
+	</g>
+</svg>

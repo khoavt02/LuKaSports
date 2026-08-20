@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+	<title>Áo Pickleball</title>
+	<rect width="800" height="600" fill="#0B1F3A"/>
+	<rect x="0" y="560" width="800" height="4" fill="#146EF5"/>
+	<g transform="translate(380,300)" fill="none" stroke="#EAF2FF" stroke-width="3" stroke-opacity="0.9">
+		<rect x="-70" y="-175" width="140" height="165" rx="68" ry="70"/>
+		<line x1="0" y1="-10" x2="0" y2="115"/>
+		<line x1="-16" y1="115" x2="16" y2="115"/>
+		<circle cx="150" cy="-40" r="30" stroke="#146EF5"/>
+		<circle cx="139" cy="-52" r="2" fill="#EAF2FF" stroke="none"/>
+		<circle cx="160" cy="-52" r="2" fill="#EAF2FF" stroke="none"/>
+		<circle cx="150" cy="-38" r="2" fill="#EAF2FF" stroke="none"/>
+		<circle cx="139" cy="-26" r="2" fill="#EAF2FF" stroke="none"/>
+		<circle cx="160" cy="-26" r="2" fill="#EAF2FF" stroke="none"/>
+	</g>
+</svg>

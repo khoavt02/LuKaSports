@@ -1,0 +1,152 @@
+.sk-footer {
+	background: var(--sk-navy);
+	color: rgba(255, 255, 255, 0.85);
+	padding-block: var(--sk-space-12);
+	margin-top: var(--sk-space-16);
+}
+.sk-footer a { color: rgba(255, 255, 255, 0.85); }
+.sk-footer a:hover { color: #fff; }
+
+.sk-footer__grid {
+	display: grid;
+	gap: var(--sk-space-8);
+	grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+	.sk-footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+}
+
+.sk-footer__tagline {
+	margin-top: var(--sk-space-3);
+	color: rgba(255, 255, 255, 0.6);
+	max-width: 28ch;
+}
+/* Scoped down from the header's large wordmark size — the header
+   already establishes the brand at the top of every page, so
+   repeating it at the same size/weight here just above the tagline
+   read as a second, redundant headline rather than a signature. */
+.sk-footer__col--brand .sk-brand__text--light {
+	color: #fff;
+	font-size: var(--sk-text-base);
+	letter-spacing: 0.03em;
+}
+
+.sk-footer__heading {
+	font-family: var(--sk-font-display);
+	font-size: var(--sk-text-base);
+	font-weight: 700;
+	text-transform: none;
+	letter-spacing: 0.04em;
+	color: #fff;
+	margin-bottom: var(--sk-space-4);
+	padding-top: var(--sk-space-4);
+	border-top: 2px solid var(--sk-accent);
+	display: inline-block;
+}
+.sk-footer__col ul { display: flex; flex-direction: column; gap: var(--sk-space-3); }
+.sk-footer__contact li:first-child a { color: var(--sk-accent); font-weight: 700; font-size: var(--sk-text-lg); font-family: var(--sk-font-display); }
+.sk-footer__contact li:first-child a:hover { color: #fff; }
+.sk-footer__contact li:last-child { color: rgba(255, 255, 255, 0.6); }
+
+.sk-footer__bottom {
+	margin-top: var(--sk-space-10);
+	padding-top: var(--sk-space-6);
+	border-top: 1px solid rgba(255, 255, 255, 0.12);
+	font-size: var(--sk-text-xs);
+	color: rgba(255, 255, 255, 0.5);
+}
+
+/* Floating contact — a full always-visible bottom bar on mobile
+   (content already reserves space for it via body padding below),
+   but a single collapsed FAB on desktop that expands into the 3
+   options on click. A permanently-expanded icon stack on desktop had
+   no reserved space in the layout, so it could sit on top of
+   whatever product card happened to scroll into that bottom-right
+   corner — collapsing it to one button shrinks that footprint from
+   ~64×190px down to 56×56px. */
+.sk-floating-contact {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 90;
+	padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.sk-floating-contact__toggle { display: none; }
+.sk-floating-contact__menu {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	background: var(--sk-paper);
+	border-top: 1px solid var(--sk-line);
+	box-shadow: var(--sk-shadow-lg);
+}
+.sk-floating-contact__btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	padding: var(--sk-space-2) 0;
+	font-size: var(--sk-text-xs);
+	font-weight: 700;
+	color: var(--sk-ink);
+	-webkit-tap-highlight-color: transparent;
+}
+.sk-floating-contact__btn--messenger { color: var(--sk-messenger); }
+.sk-floating-contact__btn--zalo { color: var(--sk-zalo); }
+.sk-floating-contact__btn--call { color: var(--sk-accent); }
+
+@media (min-width: 1024px) {
+	.sk-floating-contact {
+		left: auto;
+		right: var(--sk-space-8);
+		bottom: var(--sk-space-8);
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: flex-end;
+		gap: var(--sk-space-3);
+	}
+	.sk-floating-contact__toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 56px;
+		height: 56px;
+		flex: 0 0 auto;
+		border: 0;
+		border-radius: 50%;
+		background: var(--sk-accent);
+		color: #fff;
+		cursor: pointer;
+		box-shadow: var(--sk-shadow-lg);
+		transition: transform var(--sk-motion-fast), background-color var(--sk-motion-fast);
+	}
+	.sk-floating-contact__toggle:hover { background: var(--sk-accent-dark); transform: scale(1.06); }
+	.sk-floating-contact__menu {
+		display: none;
+		flex-direction: column;
+		gap: var(--sk-space-2);
+		background: transparent;
+		border: 0;
+		box-shadow: none;
+	}
+	.sk-floating-contact.is-open .sk-floating-contact__menu { display: flex; }
+	.sk-floating-contact__btn {
+		width: 48px;
+		height: 48px;
+		padding: 0;
+		border-radius: 50%;
+		background: var(--sk-paper);
+		border: 1px solid var(--sk-line);
+		box-shadow: var(--sk-shadow-md);
+		transition: transform var(--sk-motion-fast), box-shadow var(--sk-motion-fast);
+	}
+	.sk-floating-contact__btn:hover { transform: translateY(-2px) scale(1.05); }
+	.sk-floating-contact__btn span { display: none; }
+}
+
+/* body padding so the fixed bottom bar never covers content/CTAs on mobile */
+body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
+@media (min-width: 1024px) {
+	body { padding-bottom: 0; }
+}

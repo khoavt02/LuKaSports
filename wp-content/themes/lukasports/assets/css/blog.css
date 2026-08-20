@@ -1,0 +1,28 @@
+.sk-page__container,
+.sk-post__container { max-width: 760px; }
+.sk-page__title,
+.sk-post__title { font-size: var(--sk-text-2xl); text-transform: none; }
+.sk-page__content,
+.sk-post__content { color: var(--sk-ink); }
+.sk-page__content > *:first-child,
+.sk-post__content > *:first-child { margin-top: 0; }
+.sk-page__content p,
+.sk-post__content p { margin-bottom: var(--sk-space-4); }
+
+.sk-post__meta { color: var(--sk-muted); font-size: var(--sk-text-sm); margin-bottom: var(--sk-space-6); }
+.sk-post__thumb { margin-bottom: var(--sk-space-6); border-radius: var(--sk-radius-lg); overflow: hidden; }
+.sk-post__thumb img { width: 100%; }
+
+.sk-blog-archive__header { margin-bottom: var(--sk-space-8); }
+.sk-blog-archive__title { font-size: var(--sk-text-2xl); text-transform: none; }
+.sk-blog-archive__desc { color: var(--sk-muted); }
+
+.sk-pagination { margin-top: var(--sk-space-10); }
+.sk-pagination .nav-links { display: flex; justify-content: center; gap: var(--sk-space-2); }
+.sk-pagination .page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; border: 1px solid var(--sk-line); border-radius: var(--sk-radius-md); font-weight: 700; }
+.sk-pagination .page-numbers.current { background: var(--sk-ink); color: #fff; border-color: var(--sk-ink); }
+
+.sk-404__inner { text-align: center; max-width: 520px; margin-inline: auto; padding-block: var(--sk-space-10); }
+.sk-404__title { font-size: var(--sk-text-2xl); text-transform: none; }
+.sk-404__subtitle { color: var(--sk-muted); margin-bottom: var(--sk-space-6); }
+.sk-404__search { max-width: 420px; margin-inline: auto; }

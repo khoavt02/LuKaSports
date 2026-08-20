@@ -1,0 +1,258 @@
+.sk-section--surface { background: var(--sk-surface); }
+
+/* ==========================================================================
+   Hero — editorial sports-campaign treatment: dark navy scrim over a
+   full-bleed image, a small blue kicker label, oversized uppercase
+   display type. Not a plain text-left/image-right split.
+   ========================================================================== */
+.sk-hero {
+	position: relative;
+	overflow: hidden;
+	color: #fff;
+	min-height: 560px;
+	display: flex;
+	align-items: center;
+	background: var(--sk-navy);
+}
+.sk-hero__media { position: absolute; inset: 0; z-index: 0; background: var(--sk-navy); }
+.sk-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 68% center; }
+.sk-hero__media::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(11, 31, 58, 0.88) 0%, rgba(11, 31, 58, 0.74) 55%, rgba(11, 31, 58, 0.4) 82%, rgba(11, 31, 58, 0.12) 100%);
+}
+@media (min-width: 1024px) {
+	.sk-hero__media::after {
+		background: linear-gradient(90deg, rgba(11, 31, 58, 0.86) 0%, rgba(11, 31, 58, 0.56) 38%, rgba(11, 31, 58, 0.16) 65%, rgba(11, 31, 58, 0) 82%);
+	}
+}
+.sk-hero__overlay { position: relative; z-index: 1; padding-block: var(--sk-space-16); }
+.sk-hero__content { max-width: 560px; }
+.sk-hero__label {
+	display: inline-block;
+	font-family: var(--sk-font-display);
+	font-size: var(--sk-text-xs);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: #fff;
+	background: var(--sk-accent);
+	padding: 0.35rem 0.8rem;
+	border-radius: var(--sk-radius-sm);
+	margin-bottom: var(--sk-space-4);
+}
+.sk-hero__title {
+	font-size: var(--sk-text-4xl);
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: -0.01em;
+	color: #fff;
+}
+.sk-hero__subtitle {
+	font-size: var(--sk-text-lg);
+	color: rgba(255, 255, 255, 0.8);
+	max-width: 44ch;
+}
+.sk-hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sk-space-4); margin-top: var(--sk-space-8); }
+
+@media (min-width: 768px) {
+	.sk-hero { min-height: 620px; }
+}
+@media (min-width: 1024px) {
+	.sk-hero { min-height: 680px; }
+	.sk-hero__title { font-size: var(--sk-text-5xl); }
+}
+@media (min-width: 1280px) {
+	.sk-hero { min-height: 720px; }
+}
+
+/* ==========================================================================
+   Category bento — one large featured tile + a wrapping grid of smaller
+   tiles beside it, not a uniform N-up grid.
+   ========================================================================== */
+.sk-section-head__desc { color: var(--sk-muted); margin-top: var(--sk-space-2); max-width: 60ch; }
+
+.sk-categories__bento { display: grid; gap: var(--sk-space-4); grid-template-columns: 1fr; }
+@media (min-width: 1024px) {
+	.sk-categories__bento { grid-template-columns: 1.5fr 1fr; align-items: stretch; }
+}
+.sk-categories__side { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-4); align-content: start; }
+
+.sk-category-card { display: block; position: relative; }
+.sk-category-card__media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--sk-navy); }
+.sk-category-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--sk-motion-base); }
+.sk-category-card:hover .sk-category-card__media img { transform: scale(1.05); }
+.sk-category-card__body {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: var(--sk-space-5);
+	background: linear-gradient(180deg, rgba(11, 31, 58, 0) 45%, rgba(11, 31, 58, 0.78) 100%);
+}
+.sk-category-card__title {
+	font-size: var(--sk-text-xl);
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+	color: #fff;
+	margin-bottom: var(--sk-space-1);
+}
+.sk-category-card__cta {
+	font-size: var(--sk-text-sm);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	color: #fff;
+}
+
+.sk-category-card--featured { grid-column: 1; }
+.sk-category-card--featured .sk-category-card__media { aspect-ratio: 4 / 3; }
+.sk-category-card--featured .sk-category-card__title { font-size: var(--sk-text-3xl); }
+@media (min-width: 1024px) {
+	.sk-category-card--featured .sk-category-card__media { aspect-ratio: auto; height: 100%; min-height: 460px; }
+}
+.sk-category-card--small .sk-category-card__media { aspect-ratio: 1 / 1; }
+.sk-category-card--small .sk-category-card__body { padding: var(--sk-space-4); }
+.sk-category-card--small .sk-category-card__title { font-size: var(--sk-text-base); }
+
+/* ==========================================================================
+   Sports stories — editorial per-sport blocks (magazine feel, not a
+   product grid).
+   ========================================================================== */
+.sk-stories__grid { display: grid; gap: var(--sk-space-4); grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 1024px) { .sk-stories__grid { grid-template-columns: repeat(4, 1fr); } }
+
+.sk-story-card { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; border-radius: var(--sk-radius-lg); }
+.sk-story-card__media { position: absolute; inset: 0; background: var(--sk-navy); }
+.sk-story-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--sk-motion-base); }
+.sk-story-card:hover .sk-story-card__media img { transform: scale(1.06); }
+.sk-story-card__overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: var(--sk-space-4);
+	background: linear-gradient(180deg, rgba(11, 31, 58, 0) 40%, rgba(11, 31, 58, 0.85) 100%);
+	color: #fff;
+}
+.sk-story-card__title { font-size: var(--sk-text-lg); text-transform: uppercase; margin-bottom: var(--sk-space-1); }
+.sk-story-card__desc { font-size: var(--sk-text-sm); color: rgba(255, 255, 255, 0.75); margin-bottom: var(--sk-space-2); }
+.sk-story-card__link { font-size: var(--sk-text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: #fff; }
+
+/* ==========================================================================
+   Custom design — dark navy, numbered 3-step process, single strong
+   blue CTA. This is the identity section: no other block on the page
+   looks like it.
+   ========================================================================== */
+.sk-custom-design {
+	position: relative;
+	background: var(--sk-navy);
+	color: #fff;
+	overflow: hidden;
+}
+.sk-custom-design__inner { position: relative; padding-block: var(--sk-space-20); text-align: center; max-width: 780px; margin-inline: auto; }
+.sk-custom-design__title { font-size: var(--sk-text-2xl); text-transform: uppercase; color: #fff; }
+.sk-custom-design__subtitle { color: rgba(255, 255, 255, 0.72); font-size: var(--sk-text-lg); }
+@media (min-width: 768px) {
+	.sk-custom-design__title { font-size: var(--sk-text-3xl); }
+}
+
+.sk-custom-design__steps {
+	display: grid;
+	gap: var(--sk-space-6);
+	grid-template-columns: 1fr;
+	margin-block: var(--sk-space-10);
+	text-align: left;
+}
+@media (min-width: 768px) {
+	.sk-custom-design__steps { grid-template-columns: repeat(3, 1fr); }
+}
+.sk-custom-design__step-num {
+	font-family: var(--sk-font-display);
+	font-size: var(--sk-text-2xl);
+	font-weight: 700;
+	color: var(--sk-accent);
+	margin-bottom: var(--sk-space-2);
+}
+.sk-custom-design__step-title { font-size: var(--sk-text-base); font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: var(--sk-space-1); }
+.sk-custom-design__step-desc { color: rgba(255, 255, 255, 0.65); font-size: var(--sk-text-sm); }
+
+.sk-custom-design__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sk-space-3); }
+
+/* ==========================================================================
+   Lookbook — asymmetric editorial grid, not an Instagram-style uniform
+   square grid.
+   ========================================================================== */
+.sk-lookbook__grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-auto-rows: 220px;
+	gap: var(--sk-space-4);
+}
+@media (min-width: 768px) {
+	.sk-lookbook__grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; }
+	.sk-lookbook__item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+	.sk-lookbook__item:nth-child(4) { grid-column: span 2; }
+}
+.sk-lookbook__item { position: relative; overflow: hidden; border-radius: var(--sk-radius-md); background: var(--sk-navy); }
+.sk-lookbook__item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--sk-motion-base); }
+.sk-lookbook__item:hover img { transform: scale(1.05); }
+
+/* ==========================================================================
+   Trust stats — plain numbers, no icons/illustration competing for
+   attention.
+   ========================================================================== */
+.sk-trust { border-block: 1px solid var(--sk-line); background: var(--sk-paper); }
+.sk-trust__list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--sk-space-8) var(--sk-space-4);
+	padding-block: var(--sk-space-12);
+}
+.sk-trust__item { text-align: center; }
+.sk-trust__num {
+	display: block;
+	font-family: var(--sk-font-display);
+	font-size: var(--sk-text-3xl);
+	font-weight: 700;
+	color: var(--sk-accent);
+}
+.sk-trust__label { font-size: var(--sk-text-sm); color: var(--sk-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+
+@media (min-width: 1024px) {
+	.sk-trust__list { grid-template-columns: repeat(4, 1fr); }
+	.sk-trust__num { font-size: var(--sk-text-4xl); }
+}
+
+/* ==========================================================================
+   Contact CTA — light blue close to the page, the quiet counterpart to
+   the dark Custom Design CTA earlier in the flow.
+   ========================================================================== */
+.sk-contact-cta { background: var(--sk-surface); }
+.sk-contact-cta__inner { text-align: center; padding-block: var(--sk-space-16); max-width: 640px; margin-inline: auto; }
+.sk-contact-cta__title { font-size: var(--sk-text-2xl); text-transform: uppercase; color: var(--sk-ink); }
+.sk-contact-cta__subtitle { color: var(--sk-muted); font-size: var(--sk-text-lg); }
+@media (min-width: 768px) {
+	.sk-contact-cta__title { font-size: var(--sk-text-3xl); }
+}
+.sk-contact-cta__actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--sk-space-3); margin-top: var(--sk-space-6); }
+.sk-contact-cta__channels { display: flex; gap: var(--sk-space-2); }
+
+/* ==========================================================================
+   Social proof — honest empty state, not a "something's missing" box
+   ========================================================================== */
+.sk-social-proof__empty {
+	background: var(--sk-surface);
+	border-radius: var(--sk-radius-lg);
+	padding: var(--sk-space-10) var(--sk-space-8);
+	text-align: center;
+	color: var(--sk-muted);
+}
+.sk-social-proof__empty svg { color: var(--sk-line); margin: 0 auto var(--sk-space-4); }
+.sk-social-proof__empty p { margin: 0; font-size: var(--sk-text-base); }
+.sk-testimonial { padding: var(--sk-space-6); }
+.sk-testimonial__quote { font-size: var(--sk-text-lg); }
+.sk-testimonial__author { font-weight: 700; color: var(--sk-muted); margin: 0; }
