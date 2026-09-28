@@ -20,8 +20,8 @@ function lukasports_core_register_admin_menu() {
 
 	add_submenu_page(
 		'lukasports-core',
-		__( 'Dashboard', 'lukasports-core' ),
-		__( 'Dashboard', 'lukasports-core' ),
+		__( 'Tổng quan', 'lukasports-core' ),
+		__( 'Tổng quan', 'lukasports-core' ),
 		'manage_woocommerce',
 		'lukasports-core',
 		'lukasports_core_render_dashboard_page'
@@ -29,8 +29,8 @@ function lukasports_core_register_admin_menu() {
 
 	add_submenu_page(
 		'lukasports-core',
-		__( 'Leads', 'lukasports-core' ),
-		__( 'Leads', 'lukasports-core' ),
+		__( 'Khách hàng tiềm năng', 'lukasports-core' ),
+		__( 'Khách hàng tiềm năng', 'lukasports-core' ),
 		'manage_woocommerce',
 		'lukasports-core-leads',
 		'lukasports_core_render_leads_page'
@@ -39,7 +39,7 @@ function lukasports_core_register_admin_menu() {
 	add_submenu_page(
 		'lukasports-core',
 		__( 'Cài đặt liên hệ', 'lukasports-core' ),
-		__( 'Settings', 'lukasports-core' ),
+		__( 'Cài đặt', 'lukasports-core' ),
 		'manage_woocommerce',
 		'lukasports-core-settings',
 		'lukasports_core_render_settings_page'

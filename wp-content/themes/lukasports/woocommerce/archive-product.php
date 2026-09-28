@@ -14,12 +14,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 
 $term = is_tax() || is_category() || is_tag() ? get_queried_object() : null;
+
+// Highlight the top-level ancestor's chip when browsing a subcategory.
+$active_cat = 0;
+if ( $term instanceof WP_Term && 'product_cat' === $term->taxonomy ) {
+	$ancestors  = get_ancestors( $term->term_id, 'product_cat', 'taxonomy' );
+	$active_cat = $ancestors ? (int) end( $ancestors ) : $term->term_id;
+}
 ?>
 
 <section class="sk-section sk-shop">
 	<div class="sk-container">
 		<?php if ( function_exists( 'woocommerce_breadcrumb' ) ) : ?>
-			<nav class="sk-breadcrumb"><?php woocommerce_breadcrumb( array( 'delimiter' => ' / ' ) ); ?></nav>
+			<nav class="sk-breadcrumb"><?php woocommerce_breadcrumb( array( 'delimiter' => ' / ', 'wrap_before' => '<nav class="woocommerce-breadcrumb" aria-label="' . esc_attr__( 'Đường dẫn', 'lukasports' ) . '">' ) ); ?></nav>
 		<?php endif; ?>
 
 		<header class="sk-shop__header">
@@ -28,6 +35,8 @@ $term = is_tax() || is_category() || is_tag() ? get_queried_object() : null;
 				<div class="sk-shop__intro"><?php echo wp_kses_post( wpautop( $term->description ) ); ?></div>
 			<?php endif; ?>
 		</header>
+
+		<?php get_template_part( 'template-parts/shop/category-filter', null, array( 'active' => $active_cat ) ); ?>
 
 		<?php if ( woocommerce_product_loop() ) : ?>
 			<div class="sk-shop__toolbar">

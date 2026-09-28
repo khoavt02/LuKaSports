@@ -5,6 +5,9 @@
 /* ==========================================================================
    Archive / category / shop
    ========================================================================== */
+.sk-breadcrumb { margin-bottom: var(--sk-space-4); font-size: var(--sk-text-sm); color: var(--sk-muted); }
+.sk-breadcrumb a { color: inherit; }
+.sk-breadcrumb a:hover { color: var(--sk-accent); }
 .sk-shop__header { margin-bottom: var(--sk-space-6); }
 .sk-shop__title { font-size: var(--sk-text-3xl); text-transform: uppercase; }
 .sk-shop__intro { color: var(--sk-muted); max-width: 70ch; font-size: var(--sk-text-lg); }
@@ -19,6 +22,23 @@
 	padding-bottom: var(--sk-space-4);
 	border-bottom: 1px solid var(--sk-line);
 }
+/* Category chips — horizontal scroll on phones, wraps on desktop. */
+.sk-filter { margin-bottom: var(--sk-space-6); margin-inline: calc(var(--sk-gutter) * -1); padding-inline: var(--sk-gutter); overflow-x: auto; scrollbar-width: none; }
+.sk-filter::-webkit-scrollbar { display: none; }
+.sk-filter__list { display: flex; gap: var(--sk-space-2); list-style: none; margin: 0; padding: 0; width: max-content; }
+@media (min-width: 1024px) {
+	.sk-filter { margin-inline: 0; padding-inline: 0; overflow: visible; }
+	.sk-filter__list { flex-wrap: wrap; width: auto; }
+}
+.sk-filter__chip { display: inline-flex; align-items: center; gap: var(--sk-space-2); padding: 0.5rem 0.875rem; border: 1px solid var(--sk-line); border-radius: var(--sk-radius-md); background: var(--sk-paper); color: var(--sk-ink); font-size: var(--sk-text-sm); font-weight: 600; white-space: nowrap; text-decoration: none; transition: border-color 0.15s, background-color 0.15s, color 0.15s; }
+.sk-filter__chip:hover { border-color: var(--sk-accent); color: var(--sk-accent); }
+.sk-filter__chip.is-active { background: var(--sk-ink); border-color: var(--sk-ink); color: #fff; }
+.sk-filter__count { font-size: var(--sk-text-xs); font-weight: 500; color: var(--sk-muted); }
+.sk-filter__chip.is-active .sk-filter__count { color: rgba(255, 255, 255, 0.7); }
+
+/* WooCommerce hooks an (usually empty) notices wrapper into the toolbar;
+   left in, it takes the first flex slot and pushes the count off-left. */
+.sk-shop__toolbar .woocommerce-notices-wrapper:empty { display: none; }
 .woocommerce-result-count { margin: 0; font-size: var(--sk-text-sm); color: var(--sk-muted); }
 .woocommerce-ordering select.orderby { padding: 0.5rem 0.75rem; border: 1px solid var(--sk-line); border-radius: var(--sk-radius-md); background: var(--sk-paper); }
 

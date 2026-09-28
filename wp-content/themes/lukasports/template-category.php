@@ -55,6 +55,8 @@ $products_query = new WP_Query( $query_args );
 			<?php endif; ?>
 		</header>
 
+		<?php get_template_part( 'template-parts/shop/category-filter', null, array( 'active' => $term instanceof WP_Term ? $term->term_id : 0 ) ); ?>
+
 		<?php if ( $products_query->have_posts() ) : ?>
 			<div class="sk-grid">
 				<?php

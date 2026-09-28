@@ -9,6 +9,13 @@
 .sk-page__content p,
 .sk-post__content p { margin-bottom: var(--sk-space-4); }
 
+.sk-page__content h2,
+.sk-post__content h2 { margin: var(--sk-space-8) 0 var(--sk-space-3); font-size: var(--sk-text-xl); text-transform: none; }
+.sk-page__content ul,
+.sk-post__content ul { margin: 0 0 var(--sk-space-4); padding-left: var(--sk-space-6); }
+.sk-page__content li,
+.sk-post__content li { margin-bottom: var(--sk-space-2); }
+
 .sk-post__meta { color: var(--sk-muted); font-size: var(--sk-text-sm); margin-bottom: var(--sk-space-6); }
 .sk-post__thumb { margin-bottom: var(--sk-space-6); border-radius: var(--sk-radius-lg); overflow: hidden; }
 .sk-post__thumb img { width: 100%; }

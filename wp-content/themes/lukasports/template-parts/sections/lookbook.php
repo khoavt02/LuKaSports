@@ -15,7 +15,7 @@ $items = array( 'football.svg', 'team.svg', 'basketball.svg', 'jersey-design.svg
 <section class="sk-section sk-lookbook">
 	<div class="sk-container">
 		<div class="sk-section-head">
-			<h2 class="sk-section-head__title"><?php esc_html_e( 'LukaSports In Action', 'lukasports' ); ?></h2>
+			<h2 class="sk-section-head__title"><?php esc_html_e( 'LukaSports trên sân đấu', 'lukasports' ); ?></h2>
 		</div>
 		<div class="sk-lookbook__grid">
 			<?php foreach ( $items as $art ) : ?>

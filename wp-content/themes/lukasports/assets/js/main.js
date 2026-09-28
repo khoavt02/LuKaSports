@@ -203,11 +203,6 @@
 	}
 
 	function initConsultationForm() {
-		var form = document.getElementById( 'sk-consultation-form' );
-		if ( ! form ) {
-			return;
-		}
-
 		document.querySelectorAll( '[data-sk-modal-close]' ).forEach( function ( el ) {
 			el.addEventListener( 'click', closeConsultationModal );
 		} );
@@ -217,6 +212,14 @@
 				closeConsultationModal();
 			}
 		} );
+
+		// The modal form plus any inline lead form (e.g. the contact page).
+		// Each form's success panel is its sibling inside the same wrapper.
+		document.querySelectorAll( 'form[data-sk-lead-form]' ).forEach( bindLeadForm );
+	}
+
+	function bindLeadForm( form ) {
+		var scope = form.parentElement;
 
 		form.addEventListener( 'submit', function ( e ) {
 			e.preventDefault();
@@ -264,8 +267,8 @@
 					if ( json && json.success ) {
 						lukasportsTrack( 'submit_consultation', {} );
 						form.hidden = true;
-						var success = document.querySelector( '[data-sk-modal-success]' );
-						var message = document.querySelector( '[data-sk-modal-success-message]' );
+						var success = scope.querySelector( '[data-sk-modal-success]' );
+						var message = scope.querySelector( '[data-sk-modal-success-message]' );
 						if ( message ) {
 							message.textContent = ( json.data && json.data.message ) || 'Đã gửi yêu cầu tư vấn!';
 						}

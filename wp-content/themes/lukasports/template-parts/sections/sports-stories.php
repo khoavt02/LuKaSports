@@ -40,7 +40,7 @@ $stories = array(
 <section class="sk-section sk-stories sk-section--surface">
 	<div class="sk-container">
 		<div class="sk-section-head">
-			<h2 class="sk-section-head__title"><?php esc_html_e( 'Sports Stories', 'lukasports' ); ?></h2>
+			<h2 class="sk-section-head__title"><?php esc_html_e( 'Câu chuyện thể thao', 'lukasports' ); ?></h2>
 		</div>
 		<div class="sk-stories__grid">
 			<?php foreach ( $stories as $story ) : ?>

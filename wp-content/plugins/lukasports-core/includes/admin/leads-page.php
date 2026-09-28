@@ -25,7 +25,7 @@ function lukasports_core_render_leads_page() {
 	$table->prepare_items();
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Leads', 'lukasports-core' ); ?></h1>
+		<h1><?php esc_html_e( 'Khách hàng tiềm năng', 'lukasports-core' ); ?></h1>
 		<form method="get">
 			<input type="hidden" name="page" value="lukasports-core-leads" />
 			<?php $table->views(); ?>
@@ -125,7 +125,7 @@ function lukasports_core_render_lead_detail( $lead_id ) {
 							<td><?php echo esc_html( $lead->fbclid ?: '—' ); ?></td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Landing page', 'lukasports-core' ); ?></th>
+							<th><?php esc_html_e( 'Trang đích', 'lukasports-core' ); ?></th>
 							<td>
 								<?php if ( $lead->landing_page ) : ?>
 									<a href="<?php echo esc_url( $lead->landing_page ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $lead->landing_page ); ?></a>
@@ -135,7 +135,7 @@ function lukasports_core_render_lead_detail( $lead_id ) {
 							</td>
 						</tr>
 						<tr>
-							<th><?php esc_html_e( 'Referrer', 'lukasports-core' ); ?></th>
+							<th><?php esc_html_e( 'Trang giới thiệu', 'lukasports-core' ); ?></th>
 							<td><?php echo esc_html( $lead->referrer ?: '—' ); ?></td>
 						</tr>
 						<tr>

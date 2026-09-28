@@ -8,7 +8,7 @@ get_header();
 <section class="sk-section sk-product-page">
 	<div class="sk-container">
 		<?php if ( function_exists( 'woocommerce_breadcrumb' ) ) : ?>
-			<nav class="sk-breadcrumb"><?php woocommerce_breadcrumb( array( 'delimiter' => ' / ' ) ); ?></nav>
+			<nav class="sk-breadcrumb"><?php woocommerce_breadcrumb( array( 'delimiter' => ' / ', 'wrap_before' => '<nav class="woocommerce-breadcrumb" aria-label="' . esc_attr__( 'Đường dẫn', 'lukasports' ) . '">' ) ); ?></nav>
 		<?php endif; ?>
 
 		<?php

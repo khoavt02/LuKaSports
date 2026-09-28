@@ -39,7 +39,7 @@ $alt_image_id  = ! empty( $gallery_ids ) ? $gallery_ids[0] : 0;
 			echo lukasports_attachment_image( $alt_image_id, 'lukasports-card', 'lazy', 'sk-product-card__img--alt', $product->get_name() ); // phpcs:ignore
 		}
 		?>
-		<span class="sk-product-card__quickview"><?php esc_html_e( 'Quick View', 'lukasports' ); ?></span>
+		<span class="sk-product-card__quickview"><?php esc_html_e( 'Xem nhanh', 'lukasports' ); ?></span>
 	</a>
 	<div class="sk-product-card__body">
 		<?php if ( $categories ) : ?>

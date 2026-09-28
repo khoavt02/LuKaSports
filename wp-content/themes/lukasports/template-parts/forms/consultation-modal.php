@@ -24,7 +24,7 @@ $sk_contact = lukasports_get_contact_info();
 			<h2 class="sk-modal__title" id="sk-modal-title"><?php esc_html_e( 'Nhận tư vấn từ LukaSports', 'lukasports' ); ?></h2>
 			<p class="sk-modal__subtitle"><?php esc_html_e( 'Để lại thông tin, nhân viên LukaSports sẽ liên hệ tư vấn size, số lượng và giá trong thời gian sớm nhất.', 'lukasports' ); ?></p>
 
-			<form id="sk-consultation-form" novalidate data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
+			<form id="sk-consultation-form" data-sk-lead-form novalidate data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
 				<?php wp_nonce_field( 'lukasports_submit_lead', 'nonce' ); ?>
 				<input type="hidden" name="product_id" id="sk-lead-product-id" value="" />
 				<input type="hidden" name="source" id="sk-lead-source" value="website" />

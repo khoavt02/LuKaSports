@@ -50,7 +50,7 @@ if ( empty( $products ) ) {
 	<div class="sk-container">
 		<div class="sk-section-head">
 			<div>
-				<h2 class="sk-section-head__title"><?php esc_html_e( 'LukaSports Selected', 'lukasports' ); ?></h2>
+				<h2 class="sk-section-head__title"><?php esc_html_e( 'LukaSports tuyển chọn', 'lukasports' ); ?></h2>
 				<p class="sk-section-head__desc"><?php echo esc_html( lukasports_excerpt( $term->description ? $term->description : $term->name, 16 ) ); ?></p>
 			</div>
 		</div>

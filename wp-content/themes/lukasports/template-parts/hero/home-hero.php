@@ -19,7 +19,7 @@ $contact     = lukasports_get_contact_info();
 	</div>
 	<div class="sk-container sk-hero__overlay">
 		<div class="sk-hero__content">
-			<span class="sk-hero__label"><?php esc_html_e( 'LukaSports 2026', 'lukasports' ); ?></span>
+			<span class="sk-hero__label"><?php esc_html_e( 'Bộ sưu tập 2026', 'lukasports' ); ?></span>
 			<h1 class="sk-hero__title">
 				<?php esc_html_e( 'Mặc chất riêng.', 'lukasports' ); ?><br />
 				<?php esc_html_e( 'Chơi hết mình.', 'lukasports' ); ?>
