@@ -10,3 +10,4 @@ wp-content/uploads/
 # OS / editor
 .DS_Store
 Thumbs.db
+.tunnel.log

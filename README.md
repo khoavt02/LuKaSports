@@ -22,6 +22,20 @@ Nothing else needs to be installed locally — WordPress, MySQL, and WP-CLI all 
 
 This project runs alongside SportKit (`AoBongDa/`) on different ports — nothing here touches that stack.
 
+## Quick start (one command)
+
+```bash
+bash bin/setup.sh
+```
+
+Creates `.env` (with a random admin password) if missing, starts the containers and — on a fresh database — installs WordPress + WooCommerce, activates the theme/plugin, applies the Vietnamese store settings and runs all seed scripts. On an existing install it just starts the stack, so it's safe to re-run. The manual steps below are what it automates.
+
+### GitHub Codespaces (temporary public demo)
+
+The repo ships a `.devcontainer/` that runs `bin/setup.sh` on every Codespace start. Create a Codespace (Code → Codespaces → Create), wait for the first setup (~5–6 min), then in the **Ports** tab set port 8090 to **Public** (the script tries to do this itself) and share its `*.app.github.dev` URL. The admin password is in the Codespace's `.env`.
+
+Codespaces stop after the idle timeout (30 min by default, max 4 h — visitors browsing the site don't count as activity) and use the account's free monthly quota; the database lives only in that Codespace. Good for a scheduled demo, not for hosting.
+
 ## How to run
 
 ```bash
@@ -40,8 +54,8 @@ docker compose run --rm wpcli core install \
   --admin_email="you@example.com"
 
 docker compose run --rm wpcli plugin install woocommerce --activate
-docker compose run --rm wpcli theme activate linea
-docker compose run --rm wpcli plugin activate linea-core
+docker compose run --rm wpcli theme activate lukasports
+docker compose run --rm wpcli plugin activate lukasports-core
 docker compose run --rm wpcli wc tool run install_pages --user=1
 docker compose run --rm wpcli rewrite structure '/%postname%/' --hard
 ```
@@ -86,18 +100,26 @@ Global attributes (Size/Màu sắc/Loại hình vận động/Chất liệu/Năm
 For bulk dev/test data, `bin/seed-products.php` creates 8 categories and 25 products (mix of simple/variable, on-sale/regular) across Áo Tank, Áo Thun Thể Thao, Quần Legging, Quần Shorts, Áo Khoác Gió, Áo Hoodie, Đồ Tập Yoga and Phụ Kiện. It's idempotent — re-running deletes anything it created before (tagged `_linea_seed`) and recreates it:
 
 ```bash
-docker compose run --rm wpcli eval-file linea-bin/seed-products.php
+docker compose run --rm wpcli eval-file lukasports-bin/seed-products.php
+docker compose run --rm wpcli eval-file lukasports-bin/seed-reviews-blog.php
+docker compose run --rm wpcli eval-file lukasports-bin/seed-pages.php
 ```
 
-### Adding a new top-level category with a clean URL
+`seed-pages.php` creates every Page the header/footer link to (Sản phẩm, Về LukaSports, Liên hệ, Bộ sưu tập, Blog, the three policy pages), moves the WooCommerce pages to Vietnamese slugs (`/san-pham/`, `/gio-hang/`, `/thanh-toan/`, `/tai-khoan/`), sets Settings → Reading to a static front page with `/blog/` as the posts page, turns off WooCommerce's "coming soon" mode, and creates three product collections. Existing pages are matched by slug and keep their content, so it's safe to re-run.
 
-Same convention as SportKit: create the `product_cat` term, then create a Page whose **slug matches the category's slug exactly** with template **"Linea — Category Landing"**. The native `/product-category/{slug}/` URL 301-redirects to the clean one.
+### Category URLs
+
+Every top-level product category is served at a clean URL (`/ao-bong-da/`) automatically — `inc/hooks.php` routes the request to the native category archive, which renders with the shop template (category chips, sorting, pagination). The native `/product-category/{slug}/` URL 301-redirects to the clean one. No Page is needed per category; if you *want* a custom landing page, create a Page whose slug matches the category's slug with template **"LukaSports — Category Landing"** and it takes precedence.
+
+### Page templates
+
+- **LukaSports — Giới thiệu** (`template-about.php`): brand story — the Page content is the story text; stats/values/process/CTA are layout.
+- **LukaSports — Liên hệ** (`template-contact.php`): contact channels from LukaSports → Settings plus an inline consultation form (leads land in the same table, `source = contact_page`).
+- **LukaSports — Bộ sưu tập** (`template-collections.php`): index of `product_collection` terms; each links to `/bo-suu-tap/{slug}/`.
 
 ### Blog / policy pages
 
-The theme's `home.php` (posts index) only takes effect once **Settings → Reading** is set to *"A static page"* with a **Posts page** assigned — `show_on_front=posts` (the default) ignores `page_for_posts` entirely and there is no `/blog/` archive at all, even if a Page with that slug exists (it just renders as an empty Page). `front-page.php` still governs the actual site root regardless of that setting, so this is safe to do on day one.
-
-Footer links to `/chinh-sach-doi-tra/`, `/chinh-sach-giao-hang/`, `/chinh-sach-bao-mat/`, `/lien-he/` and the nav's "Blog"/"Bộ sưu tập" items all expect real Pages (or, for the collection, a populated `product_collection` term) at those exact slugs — same as SportKit's category-landing convention. Create them before pointing a real menu at them.
+Created by `seed-pages.php`. If you set things up by hand instead: the theme's `home.php` (posts index) only takes effect once **Settings → Reading** is set to *"A static page"* with a **Posts page** assigned, and the footer expects Pages at `/chinh-sach-doi-tra/`, `/chinh-sach-giao-hang/`, `/chinh-sach-bao-mat/` and `/lien-he/`.
 
 ## How to change homepage content
 

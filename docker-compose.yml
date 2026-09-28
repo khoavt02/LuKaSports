@@ -23,12 +23,16 @@ services:
       WORDPRESS_DB_USER: ${MYSQL_USER:-linea}
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-linea_dev_password}
       WORDPRESS_TABLE_PREFIX: ${WP_TABLE_PREFIX:-wp_}
-      WORDPRESS_DEBUG: ${WP_DEBUG:-true}
+      # The image enables WP_DEBUG for any non-empty value (even "false"),
+      # so set WP_DEBUG= (empty) in .env to turn it off.
+      WORDPRESS_DEBUG: ${WP_DEBUG-true}
     volumes:
       - wp_data:/var/www/html
       - ./wp-content/themes/lukasports:/var/www/html/wp-content/themes/lukasports
       - ./wp-content/plugins/lukasports-core:/var/www/html/wp-content/plugins/lukasports-core
       - ./docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./docker/php/forwarded-host.ini:/usr/local/etc/php/conf.d/forwarded-host.ini
+      - ./docker/php/forwarded-host.php:/usr/local/etc/php/forwarded-host.php
     ports:
       - "${WP_PORT:-8090}:80"
 
