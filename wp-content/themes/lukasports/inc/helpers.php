@@ -9,8 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Site-wide contact channels + CTA copy used by every CTA button on
- * the front end. Single source of truth: LukaSports Core → Cài đặt liên
- * hệ (Products → LukaSports → Settings). Falls back to sensible
+ * the front end. Single source of truth: DALETIC Core → Cài đặt liên
+ * hệ (Products → DALETIC → Settings). Falls back to sensible
  * defaults if the plugin is inactive so the theme never fatals on its
  * own, but the admin-editable values always win when present.
  *
@@ -24,9 +24,9 @@ function lukasports_get_contact_info() {
 	$defaults = array(
 		'hotline_display'    => '0987 000 111',
 		'hotline_tel'        => '+84987000111',
-		'messenger_url'      => 'https://m.me/lukasports.vn',
+		'messenger_url'      => 'https://m.me/daletic.vn',
 		'zalo_url'           => 'https://zalo.me/0987000111',
-		'facebook_url'       => 'https://facebook.com/lukasports.vn',
+		'facebook_url'       => 'https://facebook.com/daletic.vn',
 		'address'            => 'Số 12, Ngõ 88, Đường Láng, Đống Đa, Hà Nội',
 		'primary_cta_text'   => 'Tư vấn ngay',
 		'secondary_cta_text' => 'Đặt áo cho đội',
@@ -36,7 +36,7 @@ function lukasports_get_contact_info() {
 }
 
 /**
- * Homepage hero banner image URL — admin-editable via LukaSports → Settings
+ * Homepage hero banner image URL — admin-editable via DALETIC → Settings
  * (media library picker, stored as an attachment ID), falling back to the
  * theme's bundled banner if nothing has been chosen yet.
  */

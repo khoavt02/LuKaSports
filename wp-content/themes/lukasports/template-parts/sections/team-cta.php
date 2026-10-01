@@ -21,7 +21,7 @@ $steps = array(
 	array(
 		'num'   => '02',
 		'title' => 'Thiết kế',
-		'desc'  => 'LukaSports dựng mẫu, gửi bản duyệt trước khi sản xuất.',
+		'desc'  => 'DALETIC dựng mẫu, gửi bản duyệt trước khi sản xuất.',
 	),
 	array(
 		'num'   => '03',

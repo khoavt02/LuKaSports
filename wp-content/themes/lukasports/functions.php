@@ -1,6 +1,6 @@
 <?php
 /**
- * LukaSports theme bootstrap.
+ * DALETIC theme bootstrap.
  *
  * This file only wires up modules — no business logic lives here.
  * Business logic (leads, inquiries, design requests) belongs in the

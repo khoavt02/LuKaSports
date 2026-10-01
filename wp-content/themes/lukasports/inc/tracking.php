@@ -2,7 +2,7 @@
 /**
  * Meta Pixel / GA4 / TikTok Pixel — config-only, no hardcoded IDs.
  * Each platform's base snippet only loads if its ID is set in
- * LukaSports → Settings; with nothing configured (the default), this
+ * DALETIC → Settings; with nothing configured (the default), this
  * file outputs nothing at all. See assets/js/main.js for the
  * lukasportsTrack()/`lukasports:track` event abstraction these platforms
  * hook into once active.

@@ -40,6 +40,19 @@ function lukasports_theme_setup() {
 	// Flexslider/PhotoSwipe bundle, so we don't ship a JS gallery library
 	// twice or restyle one we don't otherwise use.
 
+	// Admin-uploadable logo (Giao diện → Tùy biến → Nhận diện site). Until
+	// one is set, the header/footer fall back to the bundled SVG logo in
+	// assets/images/brand/.
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'      => 128,
+			'width'       => 640,
+			'flex-height' => true,
+			'flex-width'  => true,
+		)
+	);
+
 	register_nav_menus(
 		array(
 			'primary' => __( 'Menu chính', 'lukasports' ),
@@ -91,7 +104,7 @@ function lukasports_primary_menu_fallback() {
 		'/san-pham/'          => 'Sản phẩm',
 		'/bo-suu-tap/'        => 'Bộ sưu tập',
 		'/ao-bong-da-thiet-ke/' => 'Thiết kế áo',
-		'/ve-lukasports/'     => 'Về LukaSports',
+		'/ve-daletic/'         => 'Về DALETIC',
 		'/blog/'              => 'Blog',
 	);
 	foreach ( $links as $url => $label ) {

@@ -17,9 +17,9 @@ function lukasports_core_settings_defaults() {
 	return array(
 		'hotline_display'   => '0987 000 111',
 		'hotline_tel'       => '+84987000111',
-		'messenger_url'     => 'https://m.me/lukasports.vn',
+		'messenger_url'     => 'https://m.me/daletic.vn',
 		'zalo_url'          => 'https://zalo.me/0987000111',
-		'facebook_url'      => 'https://facebook.com/lukasports.vn',
+		'facebook_url'      => 'https://facebook.com/daletic.vn',
 		'address'           => 'Số 12, Ngõ 88, Đường Láng, Đống Đa, Hà Nội',
 		'primary_cta_text'  => 'Tư vấn ngay',
 		'secondary_cta_text' => 'Đặt áo cho đội',
@@ -132,7 +132,7 @@ function lukasports_core_render_settings_page() {
 	$settings = lukasports_core_get_settings();
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'LukaSports — Cài đặt liên hệ', 'lukasports-core' ); ?></h1>
+		<h1><?php esc_html_e( 'DALETIC — Cài đặt liên hệ', 'lukasports-core' ); ?></h1>
 		<p><?php esc_html_e( 'Toàn bộ nút liên hệ trên website (header, trang sản phẩm, thanh liên hệ di động, footer) đều lấy dữ liệu từ đây.', 'lukasports-core' ); ?></p>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'lukasports_settings_group' ); ?>

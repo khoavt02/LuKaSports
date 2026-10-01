@@ -10,7 +10,7 @@
 				{ "slug": "surface", "name": "Surface", "color": "#F7F5F1" },
 				{ "slug": "line", "name": "Line", "color": "#E6E1D6" },
 				{ "slug": "muted", "name": "Muted text", "color": "#837C70" },
-				{ "slug": "accent", "name": "Accent (LukaSports Brass)", "color": "#A6813F" }
+				{ "slug": "accent", "name": "Accent (DALETIC Blue)", "color": "#146EF5" }
 			],
 			"custom": false,
 			"customGradient": false

@@ -32,7 +32,8 @@
 	font-size: var(--sk-text-2xl);
 	letter-spacing: -0.01em;
 }
-.sk-brand img { max-height: 40px; width: auto; }
+.sk-brand img { display: block; max-height: 40px; width: auto; }
+@media (max-width: 767px) { .sk-brand img { max-height: 32px; } }
 .sk-brand { padding-right: var(--sk-space-4); }
 @media (min-width: 1024px) { .sk-brand { padding-right: var(--sk-space-8); } }
 

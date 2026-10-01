@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: LukaSports — Giới thiệu
+ * Template Name: DALETIC — Giới thiệu
  *
  * Brand story page. The story paragraphs are the Page's own content
  * (editable in wp-admin); the surrounding structure — numbers, values,
@@ -38,16 +38,16 @@ $values = array(
 	),
 	array(
 		'title' => __( 'Tư vấn tận tâm', 'lukasports' ),
-		'desc'  => __( 'Đội ngũ LukaSports đồng hành từ lúc lên ý tưởng đến khi áo tới tay cả đội.', 'lukasports' ),
+		'desc'  => __( 'Đội ngũ DALETIC đồng hành từ lúc lên ý tưởng đến khi áo tới tay cả đội.', 'lukasports' ),
 	),
 );
 ?>
 
 <section class="sk-page-hero">
 	<div class="sk-container sk-page-hero__inner">
-		<p class="sk-page-hero__eyebrow"><?php esc_html_e( 'Về LukaSports', 'lukasports' ); ?></p>
+		<p class="sk-page-hero__eyebrow"><?php esc_html_e( 'Về DALETIC', 'lukasports' ); ?></p>
 		<h1 class="sk-page-hero__title"><?php esc_html_e( 'Đồ thi đấu cho người chơi thật.', 'lukasports' ); ?></h1>
-		<p class="sk-page-hero__lead"><?php esc_html_e( 'LukaSports làm áo đấu và đồng phục cho cá nhân, đội bóng, CLB — từ sân phủi cuối tuần đến giải phong trào.', 'lukasports' ); ?></p>
+		<p class="sk-page-hero__lead"><?php esc_html_e( 'DALETIC làm áo đấu và đồng phục cho cá nhân, đội bóng, CLB — từ sân phủi cuối tuần đến giải phong trào.', 'lukasports' ); ?></p>
 		<div class="sk-page-hero__actions">
 			<a class="sk-btn sk-btn--primary sk-btn--lg" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Xem sản phẩm', 'lukasports' ); ?></a>
 			<a class="sk-btn sk-btn--outline-light sk-btn--lg" href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" data-lukasports-cta="consult" data-source="about_hero"><?php esc_html_e( 'Nhận tư vấn', 'lukasports' ); ?></a>
@@ -87,7 +87,7 @@ $values = array(
 		<div class="sk-section-head">
 			<div>
 				<h2 class="sk-section-head__title"><?php esc_html_e( 'Điều chúng tôi cam kết', 'lukasports' ); ?></h2>
-				<p class="sk-section-head__desc"><?php esc_html_e( 'Bốn nguyên tắc cho mọi chiếc áo rời xưởng LukaSports.', 'lukasports' ); ?></p>
+				<p class="sk-section-head__desc"><?php esc_html_e( 'Bốn nguyên tắc cho mọi chiếc áo rời xưởng DALETIC.', 'lukasports' ); ?></p>
 			</div>
 		</div>
 		<div class="sk-about-values__grid">

@@ -1,7 +1,7 @@
 <?php
 /**
  * Shared sizing table across the catalog — sizing is standardized
- * across LukaSports's product line, so one guide serves every product
+ * across DALETIC's product line, so one guide serves every product
  * rather than per-product data entry.
  */
 
@@ -39,5 +39,5 @@ $rows = array(
 			</tbody>
 		</table>
 	</div>
-	<p><?php esc_html_e( 'Chưa chắc chọn size nào? Nhắn Zalo/Messenger cho LukaSports — tư vấn size miễn phí.', 'lukasports' ); ?></p>
+	<p><?php esc_html_e( 'Chưa chắc chọn size nào? Nhắn Zalo/Messenger cho DALETIC — tư vấn size miễn phí.', 'lukasports' ); ?></p>
 </div>

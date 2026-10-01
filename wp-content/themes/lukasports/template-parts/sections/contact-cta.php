@@ -14,7 +14,7 @@ $contact = lukasports_get_contact_info();
 	<div class="sk-container sk-contact-cta__inner">
 		<h2 class="sk-contact-cta__title"><?php esc_html_e( 'Bạn đang tìm mẫu áo cho đội?', 'lukasports' ); ?></h2>
 		<p class="sk-contact-cta__subtitle">
-			<?php esc_html_e( 'Gửi nhu cầu của bạn. LukaSports sẽ tư vấn mẫu phù hợp.', 'lukasports' ); ?>
+			<?php esc_html_e( 'Gửi nhu cầu của bạn. DALETIC sẽ tư vấn mẫu phù hợp.', 'lukasports' ); ?>
 		</p>
 		<div class="sk-contact-cta__actions">
 			<a class="sk-btn sk-btn--primary sk-btn--lg" href="<?php echo esc_url( $contact['messenger_url'] ); ?>" target="_blank" rel="noopener" data-lukasports-cta="consult" data-source="contact_cta">

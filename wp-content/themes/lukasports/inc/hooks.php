@@ -188,3 +188,16 @@ add_filter( 'woocommerce_get_breadcrumb', 'lukasports_rewrite_breadcrumb_categor
  * Phase 1 (see #16, "Advanced recommendation engine").
  */
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+
+/**
+ * Favicon from the bundled brand symbol until an admin sets a Site Icon
+ * (Giao diện → Tùy biến → Nhận diện site), which WordPress then outputs itself.
+ */
+function lukasports_fallback_favicon() {
+	if ( has_site_icon() ) {
+		return;
+	}
+	printf( '<link rel="icon" type="image/svg+xml" href="%s" />' . "\n", esc_url( LUKASPORTS_THEME_URI . '/assets/images/brand/symbol.svg' ) );
+}
+add_action( 'wp_head', 'lukasports_fallback_favicon' );
+add_action( 'admin_head', 'lukasports_fallback_favicon' );

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # One-command setup: starts the stack and, on a fresh database, installs
-# WordPress + WooCommerce, activates the LukaSports theme/plugin, applies
+# WordPress + WooCommerce, activates the DALETIC theme/plugin, applies
 # the Vietnamese store settings and seeds products, reviews, blog posts
 # and pages. On an already-installed site it only starts the containers
 # and re-applies the dynamic site URL, so it's safe to run on every boot
@@ -74,7 +74,7 @@ else
 	log "Installing WordPress"
 	wp core install \
 		--url="$SITE_URL" \
-		--title="${WP_SITE_TITLE:-LukaSports}" \
+		--title="${WP_SITE_TITLE:-DALETIC}" \
 		--admin_user="${WP_ADMIN_USER:-admin}" \
 		--admin_password="${WP_ADMIN_PASSWORD}" \
 		--admin_email="${WP_ADMIN_EMAIL:-dev@example.com}" \
@@ -82,7 +82,7 @@ else
 	wp config set WP_HOME "$url_expr" --raw --quiet
 	wp config set WP_SITEURL "$url_expr" --raw --quiet
 
-	log "Installing WooCommerce and activating LukaSports"
+	log "Installing WooCommerce and activating DALETIC"
 	wp plugin install woocommerce --activate
 	wp theme activate lukasports
 	wp plugin activate lukasports-core

@@ -16,7 +16,7 @@ define( 'LUKASPORTS_CORE_META_PROMOTIONS', '_lukasports_promotions' );
 function lukasports_core_register_product_metabox() {
 	add_meta_box(
 		'lukasports-product-details',
-		__( 'LukaSports — Thông tin bổ sung', 'lukasports-core' ),
+		__( 'DALETIC — Thông tin bổ sung', 'lukasports-core' ),
 		'lukasports_core_render_product_metabox',
 		'product',
 		'normal',

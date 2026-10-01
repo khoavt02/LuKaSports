@@ -1,5 +1,5 @@
 {
-	"name": "LukaSports",
+	"name": "DALETIC",
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
@@ -11,7 +11,7 @@
 	"forwardPorts": [8090],
 	"portsAttributes": {
 		"8090": {
-			"label": "LukaSports",
+			"label": "DALETIC",
 			"onAutoForward": "notify"
 		}
 	},

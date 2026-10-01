@@ -1,6 +1,6 @@
 <?php
 /**
- * "LukaSports" admin menu: Dashboard, Leads, Settings.
+ * "DALETIC" admin menu: Dashboard, Leads, Settings.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -9,8 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function lukasports_core_register_admin_menu() {
 	add_menu_page(
-		__( 'LukaSports', 'lukasports-core' ),
-		__( 'LukaSports', 'lukasports-core' ),
+		__( 'DALETIC', 'lukasports-core' ),
+		__( 'DALETIC', 'lukasports-core' ),
 		'manage_woocommerce',
 		'lukasports-core',
 		'lukasports_core_render_dashboard_page',
@@ -89,7 +89,7 @@ function lukasports_core_render_dashboard_page() {
 	$recent = lukasports_core_query_leads( array( 'per_page' => 8 ) )['items'];
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'LukaSports — Dashboard', 'lukasports-core' ); ?></h1>
+		<h1><?php esc_html_e( 'DALETIC — Dashboard', 'lukasports-core' ); ?></h1>
 
 		<div class="lukasports-dashboard__stats">
 			<div class="lukasports-dashboard__stat">

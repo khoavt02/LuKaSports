@@ -1,8 +1,8 @@
 <?php
 /**
- * Template Name: LukaSports — Liên hệ
+ * Template Name: DALETIC — Liên hệ
  *
- * Contact channels (all from LukaSports → Settings, same source as
+ * Contact channels (all from DALETIC → Settings, same source as
  * every other CTA) next to an inline copy of the consultation form.
  * The form posts to the same AJAX endpoint as the modal and lands in
  * the same leads table, tagged source=contact_page.
@@ -80,7 +80,7 @@ $channels = array(
 
 			<div class="sk-contact__form-card">
 				<h2 class="sk-contact__form-title"><?php esc_html_e( 'Gửi yêu cầu tư vấn', 'lukasports' ); ?></h2>
-				<p class="sk-contact__form-desc"><?php esc_html_e( 'Để lại thông tin, LukaSports sẽ gọi lại tư vấn size, số lượng và báo giá.', 'lukasports' ); ?></p>
+				<p class="sk-contact__form-desc"><?php esc_html_e( 'Để lại thông tin, DALETIC sẽ gọi lại tư vấn size, số lượng và báo giá.', 'lukasports' ); ?></p>
 
 				<form data-sk-lead-form novalidate data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
 					<?php // No wp_nonce_field() here: its id="nonce" would duplicate the modal form's. ?>

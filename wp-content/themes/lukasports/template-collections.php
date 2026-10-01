@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: LukaSports — Bộ sưu tập
+ * Template Name: DALETIC — Bộ sưu tập
  *
  * Index of every `product_collection` term that has products. Each
  * card links to the collection archive (/bo-suu-tap/{slug}/), which

@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: LukaSports — Category Landing
+ * Template Name: DALETIC — Category Landing
  *
  * WooCommerce won't let a product category archive live at the site
  * root (its permalink settings always fall back to a "product-category/"

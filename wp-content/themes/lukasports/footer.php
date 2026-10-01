@@ -16,7 +16,7 @@ $sk_contact = lukasports_get_contact_info();
 		<?php get_template_part( 'template-parts/footer/footer-columns' ); ?>
 
 		<div class="sk-footer__bottom">
-			<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'Bản quyền thuộc về LukaSports.', 'lukasports' ); ?></p>
+			<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'Bản quyền thuộc về DALETIC.', 'lukasports' ); ?></p>
 		</div>
 	</div>
 </footer>

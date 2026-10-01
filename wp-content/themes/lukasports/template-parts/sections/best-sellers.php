@@ -1,7 +1,7 @@
 <?php
 /**
  * Real WooCommerce query, latest products first — no curated/fake
- * "best seller" list here (that's the separate "LukaSports Selected"
+ * "best seller" list here (that's the separate "DALETIC Selected"
  * section, sourced from the product_collection taxonomy instead).
  */
 

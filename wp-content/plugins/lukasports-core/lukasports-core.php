@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: LukaSports Core
+ * Plugin Name: DALETIC Core
  * Plugin URI: https://example.com/lukasports
- * Description: Business logic for the LukaSports storefront — product data, lead capture and consultation tracking, contact settings, admin tools. Never edits WordPress or WooCommerce core.
+ * Description: Business logic for the DALETIC storefront — product data, lead capture and consultation tracking, contact settings, admin tools. Never edits WordPress or WooCommerce core.
  * Version: 0.2.0
  * Requires at least: 6.4
  * Requires PHP: 8.2
- * Author: LukaSports Team
+ * Author: DALETIC Team
  * Text Domain: lukasports-core
  *
  * This file only bootstraps modules — see includes/. Design
@@ -53,7 +53,7 @@ function lukasports_core_check_dependencies() {
 			'admin_notices',
 			function () {
 				echo '<div class="notice notice-error"><p>' .
-					esc_html__( 'LukaSports Core requires WooCommerce to be installed and active.', 'lukasports-core' ) .
+					esc_html__( 'DALETIC Core requires WooCommerce to be installed and active.', 'lukasports-core' ) .
 					'</p></div>';
 			}
 		);

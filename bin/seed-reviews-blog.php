@@ -193,7 +193,7 @@ $posts = array(
 	array(
 		'title'   => 'Kinh nghiệm đặt đồng phục cho đội bóng phong trào',
 		'excerpt' => 'Đặt áo cho cả đội khác với mua áo cá nhân — vài kinh nghiệm giúp buổi đặt áo suôn sẻ, không phát sinh đổi trả.',
-		'content' => "Thu thập số đo trước, không chỉ hỏi size: mỗi người có thói quen mặc rộng/ôm khác nhau, nên hỏi thêm \"bạn muốn mặc ôm hay rộng rãi\" thay vì chỉ hỏi size S/M/L.\n\nChốt mẫu và màu trước khi thu tiền: tránh tình trạng nửa chừng đổi ý khiến đơn hàng bị chậm.\n\nGửi danh sách tên + số áo dạng bảng tính: giúp việc in ấn chính xác, hạn chế sai sót khi có hơn 10 người trong đội.\n\nChừa thời gian dự phòng: nên đặt trước ít nhất 7-10 ngày so với ngày cần dùng, đặc biệt với đơn có in tên số riêng từng người.\n\nLukaSports nhận tư vấn đặt áo đội từ số lượng nhỏ, hỗ trợ file mẫu tên số để đội trưởng dễ tổng hợp.",
+		'content' => "Thu thập số đo trước, không chỉ hỏi size: mỗi người có thói quen mặc rộng/ôm khác nhau, nên hỏi thêm \"bạn muốn mặc ôm hay rộng rãi\" thay vì chỉ hỏi size S/M/L.\n\nChốt mẫu và màu trước khi thu tiền: tránh tình trạng nửa chừng đổi ý khiến đơn hàng bị chậm.\n\nGửi danh sách tên + số áo dạng bảng tính: giúp việc in ấn chính xác, hạn chế sai sót khi có hơn 10 người trong đội.\n\nChừa thời gian dự phòng: nên đặt trước ít nhất 7-10 ngày so với ngày cần dùng, đặc biệt với đơn có in tên số riêng từng người.\n\nDALETIC nhận tư vấn đặt áo đội từ số lượng nhỏ, hỗ trợ file mẫu tên số để đội trưởng dễ tổng hợp.",
 	),
 	array(
 		'title'   => 'Chất liệu vải thể thao: Polyester lạnh và Thun cá sấu khác gì nhau?',

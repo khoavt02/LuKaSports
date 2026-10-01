@@ -11,7 +11,7 @@ $contact     = lukasports_get_contact_info();
 	<div class="sk-hero__media">
 		<img
 			src="<?php echo esc_url( lukasports_get_hero_image_url() ); ?>"
-			alt="<?php esc_attr_e( 'Đồng phục LukaSports', 'lukasports' ); ?>"
+			alt="<?php esc_attr_e( 'Đồng phục DALETIC', 'lukasports' ); ?>"
 			width="1600" height="900"
 			fetchpriority="high"
 			loading="eager"

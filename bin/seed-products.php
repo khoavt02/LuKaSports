@@ -38,6 +38,22 @@ foreach ( $previous as $product_id ) {
 }
 WP_CLI::log( sprintf( 'Removed %d previously seeded product(s).', count( $previous ) ) );
 
+// Their generated images too, or every re-run leaves a full set of
+// orphaned files in the media library.
+$previous_images = get_posts(
+	array(
+		'post_type'      => 'attachment',
+		'posts_per_page' => -1,
+		'post_status'    => 'any',
+		'meta_key'       => '_lukasports_seed', // phpcs:ignore
+		'fields'         => 'ids',
+	)
+);
+foreach ( $previous_images as $attachment_id ) {
+	wp_delete_attachment( $attachment_id, true );
+}
+WP_CLI::log( sprintf( 'Removed %d previously seeded image(s).', count( $previous_images ) ) );
+
 /**
  * ---------------------------------------------------------------
  * Categories
@@ -45,7 +61,7 @@ WP_CLI::log( sprintf( 'Removed %d previously seeded product(s).', count( $previo
  */
 $categories = array(
 	'ao-bong-da'          => array( 'Áo Bóng Đá', 'Áo đấu CLB, đội tuyển và áo không logo — chất liệu thể thao thoáng mát, form chuẩn thi đấu.' ),
-	'ao-bong-da-thiet-ke' => array( 'Áo Bóng Đá Thiết Kế', 'Mẫu thiết kế riêng, họa tiết độc quyền của LukaSports — in tên và số theo yêu cầu.' ),
+	'ao-bong-da-thiet-ke' => array( 'Áo Bóng Đá Thiết Kế', 'Mẫu thiết kế riêng, họa tiết độc quyền của DALETIC — in tên và số theo yêu cầu.' ),
 	'ao-team'             => array( 'Áo Team', 'Đồng phục cho team phong trào, công ty, giải đấu — nhận đơn từ số lượng nhỏ.' ),
 	'ao-bong-chuyen'      => array( 'Áo Bóng Chuyền', 'Áo thi đấu bóng chuyền, vải thoáng khí và co giãn tốt.' ),
 	'ao-bong-ro'          => array( 'Áo Bóng Rổ', 'Áo bóng rổ phong cách streetball và thi đấu, vải lưới thoáng mát.' ),
@@ -66,7 +82,7 @@ WP_CLI::log( 'Categories ready: ' . implode( ', ', array_keys( $categories ) ) )
 
 /**
  * ---------------------------------------------------------------
- * Attribute terms (taxonomies themselves are created by LukaSports
+ * Attribute terms (taxonomies themselves are created by DALETIC
  * Core's activation hook — see includes/taxonomies.php)
  * ---------------------------------------------------------------
  */
@@ -202,6 +218,45 @@ function lukasports_seed_draw_rounded_rect( $image, $x1, $y1, $x2, $y2, $radius,
 	imagefilledellipse( $image, $x2 - $radius, $y2 - $radius, $radius * 2, $radius * 2, $color );
 }
 
+/**
+ * DALETIC brand mark (assets/images/brand/symbol.svg) redrawn in GD:
+ * rounded tile, "D" (stem + half-ellipse bowl, counter knocked out) and
+ * the electric-blue speed slash. $size is the tile's edge in pixels.
+ * Tile/letter colors flip on dark garments so the mark always reads.
+ */
+function lukasports_seed_draw_logo( $image, $x, $y, $size, $garment_hex ) {
+	list( $r, $g, $b ) = sscanf( $garment_hex, '%02x%02x%02x' );
+	$dark_garment      = ( 0.2126 * $r + 0.7152 * $g + 0.0722 * $b ) < 110;
+
+	$navy  = imagecolorallocate( $image, 0x0b, 0x1f, 0x3a );
+	$white = imagecolorallocate( $image, 0xff, 0xff, 0xff );
+	$blue  = imagecolorallocate( $image, 0x14, 0x6e, 0xf5 );
+	$tile   = $dark_garment ? $white : $navy;
+	$letter = $dark_garment ? $navy : $white;
+
+	$u = $size / 128; // symbol.svg is drawn on a 128-unit grid
+	lukasports_seed_draw_rounded_rect( $image, $x, $y, (int) ( $x + $size ), (int) ( $y + $size ), (int) max( 2, 14 * $u ), $tile );
+
+	// D: outer stem+bowl, then the counter in the tile color.
+	$dx = $x + 40 * $u;
+	$dy = $y + 22 * $u;
+	imagefilledrectangle( $image, (int) $dx, (int) $dy, (int) ( $dx + 38 * $u ), (int) ( $dy + 84 * $u ), $letter );
+	imagefilledarc( $image, (int) ( $dx + 38 * $u ), (int) ( $dy + 42 * $u ), (int) ( 84 * $u ), (int) ( 84 * $u ), 270, 90, $letter, IMG_ARC_PIE );
+	imagefilledrectangle( $image, (int) ( $dx + 19 * $u ), (int) ( $dy + 19 * $u ), (int) ( $dx + 38 * $u ), (int) ( $dy + 65 * $u ), $tile );
+	imagefilledarc( $image, (int) ( $dx + 38 * $u ), (int) ( $dy + 42 * $u ), (int) ( 46 * $u ), (int) ( 46 * $u ), 270, 90, $tile, IMG_ARC_PIE );
+
+	imagefilledpolygon(
+		$image,
+		array(
+			(int) ( $x + 18 * $u ), (int) ( $y + 98 * $u ),
+			(int) ( $x + 86 * $u ), (int) ( $y + 40 * $u ),
+			(int) ( $x + 110 * $u ), (int) ( $y + 40 * $u ),
+			(int) ( $x + 42 * $u ), (int) ( $y + 98 * $u ),
+		),
+		$blue
+	);
+}
+
 function lukasports_seed_placeholder_image( $label, $hex_bg, $hex_fg, $shape = 'jersey' ) {
 	$width  = 900;
 	$height = 1125;
@@ -303,6 +358,20 @@ function lukasports_seed_placeholder_image( $label, $hex_bg, $hex_fg, $shape = '
 		), $bg );
 	}
 
+	// DALETIC mark where a real product would carry it: left chest on
+	// garments, on the label/front panel of accessories.
+	$logo_spots = array(
+		'jersey'   => array( $cx + 62, $cy - 196, 64 ),
+		'tank'     => array( $cx + 40, $cy - 150, 58 ),
+		'bottle'   => array( $cx - 32, $cy + 18, 64 ),
+		'bag'      => array( $cx - 40, $cy + 60, 80 ),
+		'headband' => array( $cx - 26, $cy + 92, 52 ),
+		'socks'    => array( $cx - 112, $cy - 190, 44 ),
+	);
+	list( $lx, $ly, $lsize ) = $logo_spots[ $shape ] ?? $logo_spots['jersey'];
+	$logo_hex = in_array( $shape, array( 'bottle' ), true ) ? $hex_bg : $hex_fg;
+	lukasports_seed_draw_logo( $image, (int) $lx, (int) $ly, $lsize, $logo_hex );
+
 	// Brand accent bar — same red used for buttons/badges/category art,
 	// so a product tile reads as part of the same visual system instead
 	// of a generic dev-doodle placeholder.
@@ -314,7 +383,7 @@ function lukasports_seed_placeholder_image( $label, $hex_bg, $hex_fg, $shape = '
 	$data = ob_get_clean();
 	imagedestroy( $image );
 
-	$filename = 'lukasports-dev-' . sanitize_title( $label ) . '-' . wp_generate_password( 6, false ) . '.jpg';
+	$filename = 'daletic-' . sanitize_title( $label ) . '-' . wp_generate_password( 6, false ) . '.jpg';
 	$upload   = wp_upload_bits( $filename, null, $data );
 
 	if ( $upload['error'] ) {
@@ -452,10 +521,10 @@ $products = array(
 		'variation'  => array( 'size' => $sizes, 'color' => array( 'Xanh Dương', 'Đen' ) ),
 		'material'   => 'Thun cá sấu',
 		'sport'      => 'Bóng đá',
-		'benefits'   => array( 'Thiết kế độc quyền LukaSports', 'Vải 4 chiều co giãn', 'Nhận đặt từ 10 áo' ),
+		'benefits'   => array( 'Thiết kế độc quyền DALETIC', 'Vải 4 chiều co giãn', 'Nhận đặt từ 10 áo' ),
 		'printing'   => true,
-		'short_desc' => 'Mẫu thiết kế độc quyền LukaSports, họa tiết sọc chớp hiện đại.',
-		'desc'       => 'Áo Zento là mẫu thiết kế độc quyền của LukaSports với họa tiết sọc chớp bất đối xứng, phù hợp cho team muốn một bộ nhận diện khác biệt. Có 2 tuỳ chọn màu, nhận đặt từ 10 áo trở lên kèm in tên số.',
+		'short_desc' => 'Mẫu thiết kế độc quyền DALETIC, họa tiết sọc chớp hiện đại.',
+		'desc'       => 'Áo Zento là mẫu thiết kế độc quyền của DALETIC với họa tiết sọc chớp bất đối xứng, phù hợp cho team muốn một bộ nhận diện khác biệt. Có 2 tuỳ chọn màu, nhận đặt từ 10 áo trở lên kèm in tên số.',
 	),
 	array(
 		'name'       => 'Áo Thiết Kế Họa Tiết Rồng Việt',
@@ -529,7 +598,7 @@ $products = array(
 		'desc'       => 'Áo cầu lông Air Light được làm từ vải siêu nhẹ, khô nhanh, phù hợp cho cả thi đấu và tập luyện hàng ngày. Đường cắt may ôm nhẹ, không gây cản trở khi di chuyển.',
 	),
 	array(
-		'name'       => 'Bộ Tất Thể Thao LukaSports (3 đôi)',
+		'name'       => 'Bộ Tất Thể Thao DALETIC (3 đôi)',
 		'cat'        => 'phu-kien',
 		'regular'    => 99000,
 		'sale'       => 0,
@@ -589,9 +658,9 @@ $products = array(
 		'color'      => 'Xanh Dương',
 		'material'   => 'Thun cá sấu',
 		'sport'      => 'Bóng đá',
-		'benefits'   => array( 'Họa tiết độc quyền LukaSports', 'Cảm hứng từ sóng biển miền Trung', 'In tên số theo yêu cầu' ),
+		'benefits'   => array( 'Họa tiết độc quyền DALETIC', 'Cảm hứng từ sóng biển miền Trung', 'In tên số theo yêu cầu' ),
 		'short_desc' => 'Thiết kế độc quyền họa tiết sóng biển, tông xanh dương gradient.',
-		'desc'       => 'Mẫu áo lấy cảm hứng từ những con sóng miền Trung, họa tiết gradient xanh dương độc quyền của LukaSports — dành cho team muốn một bộ nhận diện khác biệt trên sân.',
+		'desc'       => 'Mẫu áo lấy cảm hứng từ những con sóng miền Trung, họa tiết gradient xanh dương độc quyền của DALETIC — dành cho team muốn một bộ nhận diện khác biệt trên sân.',
 	) + $default_product,
 	array(
 		'name'       => 'Áo Thiết Kế Camo Rừng',
@@ -910,7 +979,7 @@ $products = array(
 		'desc'       => 'Tất thể thao cổ cao, phù hợp mặc cùng ốp ống chân khi thi đấu bóng đá, chất liệu cotton pha thấm hút tốt.',
 	) + $default_product,
 	array(
-		'name'       => 'Băng Đô Thể Thao LukaSports',
+		'name'       => 'Băng Đô Thể Thao DALETIC',
 		'cat'        => 'phu-kien',
 		'shape'      => 'headband',
 		'regular'    => 39000,

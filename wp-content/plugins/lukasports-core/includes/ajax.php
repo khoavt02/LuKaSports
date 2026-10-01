@@ -71,7 +71,7 @@ function lukasports_core_handle_submit_lead() {
 
 	wp_send_json_success(
 		array(
-			'message' => __( 'Đã gửi yêu cầu tư vấn! LukaSports sẽ liên hệ với bạn sớm nhất.', 'lukasports-core' ),
+			'message' => __( 'Đã gửi yêu cầu tư vấn! DALETIC sẽ liên hệ với bạn sớm nhất.', 'lukasports-core' ),
 		)
 	);
 }

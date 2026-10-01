@@ -18,7 +18,7 @@ function lukasports_dev_social_proof_items( $items ) {
 
 	return array(
 		array(
-			'quote'  => 'Đặt đồng phục cho cả đội bóng công ty, LukaSports tư vấn size rất kỹ nên không ai phải đổi lại. Áo thoáng mát, form đẹp.',
+			'quote'  => 'Đặt đồng phục cho cả đội bóng công ty, DALETIC tư vấn size rất kỹ nên không ai phải đổi lại. Áo thoáng mát, form đẹp.',
 			'author' => 'Anh Minh — Đội bóng FPT Software',
 		),
 		array(

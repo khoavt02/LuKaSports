@@ -3,7 +3,7 @@
  * Site structure: every Page the theme's header, footer and homepage
  * link to, WooCommerce pages under Vietnamese slugs, Settings → Reading
  * (static front page + /blog/ posts page), and a few product
- * collections so /bo-suu-tap/ and the homepage "LukaSports tuyển chọn" section have
+ * collections so /bo-suu-tap/ and the homepage "DALETIC tuyển chọn" section have
  * real data.
  *
  * Run via: docker compose run --rm wpcli eval-file lukasports-bin/seed-pages.php
@@ -106,10 +106,10 @@ $front_id = lukasports_seed_page( 'trang-chu', 'Trang chủ' );
 $blog_id  = lukasports_seed_page( 'blog', 'Blog' );
 
 lukasports_seed_page(
-	've-lukasports',
-	'Về LukaSports',
-	'<p>LukaSports bắt đầu từ một đội bóng phong trào: mỗi mùa giải lại mất hàng tuần để tìm một xưởng may áo đấu vừa đẹp, vừa bền, vừa đúng hẹn. Không tìm được, chúng tôi tự làm.</p>
-<p>Hôm nay LukaSports may áo cho bóng đá, bóng chuyền, bóng rổ, cầu lông và pickleball — từ một chiếc áo cho người chơi cá nhân đến cả bộ đồng phục cho đội, CLB và công ty.</p>
+	've-daletic',
+	'Về DALETIC',
+	'<p>DALETIC bắt đầu từ một đội bóng phong trào: mỗi mùa giải lại mất hàng tuần để tìm một xưởng may áo đấu vừa đẹp, vừa bền, vừa đúng hẹn. Không tìm được, chúng tôi tự làm.</p>
+<p>Hôm nay DALETIC may áo cho bóng đá, bóng chuyền, bóng rổ, cầu lông và pickleball — từ một chiếc áo cho người chơi cá nhân đến cả bộ đồng phục cho đội, CLB và công ty.</p>
 <p>Mỗi sản phẩm đều được chọn vải theo cường độ vận động của môn thể thao đó, thử form trên người chơi thật trước khi lên kệ, và in bằng công nghệ giữ màu sau nhiều mùa giặt.</p>',
 	'template-about.php'
 );
@@ -117,14 +117,14 @@ lukasports_seed_page(
 lukasports_seed_page(
 	'lien-he',
 	'Liên hệ',
-	'<p>Cần tư vấn size, đặt đồng phục cho đội hay thiết kế áo riêng? Chọn kênh tiện nhất cho bạn hoặc để lại thông tin — LukaSports sẽ liên hệ lại sớm.</p>',
+	'<p>Cần tư vấn size, đặt đồng phục cho đội hay thiết kế áo riêng? Chọn kênh tiện nhất cho bạn hoặc để lại thông tin — DALETIC sẽ liên hệ lại sớm.</p>',
 	'template-contact.php'
 );
 
 lukasports_seed_page(
 	'bo-suu-tap',
 	'Bộ sưu tập',
-	'<p>Những nhóm sản phẩm được LukaSports tuyển chọn theo mùa giải, theo nhu cầu và theo phong cách.</p>',
+	'<p>Những nhóm sản phẩm được DALETIC tuyển chọn theo mùa giải, theo nhu cầu và theo phong cách.</p>',
 	'template-collections.php'
 );
 
@@ -135,7 +135,7 @@ lukasports_seed_page(
  * (privacy link in checkout, etc.) keep working.
  * ---------------------------------------------------------------
  */
-$policy_returns = '<p>LukaSports hỗ trợ đổi hàng trong vòng <strong>7 ngày</strong> kể từ khi bạn nhận hàng.</p>
+$policy_returns = '<p>DALETIC hỗ trợ đổi hàng trong vòng <strong>7 ngày</strong> kể từ khi bạn nhận hàng.</p>
 <h2>Điều kiện đổi hàng</h2>
 <ul>
 <li>Sản phẩm còn nguyên tem, mác, chưa qua sử dụng hoặc giặt.</li>
@@ -148,10 +148,10 @@ $policy_returns = '<p>LukaSports hỗ trợ đổi hàng trong vòng <strong>7 n
 <li>Đơn đồng phục đội được sản xuất theo thiết kế riêng.</li>
 </ul>
 <h2>Chi phí</h2>
-<p>LukaSports miễn phí đổi hàng nếu lỗi đến từ nhà sản xuất (sai size, sai mẫu, lỗi may). Các trường hợp đổi theo nhu cầu cá nhân, khách hàng thanh toán phí vận chuyển hai chiều.</p>';
+<p>DALETIC miễn phí đổi hàng nếu lỗi đến từ nhà sản xuất (sai size, sai mẫu, lỗi may). Các trường hợp đổi theo nhu cầu cá nhân, khách hàng thanh toán phí vận chuyển hai chiều.</p>';
 
 $policy_shipping = '<h2>Phạm vi giao hàng</h2>
-<p>LukaSports giao hàng toàn quốc qua các đơn vị vận chuyển đối tác.</p>
+<p>DALETIC giao hàng toàn quốc qua các đơn vị vận chuyển đối tác.</p>
 <h2>Thời gian giao hàng</h2>
 <ul>
 <li>Nội thành Hà Nội: 1–2 ngày làm việc.</li>
@@ -163,7 +163,7 @@ $policy_shipping = '<h2>Phạm vi giao hàng</h2>
 <h2>Kiểm tra hàng</h2>
 <p>Bạn được kiểm tra hàng trước khi thanh toán. Nếu sản phẩm không đúng đơn đặt, vui lòng từ chối nhận và liên hệ hotline để được hỗ trợ.</p>';
 
-$policy_privacy = '<p>LukaSports tôn trọng và cam kết bảo vệ thông tin cá nhân của khách hàng.</p>
+$policy_privacy = '<p>DALETIC tôn trọng và cam kết bảo vệ thông tin cá nhân của khách hàng.</p>
 <h2>Thông tin chúng tôi thu thập</h2>
 <ul>
 <li>Họ tên, số điện thoại, địa chỉ giao hàng khi bạn đặt hàng hoặc gửi yêu cầu tư vấn.</li>
@@ -175,9 +175,9 @@ $policy_privacy = '<p>LukaSports tôn trọng và cam kết bảo vệ thông ti
 <li>Liên hệ tư vấn theo yêu cầu của bạn.</li>
 </ul>
 <h2>Cam kết</h2>
-<p>LukaSports không bán, trao đổi hay chia sẻ thông tin cá nhân của bạn cho bên thứ ba, ngoại trừ đơn vị vận chuyển để giao hàng hoặc khi pháp luật yêu cầu.</p>
+<p>DALETIC không bán, trao đổi hay chia sẻ thông tin cá nhân của bạn cho bên thứ ba, ngoại trừ đơn vị vận chuyển để giao hàng hoặc khi pháp luật yêu cầu.</p>
 <h2>Liên hệ</h2>
-<p>Nếu bạn muốn xem, chỉnh sửa hoặc xóa thông tin của mình, vui lòng liên hệ LukaSports qua trang Liên hệ.</p>';
+<p>Nếu bạn muốn xem, chỉnh sửa hoặc xóa thông tin của mình, vui lòng liên hệ DALETIC qua trang Liên hệ.</p>';
 
 $refund_page = get_page_by_path( 'refund_returns' );
 if ( $refund_page && ! get_page_by_path( 'chinh-sach-doi-tra' ) ) {

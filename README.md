@@ -105,17 +105,17 @@ docker compose run --rm wpcli eval-file lukasports-bin/seed-reviews-blog.php
 docker compose run --rm wpcli eval-file lukasports-bin/seed-pages.php
 ```
 
-`seed-pages.php` creates every Page the header/footer link to (Sản phẩm, Về LukaSports, Liên hệ, Bộ sưu tập, Blog, the three policy pages), moves the WooCommerce pages to Vietnamese slugs (`/san-pham/`, `/gio-hang/`, `/thanh-toan/`, `/tai-khoan/`), sets Settings → Reading to a static front page with `/blog/` as the posts page, turns off WooCommerce's "coming soon" mode, and creates three product collections. Existing pages are matched by slug and keep their content, so it's safe to re-run.
+`seed-pages.php` creates every Page the header/footer link to (Sản phẩm, Về DALETIC, Liên hệ, Bộ sưu tập, Blog, the three policy pages), moves the WooCommerce pages to Vietnamese slugs (`/san-pham/`, `/gio-hang/`, `/thanh-toan/`, `/tai-khoan/`), sets Settings → Reading to a static front page with `/blog/` as the posts page, turns off WooCommerce's "coming soon" mode, and creates three product collections. Existing pages are matched by slug and keep their content, so it's safe to re-run.
 
 ### Category URLs
 
-Every top-level product category is served at a clean URL (`/ao-bong-da/`) automatically — `inc/hooks.php` routes the request to the native category archive, which renders with the shop template (category chips, sorting, pagination). The native `/product-category/{slug}/` URL 301-redirects to the clean one. No Page is needed per category; if you *want* a custom landing page, create a Page whose slug matches the category's slug with template **"LukaSports — Category Landing"** and it takes precedence.
+Every top-level product category is served at a clean URL (`/ao-bong-da/`) automatically — `inc/hooks.php` routes the request to the native category archive, which renders with the shop template (category chips, sorting, pagination). The native `/product-category/{slug}/` URL 301-redirects to the clean one. No Page is needed per category; if you *want* a custom landing page, create a Page whose slug matches the category's slug with template **"DALETIC — Category Landing"** and it takes precedence.
 
 ### Page templates
 
-- **LukaSports — Giới thiệu** (`template-about.php`): brand story — the Page content is the story text; stats/values/process/CTA are layout.
-- **LukaSports — Liên hệ** (`template-contact.php`): contact channels from LukaSports → Settings plus an inline consultation form (leads land in the same table, `source = contact_page`).
-- **LukaSports — Bộ sưu tập** (`template-collections.php`): index of `product_collection` terms; each links to `/bo-suu-tap/{slug}/`.
+- **DALETIC — Giới thiệu** (`template-about.php`): brand story — the Page content is the story text; stats/values/process/CTA are layout.
+- **DALETIC — Liên hệ** (`template-contact.php`): contact channels from DALETIC → Settings plus an inline consultation form (leads land in the same table, `source = contact_page`).
+- **DALETIC — Bộ sưu tập** (`template-collections.php`): index of `product_collection` terms; each links to `/bo-suu-tap/{slug}/`.
 
 ### Blog / policy pages
 

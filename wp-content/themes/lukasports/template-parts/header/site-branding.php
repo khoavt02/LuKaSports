@@ -7,6 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php if ( has_custom_logo() ) : ?>
 		<?php the_custom_logo(); ?>
 	<?php else : ?>
-		<span class="sk-brand__text"><?php bloginfo( 'name' ); ?></span>
+		<img class="sk-brand__logo" src="<?php echo esc_url( LUKASPORTS_THEME_URI . '/assets/images/brand/logo.svg' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="252" height="48" />
 	<?php endif; ?>
 </a>
