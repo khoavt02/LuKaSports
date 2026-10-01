@@ -10,7 +10,8 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     ports:
-      - "${DB_PORT:-3308}:3306"
+      # Loopback only: the database is never reachable from outside the host.
+      - "127.0.0.1:${DB_PORT:-3308}:3306"
 
   wordpress:
     image: wordpress:php8.2-apache
@@ -34,7 +35,8 @@ services:
       - ./docker/php/forwarded-host.ini:/usr/local/etc/php/conf.d/forwarded-host.ini
       - ./docker/php/forwarded-host.php:/usr/local/etc/php/forwarded-host.php
     ports:
-      - "${WP_PORT:-8090}:80"
+      # WP_BIND=127.0.0.1 on a server, where a reverse proxy (Caddy) owns 80/443.
+      - "${WP_BIND:-0.0.0.0}:${WP_PORT:-8090}:80"
 
   wpcli:
     image: wordpress:cli-php8.2
@@ -69,7 +71,7 @@ services:
       PMA_HOST: db
       PMA_PORT: 3306
     ports:
-      - "${PHPMYADMIN_PORT:-8091}:80"
+      - "127.0.0.1:${PHPMYADMIN_PORT:-8091}:80"
     profiles: ["tools"]
 
 volumes:
