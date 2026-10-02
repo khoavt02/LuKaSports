@@ -34,3 +34,15 @@ function lukasports_block_direct_file_access() {
 		exit;
 	}
 }
+
+/**
+ * The public REST users endpoint lists every author's login slug — the
+ * same leak as /?author=1. Only logged-in users (the block editor) need it.
+ */
+function lukasports_hide_rest_users( $endpoints ) {
+	if ( ! is_user_logged_in() ) {
+		unset( $endpoints['/wp/v2/users'], $endpoints['/wp/v2/users/(?P<id>[\d]+)'] );
+	}
+	return $endpoints;
+}
+add_filter( 'rest_endpoints', 'lukasports_hide_rest_users' );
