@@ -230,12 +230,14 @@ add_action( 'wp_head', 'lukasports_brand_schema', 5 );
  * users out of the sitemap.
  */
 function lukasports_disable_author_archives() {
-	if ( is_author() ) {
+	// Priority 1: core's redirect_canonical (priority 10) would otherwise
+	// first turn ?author=1 into /author/{login}/, exposing the login.
+	if ( is_author() || isset( $_GET['author'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		wp_safe_redirect( home_url( '/' ), 301 );
 		exit;
 	}
 }
-add_action( 'template_redirect', 'lukasports_disable_author_archives' );
+add_action( 'template_redirect', 'lukasports_disable_author_archives', 1 );
 
 function lukasports_sitemap_without_users( $provider, $name ) {
 	return 'users' === $name ? false : $provider;
