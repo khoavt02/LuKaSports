@@ -96,19 +96,25 @@
    12px only on special cards) — never a pill button.
    ========================================================================== */
 :root {
-	/* Color */
-	--sk-ink: #111827;
-	--sk-navy: #0b1f3a;
+	/* Color — brand defaults. The three brand colors (dark, accent,
+	   surface) can be overridden from Giao diện → Tùy biến → Màu thương
+	   hiệu; inc/brand-colors.php then re-emits these variables (and the
+	   derived *-rgb / -dark / -ink ones) after this stylesheet. */
+	--sk-ink: #141414;
+	--sk-navy: #111111;
+	--sk-navy-rgb: 17, 17, 17;
+	--sk-navy-dark: #000000;
 	--sk-paper: #ffffff;
-	--sk-surface: #eaf2ff;
+	--sk-surface: #f4f4f5;
 	--sk-line: #e5e7eb;
 	--sk-muted: #6b7280;
-	--sk-accent: #146ef5;
-	--sk-accent-dark: #0a3d91;
+	--sk-accent: #e10600;
+	--sk-accent-rgb: 225, 6, 0;
+	--sk-accent-dark: #b80000;
 	--sk-accent-ink: #ffffff;
 	--sk-messenger: #0084ff;
 	--sk-zalo: #0068ff;
-	--sk-sale: #ff4d4f;
+	--sk-sale: var(--sk-accent);
 
 	/* Typography — one family, two weights doing the work of "display"
 	   vs "body" (800 for oversized headings, 400/500 for copy). */
@@ -154,7 +160,7 @@
 	/* Shadow */
 	--sk-shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.05);
 	--sk-shadow-md: 0 8px 24px rgba(17, 24, 39, 0.08);
-	--sk-shadow-lg: 0 20px 48px rgba(11, 31, 58, 0.16);
+	--sk-shadow-lg: 0 20px 48px rgba(var(--sk-navy-rgb), 0.16);
 
 	/* Layout */
 	--sk-container: 1400px;
@@ -314,15 +320,15 @@ p { margin: 0 0 var(--sk-space-4); }
 .sk-btn--primary {
 	background: var(--sk-accent);
 	color: var(--sk-accent-ink);
-	box-shadow: 0 4px 14px rgba(20, 110, 245, 0.28);
+	box-shadow: 0 4px 14px rgba(var(--sk-accent-rgb), 0.28);
 }
-.sk-btn--primary:hover { background: #0b5ed7; box-shadow: 0 8px 20px rgba(20, 110, 245, 0.34); }
+.sk-btn--primary:hover { background: var(--sk-accent-dark); box-shadow: 0 8px 20px rgba(var(--sk-accent-rgb), 0.34); }
 
 .sk-btn--dark {
 	background: var(--sk-navy);
 	color: var(--sk-paper);
 }
-.sk-btn--dark:hover { background: #081729; }
+.sk-btn--dark:hover { background: var(--sk-navy-dark); }
 
 .sk-btn--outline {
 	background: transparent;
@@ -346,7 +352,7 @@ p { margin: 0 0 var(--sk-space-4); }
 .sk-btn--zalo { background: var(--sk-zalo); color: #fff; }
 .sk-btn--zalo:hover { background: #0054cc; }
 .sk-btn--call { background: var(--sk-navy); color: #fff; }
-.sk-btn--call:hover { background: #081729; }
+.sk-btn--call:hover { background: var(--sk-navy-dark); }
 
 /* ==========================================================================
    Badges / tags
@@ -480,7 +486,7 @@ html.sk-modal-open body { overflow: hidden; }
 .sk-modal__overlay {
 	position: absolute;
 	inset: 0;
-	background: rgba(11, 31, 58, 0.6);
+	background: rgba(var(--sk-navy-rgb), 0.6);
 }
 .sk-modal__panel {
 	position: relative;

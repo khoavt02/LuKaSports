@@ -34,6 +34,11 @@
 }
 .sk-brand img { display: block; max-height: 40px; width: auto; }
 @media (max-width: 767px) { .sk-brand img { max-height: 32px; } }
+/* Uploaded logos (Giao diện → Tùy biến) are usually wide lockups with
+   built-in padding, so they get more height than the bundled SVG. */
+.sk-brand .custom-logo-link { display: block; line-height: 0; }
+.sk-brand img.custom-logo { max-height: 44px; }
+@media (min-width: 1024px) { .sk-brand img.custom-logo { max-height: 56px; } }
 .sk-brand { padding-right: var(--sk-space-4); }
 @media (min-width: 1024px) { .sk-brand { padding-right: var(--sk-space-8); } }
 

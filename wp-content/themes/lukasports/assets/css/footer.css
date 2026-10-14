@@ -150,3 +150,5 @@ body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
 @media (min-width: 1024px) {
 	body { padding-bottom: 0; }
 }
+
+.sk-brand--footer img.custom-logo { max-height: 52px; }

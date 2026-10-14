@@ -190,14 +190,13 @@ add_filter( 'woocommerce_get_breadcrumb', 'lukasports_rewrite_breadcrumb_categor
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 
 /**
- * Favicon from the bundled brand symbol until an admin sets a Site Icon
+ * Favicon from the bundled brand mark (assets/images/brand/) until an admin sets a Site Icon
  * (Giao diện → Tùy biến → Nhận diện site), which WordPress then outputs itself.
  */
 function lukasports_fallback_favicon() {
 	if ( has_site_icon() ) {
 		return;
 	}
-	printf( '<link rel="icon" type="image/svg+xml" href="%s" />' . "\n", esc_url( LUKASPORTS_THEME_URI . '/assets/images/brand/symbol.svg' ) );
 	printf( '<link rel="icon" type="image/png" sizes="48x48" href="%s" />' . "\n", esc_url( LUKASPORTS_THEME_URI . '/assets/images/brand/favicon-48.png' ) );
 	printf( '<link rel="apple-touch-icon" href="%s" />' . "\n", esc_url( LUKASPORTS_THEME_URI . '/assets/images/brand/apple-touch-icon.png' ) );
 }

@@ -7,11 +7,13 @@ $contact = lukasports_get_contact_info();
 ?>
 <div class="sk-footer__grid">
 	<div class="sk-footer__col sk-footer__col--brand">
-		<a class="sk-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<?php if ( has_custom_logo() ) : the_custom_logo(); else : ?>
-				<img class="sk-brand__logo" src="<?php echo esc_url( LUKASPORTS_THEME_URI . '/assets/images/brand/logo-light.svg' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="210" height="40" loading="lazy" />
-			<?php endif; ?>
-		</a>
+		<?php if ( has_custom_logo() ) : ?>
+			<div class="sk-brand sk-brand--footer"><?php the_custom_logo(); ?></div>
+		<?php else : ?>
+			<a class="sk-brand sk-brand--footer" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<img class="sk-brand__logo custom-logo" src="<?php echo esc_url( LUKASPORTS_THEME_URI . '/assets/images/brand/logo.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="900" height="227" loading="lazy" />
+			</a>
+		<?php endif; ?>
 		<p class="sk-footer__tagline"><?php esc_html_e( 'Đồng phục và áo đấu thể thao — chất liệu thi đấu thật, thiết kế theo yêu cầu.', 'lukasports' ); ?></p>
 	</div>
 

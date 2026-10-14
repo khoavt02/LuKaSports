@@ -219,42 +219,29 @@ function lukasports_seed_draw_rounded_rect( $image, $x1, $y1, $x2, $y2, $radius,
 }
 
 /**
- * DALETIC brand mark (assets/images/brand/symbol.svg) redrawn in GD:
- * rounded tile, "D" (stem + half-ellipse bowl, counter knocked out) and
- * the electric-blue speed slash. $size is the tile's edge in pixels.
- * Tile/letter colors flip on dark garments so the mark always reads.
+ * DALETIC brand mark stamped onto the garment: the theme's mark PNG
+ * (assets/images/brand/mark-red.png / mark-white.png, cut from the real
+ * logo) resampled to $size px. Red on light garments; white on dark or
+ * red garments, where a red mark would disappear.
  */
 function lukasports_seed_draw_logo( $image, $x, $y, $size, $garment_hex ) {
 	list( $r, $g, $b ) = sscanf( $garment_hex, '%02x%02x%02x' );
 	$dark_garment      = ( 0.2126 * $r + 0.7152 * $g + 0.0722 * $b ) < 110;
+	$red_garment       = $r > 150 && $g < 100 && $b < 100;
+	$variant           = ( $dark_garment || $red_garment ) ? 'white' : 'red';
 
-	$navy  = imagecolorallocate( $image, 0x0b, 0x1f, 0x3a );
-	$white = imagecolorallocate( $image, 0xff, 0xff, 0xff );
-	$blue  = imagecolorallocate( $image, 0x14, 0x6e, 0xf5 );
-	$tile   = $dark_garment ? $white : $navy;
-	$letter = $dark_garment ? $navy : $white;
+	static $marks = array();
+	if ( ! isset( $marks[ $variant ] ) ) {
+		$file              = get_template_directory() . '/assets/images/brand/mark-' . $variant . '.png';
+		$marks[ $variant ] = file_exists( $file ) ? imagecreatefrompng( $file ) : false;
+	}
+	$mark = $marks[ $variant ];
+	if ( ! $mark ) {
+		return;
+	}
 
-	$u = $size / 128; // symbol.svg is drawn on a 128-unit grid
-	lukasports_seed_draw_rounded_rect( $image, $x, $y, (int) ( $x + $size ), (int) ( $y + $size ), (int) max( 2, 14 * $u ), $tile );
-
-	// D: outer stem+bowl, then the counter in the tile color.
-	$dx = $x + 40 * $u;
-	$dy = $y + 22 * $u;
-	imagefilledrectangle( $image, (int) $dx, (int) $dy, (int) ( $dx + 38 * $u ), (int) ( $dy + 84 * $u ), $letter );
-	imagefilledarc( $image, (int) ( $dx + 38 * $u ), (int) ( $dy + 42 * $u ), (int) ( 84 * $u ), (int) ( 84 * $u ), 270, 90, $letter, IMG_ARC_PIE );
-	imagefilledrectangle( $image, (int) ( $dx + 19 * $u ), (int) ( $dy + 19 * $u ), (int) ( $dx + 38 * $u ), (int) ( $dy + 65 * $u ), $tile );
-	imagefilledarc( $image, (int) ( $dx + 38 * $u ), (int) ( $dy + 42 * $u ), (int) ( 46 * $u ), (int) ( 46 * $u ), 270, 90, $tile, IMG_ARC_PIE );
-
-	imagefilledpolygon(
-		$image,
-		array(
-			(int) ( $x + 18 * $u ), (int) ( $y + 98 * $u ),
-			(int) ( $x + 86 * $u ), (int) ( $y + 40 * $u ),
-			(int) ( $x + 110 * $u ), (int) ( $y + 40 * $u ),
-			(int) ( $x + 42 * $u ), (int) ( $y + 98 * $u ),
-		),
-		$blue
-	);
+	imagealphablending( $image, true );
+	imagecopyresampled( $image, $mark, $x, $y, 0, 0, (int) $size, (int) $size, imagesx( $mark ), imagesy( $mark ) );
 }
 
 function lukasports_seed_placeholder_image( $label, $hex_bg, $hex_fg, $shape = 'jersey' ) {
@@ -375,7 +362,7 @@ function lukasports_seed_placeholder_image( $label, $hex_bg, $hex_fg, $shape = '
 	// Brand accent bar — same red used for buttons/badges/category art,
 	// so a product tile reads as part of the same visual system instead
 	// of a generic dev-doodle placeholder.
-	$accent = imagecolorallocate( $image, 0x14, 0x6e, 0xf5 );
+	$accent = imagecolorallocate( $image, 0xe1, 0x06, 0x00 );
 	imagefilledrectangle( $image, 0, $height - 8, $width, $height, $accent );
 
 	ob_start();
@@ -1102,11 +1089,11 @@ foreach ( $products as $data ) {
 
 	// Images: main + 2 gallery variants (color-tinted placeholders).
 	$palette = array(
-		'Đỏ'         => array( 'ffffff', 'e4231b' ),
+		'Đỏ'         => array( 'ffffff', 'e10600' ),
 		'Đen'        => array( 'f4f5f7', '0e1013' ),
 		'Trắng'      => array( '0e1013', 'ffffff' ),
 		'Xanh Dương' => array( 'ffffff', '1b4fbf' ),
-		'Vàng'       => array( '101b33', 'f2c14e' ),
+		'Vàng'       => array( '111111', 'f2c14e' ),
 	);
 	$base_color = $data['color'] ?? 'Đen';
 	list( $bg, $fg ) = $palette[ $base_color ] ?? array( 'f4f5f7', '0e1013' );

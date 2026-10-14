@@ -4,13 +4,13 @@
 	"settings": {
 		"color": {
 			"palette": [
-				{ "slug": "ink", "name": "Ink", "color": "#1A1A1A" },
-				{ "slug": "navy", "name": "Ink", "color": "#1A1A1A" },
+				{ "slug": "ink", "name": "Ink", "color": "#141414" },
+				{ "slug": "navy", "name": "Dark", "color": "#111111" },
 				{ "slug": "paper", "name": "Paper", "color": "#FFFFFF" },
-				{ "slug": "surface", "name": "Surface", "color": "#F7F5F1" },
-				{ "slug": "line", "name": "Line", "color": "#E6E1D6" },
-				{ "slug": "muted", "name": "Muted text", "color": "#837C70" },
-				{ "slug": "accent", "name": "Accent (DALETIC Blue)", "color": "#146EF5" }
+				{ "slug": "surface", "name": "Surface", "color": "#F4F4F5" },
+				{ "slug": "line", "name": "Line", "color": "#E5E7EB" },
+				{ "slug": "muted", "name": "Muted text", "color": "#6B7280" },
+				{ "slug": "accent", "name": "Accent (DALETIC Red)", "color": "#E10600" }
 			],
 			"custom": false,
 			"customGradient": false

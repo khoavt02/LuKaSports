@@ -19,6 +19,7 @@ $lukasports_modules = array(
 	'inc/helpers.php',
 	'inc/setup.php',
 	'inc/enqueue.php',
+	'inc/brand-colors.php',
 	'inc/hooks.php',
 	'inc/seo.php',
 	'inc/performance.php',
