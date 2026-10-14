@@ -20,7 +20,7 @@ $items = array( 'football.svg', 'team.svg', 'basketball.svg', 'jersey-design.svg
 		<div class="sk-lookbook__grid">
 			<?php foreach ( $items as $art ) : ?>
 				<div class="sk-lookbook__item">
-					<img src="<?php echo esc_url( LUKASPORTS_THEME_URI . '/assets/images/categories/' . $art ); ?>" alt="" loading="lazy" />
+					<img src="<?php echo esc_url( lukasports_image_url( 'categories/' . $art ) ); ?>" alt="" loading="lazy" />
 				</div>
 			<?php endforeach; ?>
 		</div>

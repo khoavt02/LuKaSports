@@ -33,7 +33,7 @@ $alt_image_id  = ! empty( $gallery_ids ) ? $gallery_ids[0] : 0;
 		if ( $thumbnail_id ) {
 			echo lukasports_attachment_image( $thumbnail_id, 'lukasports-card', 'lazy', 'sk-product-card__img--main', $product->get_name() ); // phpcs:ignore
 		} else {
-			echo '<img class="sk-product-card__img--main" src="' . esc_url( LUKASPORTS_THEME_URI . '/assets/images/placeholder-product.svg' ) . '" alt="" loading="lazy" />';
+			echo '<img class="sk-product-card__img--main" src="' . esc_url( lukasports_image_url( 'placeholder-product.svg' ) ) . '" alt="" loading="lazy" />';
 		}
 		if ( $alt_image_id ) {
 			echo lukasports_attachment_image( $alt_image_id, 'lukasports-card', 'lazy', 'sk-product-card__img--alt', $product->get_name() ); // phpcs:ignore

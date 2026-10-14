@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php if ( has_post_thumbnail() ) : ?>
 			<?php echo lukasports_attachment_image( get_post_thumbnail_id(), 'lukasports-card', 'lazy', '', get_the_title() ); // phpcs:ignore ?>
 		<?php else : ?>
-			<img src="<?php echo esc_url( LUKASPORTS_THEME_URI . '/assets/images/placeholder-product.svg' ); ?>" alt="" loading="lazy" />
+			<img src="<?php echo esc_url( lukasports_image_url( 'placeholder-product.svg' ) ); ?>" alt="" loading="lazy" />
 		<?php endif; ?>
 	</div>
 	<div class="sk-post-card__body">

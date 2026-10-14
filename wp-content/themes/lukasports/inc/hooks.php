@@ -42,7 +42,7 @@ add_filter( 'woocommerce_review_ratings_enabled', '__return_false' );
 add_filter( 'woocommerce_product_tabs_reviews_priority', '__return_null' );
 
 function lukasports_placeholder_image_src() {
-	return LUKASPORTS_THEME_URI . '/assets/images/placeholder-product.svg';
+	return lukasports_image_url( 'placeholder-product.svg' );
 }
 add_filter( 'woocommerce_placeholder_img_src', 'lukasports_placeholder_image_src' );
 
@@ -197,8 +197,8 @@ function lukasports_fallback_favicon() {
 	if ( has_site_icon() ) {
 		return;
 	}
-	printf( '<link rel="icon" type="image/png" sizes="48x48" href="%s" />' . "\n", esc_url( LUKASPORTS_THEME_URI . '/assets/images/brand/favicon-48.png' ) );
-	printf( '<link rel="apple-touch-icon" href="%s" />' . "\n", esc_url( LUKASPORTS_THEME_URI . '/assets/images/brand/apple-touch-icon.png' ) );
+	printf( '<link rel="icon" type="image/png" sizes="48x48" href="%s" />' . "\n", esc_url( lukasports_image_url( 'brand/favicon-48.png' ) ) );
+	printf( '<link rel="apple-touch-icon" href="%s" />' . "\n", esc_url( lukasports_image_url( 'brand/apple-touch-icon.png' ) ) );
 }
 add_action( 'wp_head', 'lukasports_fallback_favicon' );
 add_action( 'admin_head', 'lukasports_fallback_favicon' );

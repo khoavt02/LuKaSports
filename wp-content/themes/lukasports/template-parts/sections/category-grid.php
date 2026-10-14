@@ -62,7 +62,7 @@ function lukasports_category_tile_image( $term, $art_map ) {
 		return lukasports_attachment_image( $thumbnail_id, 'lukasports-category', 'lazy', '', $term->name );
 	}
 	$art = $art_map[ $term->slug ] ?? 'jersey-design.svg';
-	return '<img src="' . esc_url( LUKASPORTS_THEME_URI . '/assets/images/categories/' . $art ) . '" alt="" loading="lazy" />';
+	return '<img src="' . esc_url( lukasports_image_url( 'categories/' . $art ) ) . '" alt="" loading="lazy" />';
 }
 ?>
 <section class="sk-section sk-categories">

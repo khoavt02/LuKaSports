@@ -51,7 +51,7 @@ function lukasports_get_hero_image_url() {
 	$url = $attachment_id ? wp_get_attachment_image_url( $attachment_id, 'lukasports-hero-banner' ) : '';
 
 	if ( ! $url ) {
-		$url = LUKASPORTS_THEME_URI . '/assets/images/hero-placeholder.svg';
+		$url = lukasports_image_url( 'hero-placeholder.svg' );
 	}
 
 	return apply_filters( 'lukasports_hero_image_url', $url );
@@ -140,4 +140,13 @@ function lukasports_attachment_image( $attachment_id, $size = 'lukasports-card',
 	}
 
 	return wp_get_attachment_image( $attachment_id, $size, false, $attr );
+}
+
+/**
+ * URL of a bundled image (path relative to assets/images/) with a
+ * ?ver= of its modification time, so browsers fetch the new file as
+ * soon as it's replaced instead of showing a cached copy.
+ */
+function lukasports_image_url( $relative_path ) {
+	return add_query_arg( 'ver', lukasports_asset_version( 'images/' . $relative_path ), LUKASPORTS_THEME_URI . '/assets/images/' . $relative_path );
 }

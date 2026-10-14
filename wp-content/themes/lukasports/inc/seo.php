@@ -19,22 +19,56 @@ function lukasports_seo_plugin_active() {
  * don't accept SVG there, hence the PNG/JPG copies of the brand assets.
  */
 function lukasports_seo_default_image() {
-	return LUKASPORTS_THEME_URI . '/assets/images/brand/og-image.jpg';
+	return lukasports_image_url( 'brand/og-image.jpg' );
 }
 
 function lukasports_seo_logo_png() {
-	return LUKASPORTS_THEME_URI . '/assets/images/brand/logo-512.png';
+	return lukasports_image_url( 'brand/logo-512.png' );
 }
+
+/**
+ * Homepage description (Google snippet, link previews) — editable under
+ * Giao diện → Tùy biến → Nhận diện site, separate from the short
+ * tagline, which also ends up in the homepage <title>.
+ */
+function lukasports_home_description() {
+	$custom = trim( (string) get_theme_mod( 'lukasports_home_description', '' ) );
+	if ( '' !== $custom ) {
+		return $custom;
+	}
+	return sprintf(
+		/* translators: %s: site name */
+		__( '%s — áo đấu và đồng phục thể thao cho cá nhân, đội bóng, CLB và công ty: bóng đá, bóng chuyền, bóng rổ, cầu lông, pickleball. In tên, số, logo theo yêu cầu, giao hàng toàn quốc.', 'lukasports' ),
+		get_bloginfo( 'name' )
+	);
+}
+
+function lukasports_customize_home_description( $wp_customize ) {
+	$wp_customize->add_setting(
+		'lukasports_home_description',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_textarea_field',
+		)
+	);
+	$wp_customize->add_control(
+		'lukasports_home_description',
+		array(
+			'label'       => __( 'Mô tả trang chủ (Google, chia sẻ link)', 'lukasports' ),
+			'description' => __( 'Khoảng 120–160 ký tự. Hiện dưới tiêu đề trên Google và khi chia sẻ link lên Facebook/Zalo. Khẩu hiệu ở trên nên ngắn vì được ghép vào tiêu đề trang chủ.', 'lukasports' ),
+			'section'     => 'title_tagline',
+			'type'        => 'textarea',
+			'priority'    => 11,
+		)
+	);
+}
+add_action( 'customize_register', 'lukasports_customize_home_description' );
 
 function lukasports_meta_description_text() {
 	$description = '';
 
 	if ( is_front_page() ) {
-		$description = sprintf(
-			/* translators: %s: site name */
-			__( '%s — áo đấu và đồng phục thể thao cho cá nhân, đội bóng, CLB và công ty: bóng đá, bóng chuyền, bóng rổ, cầu lông, pickleball. In tên, số, logo theo yêu cầu, giao hàng toàn quốc.', 'lukasports' ),
-			get_bloginfo( 'name' )
-		);
+		$description = lukasports_home_description();
 	} elseif ( function_exists( 'is_shop' ) && is_shop() ) {
 		$description = sprintf(
 			/* translators: %s: site name */

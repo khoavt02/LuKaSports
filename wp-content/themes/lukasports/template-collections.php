@@ -51,7 +51,7 @@ function lukasports_collection_cover( $term ) {
 		return lukasports_attachment_image( $thumbnail_id, 'lukasports-card', 'lazy', '', $term->name );
 	}
 
-	return '<img src="' . esc_url( LUKASPORTS_THEME_URI . '/assets/images/placeholder-product.svg' ) . '" alt="" loading="lazy" />';
+	return '<img src="' . esc_url( lukasports_image_url( 'placeholder-product.svg' ) ) . '" alt="" loading="lazy" />';
 }
 ?>
 
