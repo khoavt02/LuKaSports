@@ -40,6 +40,30 @@ function lukasports_customize_brand_colors( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'lukasports_color_scheme',
+		array(
+			'default'           => 'light',
+			'sanitize_callback' => function ( $value ) {
+				return 'dark' === $value ? 'dark' : 'light';
+			},
+		)
+	);
+	$wp_customize->add_control(
+		'lukasports_color_scheme',
+		array(
+			'label'       => __( 'Phông nền nội dung', 'lukasports' ),
+			'description' => __( 'Giao diện mặc định cho khách mới. Sáng: nội dung nền trắng (header, banner, footer vẫn tối). Tối: toàn bộ site nền đen. Khách có thể tự chuyển bằng nút mặt trăng / mặt trời trên header (trình duyệt sẽ nhớ lựa chọn).', 'lukasports' ),
+			'section'     => 'lukasports_brand_colors',
+			'type'        => 'radio',
+			'choices'     => array(
+				'light' => __( 'Sáng', 'lukasports' ),
+				'dark'  => __( 'Tối', 'lukasports' ),
+			),
+			'priority'    => 1,
+		)
+	);
+
 	$controls = array(
 		'dark'    => array( __( 'Màu chính (nền tối)', 'lukasports' ), __( 'Banner, footer, khối nền tối, nút phụ.', 'lukasports' ) ),
 		'accent'  => array( __( 'Màu nhấn', 'lukasports' ), __( 'Nút chính, link, nhãn giảm giá, danh mục đang chọn. Chữ trên nút tự chọn trắng hoặc đen cho dễ đọc.', 'lukasports' ) ),
@@ -142,6 +166,45 @@ add_action( 'wp_head', 'lukasports_print_brand_colors', 20 );
 
 /** Browser UI color on mobile (address bar) follows the dark brand color. */
 function lukasports_theme_color_meta() {
-	printf( '<meta name="theme-color" content="%s" />' . "\n", esc_attr( lukasports_brand_color( 'dark' ) ) );
+	printf( '<meta name="theme-color" content="%s" />' . "\n", esc_attr( 'dark' === lukasports_color_scheme() ? '#0d0d0f' : lukasports_brand_color( 'dark' ) ) );
 }
 add_action( 'wp_head', 'lukasports_theme_color_meta', 2 );
+
+/**
+ * Active color scheme: the Customizer choice, unless this visitor is
+ * previewing the other one via ?giao-dien=toi|sang (remembered in a
+ * cookie for a day so navigation keeps it; ?giao-dien=mac-dinh clears).
+ */
+function lukasports_color_scheme() {
+	static $scheme = null;
+	if ( null !== $scheme ) {
+		return $scheme;
+	}
+	$scheme  = 'dark' === get_theme_mod( 'lukasports_color_scheme', 'light' ) ? 'dark' : 'light';
+	$preview = isset( $_GET['giao-dien'] ) ? sanitize_key( wp_unslash( $_GET['giao-dien'] ) ) : ( isset( $_COOKIE['sk_scheme'] ) ? sanitize_key( wp_unslash( $_COOKIE['sk_scheme'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( in_array( $preview, array( 'toi', 'dark' ), true ) ) {
+		$scheme = 'dark';
+	} elseif ( in_array( $preview, array( 'sang', 'light' ), true ) ) {
+		$scheme = 'light';
+	}
+	return $scheme;
+}
+
+function lukasports_remember_scheme_preview() {
+	if ( ! isset( $_GET['giao-dien'] ) || headers_sent() ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return;
+	}
+	$value = sanitize_key( wp_unslash( $_GET['giao-dien'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( 'mac-dinh' === $value ) {
+		setcookie( 'sk_scheme', '', time() - HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN );
+		unset( $_COOKIE['sk_scheme'] );
+	} elseif ( in_array( $value, array( 'toi', 'sang' ), true ) ) {
+		setcookie( 'sk_scheme', $value, time() + DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true );
+	}
+}
+add_action( 'template_redirect', 'lukasports_remember_scheme_preview', 1 );
+
+function lukasports_scheme_html_attribute( $output ) {
+	return 'dark' === lukasports_color_scheme() ? $output . ' data-theme="dark"' : $output;
+}
+add_filter( 'language_attributes', 'lukasports_scheme_html_attribute' );

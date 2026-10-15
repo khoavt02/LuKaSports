@@ -46,7 +46,14 @@ $stories = array(
 			<?php foreach ( $stories as $story ) : ?>
 				<a class="sk-story-card" href="<?php echo esc_url( home_url( '/' . $story['slug'] . '/' ) ); ?>">
 					<div class="sk-story-card__media">
-						<img src="<?php echo esc_url( lukasports_image_url( 'categories/' . $story['art'] ) ); ?>" alt="" loading="lazy" />
+						<?php
+						$story_image = lukasports_category_image_id( $story['slug'], 'banner' );
+						if ( $story_image ) {
+							echo lukasports_attachment_image( $story_image, 'lukasports-category', 'lazy', '', $story['title'] ); // phpcs:ignore
+						} else {
+							echo '<img src="' . esc_url( lukasports_image_url( 'categories/' . $story['art'] ) ) . '" alt="" loading="lazy" />';
+						}
+						?>
 					</div>
 					<div class="sk-story-card__overlay">
 						<h3 class="sk-story-card__title"><?php echo esc_html( $story['title'] ); ?></h3>

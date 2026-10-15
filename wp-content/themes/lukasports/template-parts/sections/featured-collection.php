@@ -31,7 +31,7 @@ $term     = $terms[0];
 $products = wc_get_products(
 	array(
 		'status'   => 'publish',
-		'limit'    => 6,
+		'limit'    => 8,
 		'tax_query' => array( // phpcs:ignore
 			array(
 				'taxonomy' => 'product_collection',

@@ -24,7 +24,7 @@ function lukasports_dev_restore_reviews_tab( $tabs ) {
 	$tabs['reviews'] = array(
 		/* translators: %d: reviews count */
 		'title'    => sprintf( __( 'Đánh giá (%d)', 'lukasports' ), $product->get_review_count() ),
-		'priority' => 30,
+		'priority' => 40,
 		'callback' => 'comments_template',
 	);
 

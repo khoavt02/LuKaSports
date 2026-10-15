@@ -11,3 +11,6 @@ wp-content/uploads/
 .DS_Store
 Thumbs.db
 .tunnel.log
+anh-banner-cu/
+# Design source images dropped in the repo root (cropped copies live in bin/)
+/*.png

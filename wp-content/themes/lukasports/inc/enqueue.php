@@ -55,9 +55,20 @@ function lukasports_enqueue_assets() {
 		wp_enqueue_style( 'lukasports-blog', $css . '/blog.css', array( 'lukasports-core' ), lukasports_asset_version( 'css/blog.css' ) );
 	}
 
+	// Dark content scheme overrides load last. Always loaded (every rule is
+	// scoped to html[data-theme="dark"]) so the header toggle can switch
+	// without a reload — see inc/brand-colors.php and header.php.
+	wp_enqueue_style( 'lukasports-dark', $css . '/dark.css', array( 'lukasports-core' ), lukasports_asset_version( 'css/dark.css' ) );
+
 	wp_enqueue_script( 'lukasports-main', $js . '/main.js', array(), lukasports_asset_version( 'js/main.js' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
 
+	$is_listing = function_exists( 'is_shop' ) && ( is_shop() || is_product_taxonomy() || ( is_search() && 'product' === get_query_var( 'post_type' ) ) );
+	if ( $is_listing ) {
+		wp_enqueue_script( 'lukasports-shop', $js . '/shop.js', array(), lukasports_asset_version( 'js/shop.js' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
+	}
+
 	if ( function_exists( 'is_product' ) && is_product() ) {
+		wp_enqueue_script( 'lukasports-product-page', $js . '/product-page.js', array(), lukasports_asset_version( 'js/product-page.js' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
 		wp_enqueue_script( 'lukasports-product-variations', $js . '/product-variations.js', array(), lukasports_asset_version( 'js/product-variations.js' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
 	}
 }

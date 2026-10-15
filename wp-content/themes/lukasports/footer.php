@@ -19,6 +19,12 @@ $sk_contact = lukasports_get_contact_info();
 			<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'Bản quyền thuộc về DALETIC.', 'lukasports' ); ?></p>
 		</div>
 	</div>
+	<div class="sk-footer__strip">
+		<div class="sk-container sk-footer__strip-inner">
+			<p class="sk-footer__strip-title"><?php echo esc_html( sprintf( /* translators: %s: site name */ __( '%s – Đồng hành cùng đam mê thể thao', 'lukasports' ), get_bloginfo( 'name' ) ) ); ?></p>
+			<p class="sk-footer__strip-tags"><span>Custom jersey</span><span>Team uniform</span><span>Sportswear</span></p>
+		</div>
+	</div>
 </footer>
 
 <div class="sk-floating-contact" aria-label="<?php esc_attr_e( 'Liên hệ nhanh', 'lukasports' ); ?>">

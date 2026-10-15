@@ -10,12 +10,21 @@
 (function () {
 	'use strict';
 
+	// Mirrors lukasports_color_hex() in inc/helpers.php.
 	var COLOR_MAP = {
 		'Trắng': '#ffffff',
-		'Đen': '#1a1a1a',
-		'Be': '#d8cbb0',
+		'Đen': '#141414',
+		'Đỏ': '#e10600',
+		'Xanh Dương': '#1b4fbf',
+		'Xanh Navy': '#1b2a4a',
+		'Vàng': '#f2c14e',
+		'Cam': '#f47c20',
+		'Xám': '#9ca3af',
 		'Xám Than': '#4a4a4a',
-		'Xanh Rêu': '#5c5f4a'
+		'Be': '#d8cbb0',
+		'Xanh Rêu': '#5c5f4a',
+		'Xanh Lá': '#16a34a',
+		'Hồng': '#ec4899'
 	};
 
 	function buildSwatches( select ) {

@@ -5,19 +5,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 ?>
+<?php
+get_template_part(
+	'template-parts/page-band',
+	null,
+	array(
+		'title'   => __( 'Kết quả tìm kiếm', 'lukasports' ),
+		'accent'  => '“' . get_search_query() . '”',
+		'compact' => true,
+	)
+);
+?>
 <section class="sk-section sk-search-results">
 	<div class="sk-container">
-		<header class="sk-blog-archive__header">
-			<h1 class="sk-blog-archive__title">
-				<?php
-				printf(
-					/* translators: %s: search query */
-					esc_html__( 'Kết quả tìm kiếm cho: %s', 'lukasports' ),
-					'<span>' . esc_html( get_search_query() ) . '</span>'
-				);
-				?>
-			</h1>
-		</header>
 
 		<?php if ( have_posts() ) : ?>
 			<div class="sk-grid">

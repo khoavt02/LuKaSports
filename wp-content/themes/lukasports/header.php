@@ -15,6 +15,11 @@ $sk_contact = lukasports_get_contact_info();
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <link rel="profile" href="https://gmpg.org/xfn/11" />
+<script>
+document.documentElement.classList.add('js');
+// Visitor's own light/dark choice (header toggle) wins over the site default; applied before paint.
+try { var skScheme = localStorage.getItem('sk_scheme'); if (skScheme === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); } else if (skScheme === 'light') { document.documentElement.removeAttribute('data-theme'); } } catch (e) {}
+</script>
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -43,8 +48,13 @@ $sk_contact = lukasports_get_contact_info();
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="1.6"/><path d="M13.3 13.3L18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
 			</button>
 
+			<button class="sk-header__icon-btn sk-theme-toggle" type="button" data-sk-theme-toggle aria-label="<?php esc_attr_e( 'Chuyển giao diện sáng / tối', 'lukasports' ); ?>" title="<?php esc_attr_e( 'Chuyển giao diện sáng / tối', 'lukasports' ); ?>">
+				<svg class="sk-theme-toggle__moon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+				<svg class="sk-theme-toggle__sun" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+			</button>
+
 			<a class="sk-btn sk-btn--primary sk-header__cta" href="<?php echo esc_url( $sk_contact['messenger_url'] ); ?>" target="_blank" rel="noopener" data-lukasports-cta="consult" data-source="header">
-				<?php echo esc_html( $sk_contact['primary_cta_text'] ); ?> <span aria-hidden="true">→</span>
+				<?php echo esc_html( $sk_contact['primary_cta_text'] ); ?> <span class="sk-btn__arrow" aria-hidden="true">→</span>
 			</a>
 		</div>
 	</div>
@@ -60,7 +70,7 @@ $sk_contact = lukasports_get_contact_info();
 <nav class="sk-mobile-nav" id="sk-mobile-nav" aria-label="<?php esc_attr_e( 'Menu di động', 'lukasports' ); ?>" hidden>
 	<?php get_template_part( 'template-parts/header/primary-menu' ); ?>
 	<div class="sk-mobile-nav__contact">
-		<a class="sk-btn sk-btn--outline sk-btn--block" href="tel:<?php echo esc_attr( $sk_contact['hotline_tel'] ); ?>">
+		<a class="sk-btn sk-btn--outline-light sk-btn--block" href="tel:<?php echo esc_attr( $sk_contact['hotline_tel'] ); ?>">
 			<?php echo esc_html( $sk_contact['hotline_display'] ); ?>
 		</a>
 	</div>

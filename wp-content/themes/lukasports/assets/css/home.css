@@ -1,70 +1,82 @@
 .sk-section--surface { background: var(--sk-surface); }
 
 /* ==========================================================================
-   Hero — editorial sports-campaign treatment: dark navy scrim over a
-   full-bleed image, a small blue kicker label, oversized uppercase
-   display type. Not a plain text-left/image-right split.
+   Hero — black stage, red speed slashes, the jersey artwork on the right
+   fading into the dark, heavy italic headline with red full stops.
    ========================================================================== */
 .sk-hero {
 	position: relative;
 	overflow: hidden;
+	isolation: isolate;
 	color: #fff;
-	min-height: 560px;
+	min-height: 600px;
 	display: flex;
 	align-items: center;
-	background: var(--sk-navy);
+	background: radial-gradient(90% 120% at 78% 45%, #3a0707 0%, #160606 40%, #0b0b0b 72%);
 }
-.sk-hero__media { position: absolute; inset: 0; z-index: 0; background: var(--sk-navy); }
-.sk-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 68% center; }
+.sk-hero__media {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+}
+.sk-hero__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 70% center;
+	opacity: 0.45;
+}
 .sk-hero__media::after {
 	content: "";
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(90deg, rgba(var(--sk-navy-rgb), 0.88) 0%, rgba(var(--sk-navy-rgb), 0.74) 55%, rgba(var(--sk-navy-rgb), 0.4) 82%, rgba(var(--sk-navy-rgb), 0.12) 100%);
+	background: linear-gradient(180deg, rgba(11, 11, 11, 0.2) 0%, rgba(11, 11, 11, 0.85) 75%, #0b0b0b 100%);
 }
 @media (min-width: 1024px) {
-	.sk-hero__media::after {
-		background: linear-gradient(90deg, rgba(var(--sk-navy-rgb), 0.86) 0%, rgba(var(--sk-navy-rgb), 0.56) 38%, rgba(var(--sk-navy-rgb), 0.16) 65%, rgba(var(--sk-navy-rgb), 0) 82%);
+	.sk-hero__media { left: auto; width: 62%; }
+	.sk-hero__media img {
+		opacity: 1;
+		object-position: left center;
+		-webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
+		mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
 	}
+	.sk-hero__media::after { background: linear-gradient(0deg, rgba(11, 11, 11, 0.55) 0%, transparent 22%); }
 }
+
+/* Red slashes framing the stage (left-bottom corner, top edge). */
+.sk-hero__slashes { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.sk-hero__slashes i { position: absolute; display: block; background: var(--sk-accent); transform: skewX(-32deg); }
+.sk-hero__slashes i:nth-child(1) { left: -70px; bottom: -40px; width: 80px; height: 24%; }
+.sk-hero__slashes i:nth-child(2) { left: 40px; bottom: -40px; width: 14px; height: 14%; opacity: 0.7; }
+.sk-hero__slashes i:nth-child(3) { left: 14%; top: -30px; width: 140px; height: 26%; background: linear-gradient(180deg, rgba(var(--sk-accent-rgb), 0.55), transparent); }
+.sk-hero__slashes i:nth-child(4) { left: 1.5%; top: 30%; width: 10px; height: 18%; opacity: 0.45; }
+
 .sk-hero__overlay { position: relative; z-index: 1; padding-block: var(--sk-space-16); }
-.sk-hero__content { max-width: 560px; }
-.sk-hero__label {
-	display: inline-block;
-	font-family: var(--sk-font-display);
-	font-size: var(--sk-text-xs);
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.12em;
-	color: #fff;
-	background: var(--sk-accent);
-	padding: 0.35rem 0.8rem;
-	border-radius: var(--sk-radius-sm);
-	margin-bottom: var(--sk-space-4);
-}
+.sk-hero__content { max-width: 780px; }
+.sk-hero__label { margin-bottom: var(--sk-space-5); }
 .sk-hero__title {
-	font-size: var(--sk-text-4xl);
-	font-weight: 800;
-	text-transform: uppercase;
-	letter-spacing: -0.01em;
+	margin-bottom: var(--sk-space-5);
+	font-size: clamp(2.4rem, 1rem + 4.4vw, 4.6rem);
 	color: #fff;
+	text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
 }
+.sk-hero__line { display: block; }
+@media (min-width: 768px) { .sk-hero__line { white-space: nowrap; } }
 .sk-hero__subtitle {
 	font-size: var(--sk-text-lg);
-	color: rgba(255, 255, 255, 0.8);
-	max-width: 44ch;
+	color: rgba(255, 255, 255, 0.82);
+	max-width: 46ch;
 }
-.sk-hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sk-space-4); margin-top: var(--sk-space-8); }
+.sk-hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sk-space-4) var(--sk-space-5); margin-top: var(--sk-space-8); }
 
 @media (min-width: 768px) {
-	.sk-hero { min-height: 620px; }
+	.sk-hero { min-height: 640px; }
 }
 @media (min-width: 1024px) {
 	.sk-hero { min-height: 680px; }
-	.sk-hero__title { font-size: var(--sk-text-5xl); }
 }
-@media (min-width: 1280px) {
-	.sk-hero { min-height: 720px; }
+@media (min-width: 1440px) {
+	.sk-hero { min-height: 740px; }
 }
 
 /* ==========================================================================

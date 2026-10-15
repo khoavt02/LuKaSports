@@ -54,7 +54,7 @@ foreach ( $terms as $i => $term ) {
 	}
 }
 $featured_term = $terms[ $featured_index ];
-$side_terms    = array_slice( array_merge( array_slice( $terms, $featured_index + 1 ), array_slice( $terms, 0, $featured_index ) ), 0, 5 );
+$side_terms    = array_slice( array_merge( array_slice( $terms, $featured_index + 1 ), array_slice( $terms, 0, $featured_index ) ), 0, 6 );
 
 function lukasports_category_tile_image( $term, $art_map ) {
 	$thumbnail_id = get_term_meta( $term->term_id, 'thumbnail_id', true );

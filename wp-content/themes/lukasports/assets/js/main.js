@@ -312,23 +312,87 @@
 		} );
 	}
 
+	/* ==========================================================================
+	   Wishlist hearts on product cards — saved in this browser only
+	   (localStorage), no account needed.
+	   ========================================================================== */
+	function initWishlist() {
+		var key = 'sk_wishlist';
+		var ids = [];
+		try {
+			ids = JSON.parse( window.localStorage.getItem( key ) || '[]' );
+		} catch ( e ) {
+			ids = [];
+		}
+
+		function save() {
+			try {
+				window.localStorage.setItem( key, JSON.stringify( ids ) );
+			} catch ( e ) {}
+		}
+
+		document.querySelectorAll( '[data-sk-wish]' ).forEach( function ( btn ) {
+			var id = btn.getAttribute( 'data-sk-wish' );
+			btn.setAttribute( 'aria-pressed', ids.indexOf( id ) !== -1 ? 'true' : 'false' );
+			btn.addEventListener( 'click', function () {
+				var i = ids.indexOf( id );
+				if ( -1 === i ) {
+					ids.push( id );
+					lukasportsTrack( 'add_wishlist', { product_id: id } );
+				} else {
+					ids.splice( i, 1 );
+				}
+				save();
+				document.querySelectorAll( '[data-sk-wish="' + id + '"]' ).forEach( function ( b ) {
+					b.setAttribute( 'aria-pressed', -1 === i ? 'true' : 'false' );
+				} );
+			} );
+		} );
+	}
+
+	/**
+	 * Light / dark switch in the header. The choice is kept in localStorage
+	 * and re-applied before paint by the inline script in header.php.
+	 */
+	function initThemeToggle() {
+		var root = document.documentElement;
+		var meta = document.querySelector( 'meta[name="theme-color"]' );
+		var lightColor = meta ? meta.getAttribute( 'content' ) : '';
+		if ( 'dark' === root.getAttribute( 'data-theme' ) && '#0d0d0f' === lightColor ) {
+			lightColor = '#111111';
+		}
+		function sync() {
+			var dark = 'dark' === root.getAttribute( 'data-theme' );
+			document.querySelectorAll( '[data-sk-theme-toggle]' ).forEach( function ( b ) {
+				b.setAttribute( 'aria-pressed', dark ? 'true' : 'false' );
+			} );
+			if ( meta ) {
+				meta.setAttribute( 'content', dark ? '#0d0d0f' : lightColor );
+			}
+		}
+		document.querySelectorAll( '[data-sk-theme-toggle]' ).forEach( function ( btn ) {
+			btn.addEventListener( 'click', function () {
+				var next = 'dark' === root.getAttribute( 'data-theme' ) ? 'light' : 'dark';
+				if ( 'dark' === next ) {
+					root.setAttribute( 'data-theme', 'dark' );
+				} else {
+					root.removeAttribute( 'data-theme' );
+				}
+				try { localStorage.setItem( 'sk_scheme', next ); } catch ( e ) {}
+				sync();
+				lukasportsTrack( 'theme_toggle', { scheme: next } );
+			} );
+		} );
+		sync();
+	}
+
 	document.addEventListener( 'DOMContentLoaded', function () {
+		initThemeToggle();
 		toggle( document.querySelector( '[data-sk-nav-toggle]' ), document.getElementById( 'sk-mobile-nav' ) );
+		initWishlist();
 		toggle( document.querySelector( '[data-sk-search-toggle]' ), document.getElementById( 'sk-search-panel' ) );
 
 		initConsultationForm();
-
-		var galleryMain = document.getElementById( 'sk-gallery-main' );
-		if ( galleryMain ) {
-			document.querySelectorAll( '[data-sk-gallery-target]' ).forEach( function ( thumb ) {
-				thumb.addEventListener( 'click', function () {
-					var target = document.getElementById( thumb.getAttribute( 'data-sk-gallery-target' ) );
-					if ( target ) {
-						target.scrollIntoView( { behavior: 'smooth', inline: 'start', block: 'nearest' } );
-					}
-				} );
-			} );
-		}
 
 		var header = document.getElementById( 'sk-header' );
 		if ( header ) {

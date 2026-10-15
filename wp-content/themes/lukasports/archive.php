@@ -11,12 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 ?>
+<?php
+get_template_part(
+	'template-parts/page-band',
+	null,
+	array(
+		'title'   => wp_strip_all_tags( get_the_archive_title() ),
+		'intro'   => wp_kses_post( get_the_archive_description() ),
+		'compact' => true,
+	)
+);
+?>
 <section class="sk-section sk-blog-archive">
 	<div class="sk-container">
-		<header class="sk-blog-archive__header">
-			<h1 class="sk-blog-archive__title"><?php the_archive_title(); ?></h1>
-			<?php the_archive_description( '<div class="sk-blog-archive__desc">', '</div>' ); ?>
-		</header>
 
 		<?php if ( have_posts() ) : ?>
 			<div class="sk-grid sk-grid--3">

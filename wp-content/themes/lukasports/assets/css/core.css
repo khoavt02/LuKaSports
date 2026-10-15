@@ -95,6 +95,40 @@
    headings, Inter for everything else. Sharp-to-medium radius (0/4/8px,
    12px only on special cards) — never a pill button.
    ========================================================================== */
+/* Italic display weights for headlines (.sk-display). */
+@font-face {
+	font-family: "Be Vietnam Pro";
+	font-style: italic;
+	font-weight: 800;
+	font-display: swap;
+	src: url("../fonts/bevn-800i-vi.woff2") format("woff2");
+	unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+	font-family: "Be Vietnam Pro";
+	font-style: italic;
+	font-weight: 800;
+	font-display: swap;
+	src: url("../fonts/bevn-800i-latin.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "Be Vietnam Pro";
+	font-style: italic;
+	font-weight: 900;
+	font-display: swap;
+	src: url("../fonts/bevn-900i-vi.woff2") format("woff2");
+	unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+	font-family: "Be Vietnam Pro";
+	font-style: italic;
+	font-weight: 900;
+	font-display: swap;
+	src: url("../fonts/bevn-900i-latin.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
 	/* Color — brand defaults. The three brand colors (dark, accent,
 	   surface) can be overridden from Giao diện → Tùy biến → Màu thương
@@ -115,6 +149,7 @@
 	--sk-messenger: #0084ff;
 	--sk-zalo: #0068ff;
 	--sk-sale: var(--sk-accent);
+	--sk-star: #f5b301; /* rating stars */
 
 	/* Typography — one family, two weights doing the work of "display"
 	   vs "body" (800 for oversized headings, 400/500 for copy). */
@@ -265,8 +300,19 @@ p { margin: 0 0 var(--sk-space-4); }
 }
 .sk-section-head__title {
 	font-size: var(--sk-text-2xl);
+	font-style: italic;
+	font-weight: 900;
 	text-transform: uppercase;
-	letter-spacing: 0.02em;
+	letter-spacing: -0.01em;
+}
+.sk-section-head__title::after {
+	content: "";
+	display: block;
+	width: 56px;
+	height: 4px;
+	margin-top: var(--sk-space-3);
+	background: var(--sk-accent);
+	transform: skewX(-24deg);
 }
 .sk-section-head__link {
 	font-size: var(--sk-text-sm);
@@ -293,66 +339,189 @@ p { margin: 0 0 var(--sk-space-4); }
 }
 
 /* ==========================================================================
-   Buttons — medium radius rectangles (never a pill), strong uppercase
-   type, primary blue reserved for the one action that matters per view.
+   Buttons — bold uppercase, "cut" parallelogram shape (the sport-kit
+   slash used across the brand imagery). The slanted background lives on
+   a skewed ::before so the label stays upright and outline variants keep
+   a clean border on all four sides.
    ========================================================================== */
 .sk-btn {
+	--sk-btn-bg: transparent;
+	--sk-btn-bd: transparent;
+	--sk-btn-fg: var(--sk-ink);
+	--sk-btn-bg-hover: var(--sk-btn-bg);
+	--sk-btn-bd-hover: var(--sk-btn-bd);
+	--sk-btn-fg-hover: var(--sk-btn-fg);
+	--sk-btn-skew: -12deg;
+	position: relative;
+	isolation: isolate;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	gap: var(--sk-space-2);
-	padding: 0.85rem 1.75rem;
-	border-radius: var(--sk-radius-pill);
-	border: 2px solid transparent;
+	padding: 0.85rem 1.9rem;
+	border: 0;
+	background: none;
+	color: var(--sk-btn-fg);
 	font-family: var(--sk-font-display);
-	font-weight: 700;
+	font-weight: 800;
 	font-size: var(--sk-text-sm);
 	text-transform: uppercase;
-	letter-spacing: 0.02em;
+	letter-spacing: 0.03em;
 	line-height: 1;
 	cursor: pointer;
-	transition: transform var(--sk-motion-fast), background-color var(--sk-motion-fast), border-color var(--sk-motion-fast), box-shadow var(--sk-motion-fast), color var(--sk-motion-fast);
 	white-space: nowrap;
+	transition: color var(--sk-motion-fast), transform var(--sk-motion-fast);
 }
+.sk-btn::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: var(--sk-btn-bg);
+	border: 2px solid var(--sk-btn-bd);
+	border-radius: 3px;
+	transform: skewX(var(--sk-btn-skew));
+	transition: background-color var(--sk-motion-fast), border-color var(--sk-motion-fast), box-shadow var(--sk-motion-fast);
+}
+.sk-btn:hover { color: var(--sk-btn-fg-hover); }
+.sk-btn:hover::before { background: var(--sk-btn-bg-hover); border-color: var(--sk-btn-bd-hover); }
 .sk-btn:active { transform: translateY(1px); }
 .sk-btn svg { flex: 0 0 auto; }
+.sk-btn .sk-btn__arrow { transition: transform var(--sk-motion-fast); }
+.sk-btn:hover .sk-btn__arrow { transform: translateX(3px); }
+.sk-btn:disabled, .sk-btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
 
 .sk-btn--primary {
-	background: var(--sk-accent);
-	color: var(--sk-accent-ink);
-	box-shadow: 0 4px 14px rgba(var(--sk-accent-rgb), 0.28);
+	--sk-btn-bg: var(--sk-accent);
+	--sk-btn-bd: var(--sk-accent);
+	--sk-btn-fg: var(--sk-accent-ink);
+	--sk-btn-bg-hover: var(--sk-accent-dark);
+	--sk-btn-bd-hover: var(--sk-accent-dark);
 }
-.sk-btn--primary:hover { background: var(--sk-accent-dark); box-shadow: 0 8px 20px rgba(var(--sk-accent-rgb), 0.34); }
-
+.sk-btn--primary::before { box-shadow: 0 6px 18px rgba(var(--sk-accent-rgb), 0.28); }
 .sk-btn--dark {
-	background: var(--sk-navy);
-	color: var(--sk-paper);
+	--sk-btn-bg: var(--sk-navy);
+	--sk-btn-bd: var(--sk-navy);
+	--sk-btn-fg: #fff;
+	--sk-btn-bg-hover: var(--sk-navy-dark);
+	--sk-btn-bd-hover: var(--sk-navy-dark);
 }
-.sk-btn--dark:hover { background: var(--sk-navy-dark); }
-
 .sk-btn--outline {
-	background: transparent;
-	border-color: var(--sk-ink);
-	color: var(--sk-ink);
+	--sk-btn-bd: var(--sk-ink);
+	--sk-btn-fg: var(--sk-ink);
+	--sk-btn-bg-hover: var(--sk-ink);
+	--sk-btn-fg-hover: #fff;
 }
-.sk-btn--outline:hover { background: var(--sk-ink); color: var(--sk-paper); }
-
 .sk-btn--outline-light {
-	background: transparent;
-	border-color: rgba(255, 255, 255, 0.55);
-	color: var(--sk-paper);
+	--sk-btn-bd: rgba(255, 255, 255, 0.7);
+	--sk-btn-fg: #fff;
+	--sk-btn-bg-hover: rgba(255, 255, 255, 0.12);
+	--sk-btn-bd-hover: #fff;
 }
-.sk-btn--outline-light:hover { background: rgba(255, 255, 255, 0.12); border-color: #fff; }
-
 .sk-btn--block { width: 100%; }
-.sk-btn--lg { padding: 1rem 2.25rem; font-size: var(--sk-text-base); }
+.sk-btn--lg { padding: 1.05rem 2.4rem; font-size: var(--sk-text-base); }
+.sk-btn--sm { padding: 0.6rem 1.1rem; font-size: var(--sk-text-xs); }
+/* Square icon-only button (wishlist, "thiết kế theo yêu cầu" on cards). */
+.sk-btn--icon { padding: 0; width: 42px; height: 42px; --sk-btn-skew: 0deg; }
 
-.sk-btn--messenger { background: var(--sk-messenger); color: #fff; }
-.sk-btn--messenger:hover { background: #006fd6; }
-.sk-btn--zalo { background: var(--sk-zalo); color: #fff; }
-.sk-btn--zalo:hover { background: #0054cc; }
-.sk-btn--call { background: var(--sk-navy); color: #fff; }
-.sk-btn--call:hover { background: var(--sk-navy-dark); }
+.sk-btn--messenger { --sk-btn-bg: var(--sk-messenger); --sk-btn-bd: var(--sk-messenger); --sk-btn-fg: #fff; --sk-btn-bg-hover: #006fd6; --sk-btn-bd-hover: #006fd6; }
+.sk-btn--zalo { --sk-btn-bg: var(--sk-zalo); --sk-btn-bd: var(--sk-zalo); --sk-btn-fg: #fff; --sk-btn-bg-hover: #0054cc; --sk-btn-bd-hover: #0054cc; }
+.sk-btn--call { --sk-btn-bg: var(--sk-navy); --sk-btn-bd: var(--sk-navy); --sk-btn-fg: #fff; --sk-btn-bg-hover: var(--sk-navy-dark); --sk-btn-bd-hover: var(--sk-navy-dark); }
+
+/* ==========================================================================
+   Display type — heavy italic uppercase headlines used by every dark
+   page band and section title. `.sk-accent-text` paints the second line
+   (or a single word) in the brand red.
+   ========================================================================== */
+.sk-display {
+	font-family: var(--sk-font-display);
+	font-style: italic;
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: -0.015em;
+	line-height: 1.02;
+}
+.sk-accent-text { color: var(--sk-accent); }
+.sk-eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--sk-space-3);
+	font-family: var(--sk-font-display);
+	font-style: italic;
+	font-weight: 800;
+	font-size: var(--sk-text-sm);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #fff;
+}
+.sk-eyebrow__tag { position: relative; isolation: isolate; padding: 0.4rem 1.1rem; }
+.sk-eyebrow__tag::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--sk-accent); transform: skewX(-14deg); }
+.sk-eyebrow__slashes { display: inline-flex; gap: 5px; }
+.sk-eyebrow__slashes i { display: block; width: 6px; height: 1.4em; background: var(--sk-accent); transform: skewX(-24deg); }
+
+/* ==========================================================================
+   Dark page band — the shared top of every inner page (shop, category,
+   collection, blog, about, contact, policy): breadcrumb, two-tone
+   display title, intro, optional image and feature list, red slashes.
+   ========================================================================== */
+.sk-page-band {
+	position: relative;
+	overflow: hidden;
+	background: radial-gradient(120% 140% at 75% 30%, #2a0606 0%, #120707 38%, #0b0b0b 70%);
+	color: rgba(255, 255, 255, 0.82);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sk-page-band::before,
+.sk-page-band::after {
+	content: "";
+	position: absolute;
+	pointer-events: none;
+	background: linear-gradient(180deg, var(--sk-accent), rgba(var(--sk-accent-rgb), 0));
+	transform: skewX(-28deg);
+	opacity: 0.85;
+}
+.sk-page-band::before { left: -40px; bottom: -30px; width: 46px; height: 62%; }
+.sk-page-band::after { right: 8%; top: -20px; width: 18px; height: 70%; opacity: 0.35; }
+.sk-page-band__inner {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	gap: var(--sk-space-6);
+	align-items: center;
+	padding-block: var(--sk-space-8) var(--sk-space-10);
+}
+.sk-page-band--compact .sk-page-band__inner { padding-block: var(--sk-space-6) var(--sk-space-8); }
+@media (min-width: 1024px) {
+	.sk-page-band__inner { padding-block: var(--sk-space-10) var(--sk-space-12); }
+	.sk-page-band--has-media .sk-page-band__inner { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+	.sk-page-band--has-media.sk-page-band--has-features .sk-page-band__inner { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 0.5fr); }
+}
+.sk-page-band .sk-breadcrumb { margin-bottom: var(--sk-space-4); color: rgba(255, 255, 255, 0.6); font-size: var(--sk-text-sm); }
+.sk-page-band .sk-breadcrumb a { color: rgba(255, 255, 255, 0.75); }
+.sk-page-band .sk-breadcrumb a:hover { color: #fff; }
+.sk-page-band__title { margin: 0; color: #fff; font-size: clamp(2rem, 1.2rem + 3.6vw, 3.6rem); }
+.sk-page-band--compact .sk-page-band__title { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem); }
+.sk-page-band--has-features .sk-page-band__title { font-size: clamp(2rem, 1.3rem + 2vw, 2.85rem); }
+.sk-page-band__title .sk-accent-text { display: block; }
+.sk-page-band__intro { margin: var(--sk-space-4) 0 0; max-width: 62ch; font-size: var(--sk-text-base); line-height: 1.65; }
+.sk-page-band__intro p:last-child { margin-bottom: 0; }
+.sk-page-band__actions { display: flex; flex-wrap: wrap; gap: var(--sk-space-4); margin-top: var(--sk-space-6); }
+.sk-page-band__media { position: relative; min-height: 180px; }
+.sk-page-band__media img {
+	width: 100%;
+	height: 280px;
+	object-fit: cover;
+	object-position: center 30%;
+	/* The artwork has its own dark-red backdrop; feather every edge so it
+	   melts into the band instead of reading as a pasted rectangle. */
+	-webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 45%, #000 55%, transparent 100%);
+	mask-image: radial-gradient(ellipse 72% 68% at 50% 45%, #000 55%, transparent 100%);
+}
+@media (max-width: 1023px) { .sk-page-band__media { display: none; } }
+.sk-page-band__features { display: grid; gap: var(--sk-space-4); margin: 0; padding: 0; list-style: none; }
+@media (max-width: 1023px) { .sk-page-band__features { grid-template-columns: repeat(2, 1fr); gap: var(--sk-space-3); } }
+.sk-page-band__feature { display: flex; align-items: center; gap: var(--sk-space-3); color: #fff; font-size: var(--sk-text-sm); font-weight: 600; }
+.sk-page-band__feature svg { flex: 0 0 auto; width: 28px; height: 28px; color: var(--sk-accent); }
 
 /* ==========================================================================
    Badges / tags
@@ -368,7 +537,9 @@ p { margin: 0 0 var(--sk-space-4); }
 	letter-spacing: 0.03em;
 }
 .sk-badge--sale { background: var(--sk-sale); color: #fff; }
-.sk-badge--featured { background: var(--sk-navy); color: #fff; }
+.sk-badge--featured,
+.sk-badge--hot { background: var(--sk-navy); color: #fff; }
+.sk-badge--new { background: var(--sk-accent); color: #fff; }
 .sk-badge--muted { background: var(--sk-surface); color: var(--sk-accent-dark); border: 1px solid var(--sk-line); }
 
 /* ==========================================================================
@@ -409,63 +580,108 @@ p { margin: 0 0 var(--sk-space-4); }
 .sk-price__original { font-size: var(--sk-text-sm); color: var(--sk-muted); text-decoration: line-through; }
 
 /* ==========================================================================
-   Product card — large image, quiet border (no heavy shadow), name +
-   small category + price + "Xem chi tiết →". Hover cross-fades to a
-   second image and reveals a Quick View affordance.
+   Product card — white card on the light content area: image on a soft
+   grey stage (hover cross-fades to the second image), badge + wishlist
+   heart on the image, color dots, rating, red price, and a red
+   "Xem chi tiết" next to a square "Thiết kế theo yêu cầu" button.
    ========================================================================== */
-.sk-product-card { box-shadow: none; border: 1px solid transparent; }
-.sk-product-card:hover { border-color: var(--sk-line); }
-.sk-product-card__media { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: var(--sk-surface); }
-.sk-product-card__media img { width: 100%; height: 100%; object-fit: cover; transition: opacity var(--sk-motion-base), transform var(--sk-motion-base); }
-.sk-product-card__media img.sk-product-card__img--alt {
-	position: absolute;
-	inset: 0;
-	opacity: 0;
+.sk-product-card {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--sk-line);
+	border-radius: 10px;
+	background: var(--sk-paper);
+	transition: border-color var(--sk-motion-base), box-shadow var(--sk-motion-base), transform var(--sk-motion-base);
 }
+.sk-product-card:hover {
+	border-color: rgba(var(--sk-accent-rgb), 0.45);
+	box-shadow: 0 14px 34px rgba(17, 17, 17, 0.1);
+	transform: translateY(-3px);
+}
+.sk-product-card__media { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: var(--sk-surface); border-radius: 9px 9px 0 0; }
+.sk-product-card__image-link { display: block; width: 100%; height: 100%; }
+.sk-product-card__media img { width: 100%; height: 100%; object-fit: cover; transition: opacity var(--sk-motion-base), transform 500ms ease; }
+.sk-product-card__media img.sk-product-card__img--alt { position: absolute; inset: 0; opacity: 0; }
 .sk-product-card:hover .sk-product-card__media img.sk-product-card__img--main { opacity: 0; }
 .sk-product-card:hover .sk-product-card__media img.sk-product-card__img--alt { opacity: 1; }
+.sk-product-card:hover .sk-product-card__media img { transform: scale(1.03); }
 .sk-product-card__badge { position: absolute; top: var(--sk-space-3); left: var(--sk-space-3); z-index: 1; }
 
-.sk-product-card__quickview {
+.sk-wish {
 	position: absolute;
-	left: 50%;
-	bottom: var(--sk-space-3);
-	transform: translate(-50%, 8px);
-	z-index: 2;
-	padding: 0.5rem 1.1rem;
-	background: var(--sk-paper);
-	color: var(--sk-ink);
-	font-family: var(--sk-font-display);
-	font-size: var(--sk-text-xs);
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.04em;
-	border-radius: var(--sk-radius-pill);
-	box-shadow: var(--sk-shadow-md);
-	opacity: 0;
-	transition: opacity var(--sk-motion-base), transform var(--sk-motion-base);
-	white-space: nowrap;
-}
-.sk-product-card:hover .sk-product-card__quickview { opacity: 1; transform: translate(-50%, 0); }
-
-.sk-product-card__body { padding: var(--sk-space-4) var(--sk-space-1) 0; }
-.sk-product-card__cat { font-size: var(--sk-text-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--sk-muted); margin: 0 0 var(--sk-space-1); }
-.sk-product-card__title { font-size: var(--sk-text-base); font-weight: 600; margin-bottom: var(--sk-space-2); }
-.sk-product-card__title a { display: block; }
-.sk-product-card__price { margin-bottom: var(--sk-space-2); }
-.sk-product-card__cta {
+	top: var(--sk-space-2);
+	right: var(--sk-space-2);
+	z-index: 1;
 	display: inline-flex;
 	align-items: center;
-	gap: var(--sk-space-1);
-	font-size: var(--sk-text-sm);
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.02em;
-	color: var(--sk-accent);
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.92);
+	color: var(--sk-ink);
+	cursor: pointer;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+	transition: color var(--sk-motion-fast), transform var(--sk-motion-fast);
 }
-.sk-product-card__cta span { transition: transform var(--sk-motion-fast); }
-.sk-product-card__cta:hover { color: var(--sk-accent-dark); }
-.sk-product-card__cta:hover span { transform: translateX(3px); }
+.sk-wish svg path { fill: transparent; transition: fill var(--sk-motion-fast); }
+.sk-wish:hover { color: var(--sk-accent); transform: scale(1.06); }
+.sk-wish[aria-pressed="true"] { color: var(--sk-accent); }
+.sk-wish[aria-pressed="true"] svg path { fill: currentColor; }
+
+.sk-product-card__body { display: flex; flex: 1; flex-direction: column; gap: 6px; padding: var(--sk-space-3); }
+.sk-product-card__colors { display: flex; gap: 6px; }
+.sk-color-dot { display: block; width: 12px; height: 12px; border-radius: 50%; background: var(--dot); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18); }
+.sk-product-card__title { margin: 0; font-size: var(--sk-text-sm); font-weight: 700; line-height: 1.3; }
+.sk-product-card__title a { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.6em; }
+.sk-product-card__title a:hover { color: var(--sk-accent); }
+.sk-product-card__excerpt { display: none; margin: 0; color: var(--sk-muted); font-size: var(--sk-text-sm); }
+.sk-product-card__price { margin-top: auto; }
+.sk-product-card__price .sk-price__current { color: var(--sk-accent); font-size: var(--sk-text-base); font-weight: 800; }
+.sk-product-card__price .sk-price__original { font-size: var(--sk-text-xs); }
+.sk-product-card__actions { display: flex; gap: 6px; margin-top: 2px; }
+.sk-product-card__actions .sk-btn--sm { padding-block: 0.6rem; }
+.sk-product-card__actions .sk-icon-btn { width: 34px; height: auto; }
+.sk-product-card__cta { flex: 1; --sk-btn-skew: 0deg; }
+.sk-product-card__price { flex-wrap: wrap; row-gap: 0; }
+@media (max-width: 479px) {
+	.sk-product-card__body { padding: var(--sk-space-3); }
+	.sk-product-card .sk-rating__count { display: none; }
+	.sk-product-card__price .sk-price__current { font-size: var(--sk-text-base); }
+	.sk-product-card__cta { font-size: 0.68rem; padding-inline: 0.6rem; }
+	.sk-product-card__cta .sk-btn__arrow { display: none; }
+}
+
+/* Square outline icon button (card "thiết kế", qty steppers…). */
+.sk-icon-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	width: 38px;
+	height: 38px;
+	border: 1.5px solid var(--sk-line);
+	border-radius: 6px;
+	background: var(--sk-paper);
+	color: var(--sk-ink);
+	cursor: pointer;
+	transition: border-color var(--sk-motion-fast), color var(--sk-motion-fast), background-color var(--sk-motion-fast);
+}
+.sk-icon-btn:hover { border-color: var(--sk-ink); background: var(--sk-ink); color: #fff; }
+
+/* Star rating: one text run of five stars, filled to --rating via a
+   gradient clip — no icon font, no images. */
+.sk-rating { display: flex; align-items: center; gap: 6px; font-size: var(--sk-text-xs); color: var(--sk-muted); }
+.sk-rating__stars { --star: var(--sk-star); position: relative; display: inline-block; font-size: 13px; line-height: 1; letter-spacing: 1px; }
+.sk-rating__stars::before {
+	content: "★★★★★";
+	background: linear-gradient(90deg, var(--star) calc(var(--rating) / 5 * 100%), #d4d4d8 0);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+.sk-rating__value { font-weight: 700; color: var(--sk-ink); }
 
 /* Post card — reused on the homepage blog preview, blog archive and
    search results. */
@@ -531,3 +747,28 @@ html.sk-modal-open body { overflow: hidden; }
 .sk-modal__success { text-align: center; padding-block: var(--sk-space-8); }
 .sk-modal__success svg { margin: 0 auto var(--sk-space-4); color: var(--sk-accent); }
 .sk-modal__success p { font-size: var(--sk-text-lg); font-weight: 600; max-width: 32ch; margin-inline: auto; }
+
+/* Section / block headlines outside .sk-section-head share the same
+   heavy italic display treatment. */
+.sk-custom-design__title,
+.sk-contact-cta__title,
+.sk-about-story__title,
+.sk-modal__title,
+.sk-blog-archive__title {
+	font-style: italic;
+	font-weight: 900;
+	text-transform: uppercase;
+	letter-spacing: -0.01em;
+}
+
+/* Page band on phones: shorter — smaller title, two-line intro, and the
+   selling-points column (a desktop flourish) is dropped. */
+@media (max-width: 767px) {
+	.sk-page-band__inner { gap: var(--sk-space-4); padding-block: var(--sk-space-5) var(--sk-space-6); }
+	.sk-page-band .sk-breadcrumb { margin-bottom: var(--sk-space-2); font-size: var(--sk-text-xs); }
+	.sk-page-band__title,
+	.sk-page-band--has-features .sk-page-band__title { font-size: clamp(1.6rem, 1rem + 4.2vw, 2.1rem); }
+	.sk-page-band__intro { margin-top: var(--sk-space-3); font-size: var(--sk-text-sm); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+	.sk-page-band__features { display: none; }
+	.sk-page-band::before { width: 28px; height: 45%; }
+}

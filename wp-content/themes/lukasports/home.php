@@ -11,11 +11,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 ?>
+<?php
+get_template_part(
+	'template-parts/page-band',
+	null,
+	array(
+		'title'   => __( 'Blog', 'lukasports' ),
+		'accent'  => __( 'Kinh nghiệm sân cỏ', 'lukasports' ),
+		'intro'   => '<p>' . esc_html__( 'Chọn size, chọn chất liệu, đặt đồng phục cho đội — mẹo thực tế từ DALETIC.', 'lukasports' ) . '</p>',
+		'compact' => true,
+	)
+);
+?>
 <section class="sk-section sk-blog-archive">
 	<div class="sk-container">
-		<header class="sk-blog-archive__header">
-			<h1 class="sk-blog-archive__title"><?php esc_html_e( 'Blog', 'lukasports' ); ?></h1>
-		</header>
 
 		<?php if ( have_posts() ) : ?>
 			<div class="sk-grid sk-grid--3">

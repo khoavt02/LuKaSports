@@ -51,7 +51,7 @@ function lukasports_get_hero_image_url() {
 	$url = $attachment_id ? wp_get_attachment_image_url( $attachment_id, 'lukasports-hero-banner' ) : '';
 
 	if ( ! $url ) {
-		$url = lukasports_image_url( 'hero-placeholder.svg' );
+		$url = lukasports_image_url( 'hero-jerseys.webp' );
 	}
 
 	return apply_filters( 'lukasports_hero_image_url', $url );
@@ -149,4 +149,108 @@ function lukasports_attachment_image( $attachment_id, $size = 'lukasports-card',
  */
 function lukasports_image_url( $relative_path ) {
 	return add_query_arg( 'ver', lukasports_asset_version( 'images/' . $relative_path ), LUKASPORTS_THEME_URI . '/assets/images/' . $relative_path );
+}
+
+/**
+ * Swatch color for a color attribute term name (pa_color). Kept in one
+ * place for product cards; assets/js/product-variations.js mirrors it.
+ */
+function lukasports_color_hex( $name ) {
+	$map = array(
+		'trắng'      => '#ffffff',
+		'đen'        => '#141414',
+		'đỏ'         => '#e10600',
+		'xanh dương' => '#1b4fbf',
+		'xanh navy'  => '#1b2a4a',
+		'vàng'       => '#f2c14e',
+		'cam'        => '#f47c20',
+		'xám'        => '#9ca3af',
+		'xám than'   => '#4a4a4a',
+		'be'         => '#d8cbb0',
+		'xanh rêu'   => '#5c5f4a',
+		'xanh lá'    => '#16a34a',
+		'hồng'       => '#ec4899',
+	);
+	$key = function_exists( 'mb_strtolower' ) ? mb_strtolower( trim( $name ) ) : strtolower( trim( $name ) );
+	return $map[ $key ] ?? '#cbd5e1';
+}
+
+/**
+ * Card/gallery badge: sale percentage first, then "Bán chạy" for
+ * featured products, then "Mới" for anything published in the last
+ * 30 days. Returns array( label, modifier ) or null.
+ */
+function lukasports_product_badge( $product ) {
+	if ( ! $product instanceof WC_Product ) {
+		return null;
+	}
+	$sale = lukasports_sale_badge_text( $product );
+	if ( '' !== $sale ) {
+		return array( $sale, 'sale' );
+	}
+	if ( $product->is_featured() ) {
+		return array( __( 'Bán chạy', 'lukasports' ), 'hot' );
+	}
+	$created = $product->get_date_created();
+	if ( $created && $created->getTimestamp() > time() - 30 * DAY_IN_SECONDS ) {
+		return array( __( 'Mới', 'lukasports' ), 'new' );
+	}
+	return null;
+}
+
+/** Category slugs that make up the "Thiết kế theo yêu cầu" quick filter. */
+function lukasports_custom_design_categories() {
+	return apply_filters( 'lukasports_custom_design_categories', array( 'ao-bong-da-thiet-ke', 'ao-team' ) );
+}
+
+/** Most recently created product collection (the "Bộ sưu tập mới" pill). */
+function lukasports_newest_collection() {
+	if ( ! taxonomy_exists( 'product_collection' ) ) {
+		return null;
+	}
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'product_collection',
+			'hide_empty' => true,
+			'orderby'    => 'term_id',
+			'order'      => 'DESC',
+			'number'     => 1,
+		)
+	);
+	return ( $terms && ! is_wp_error( $terms ) ) ? $terms[0] : null;
+}
+
+/**
+ * Lowest and highest product price in the catalog (for the price range
+ * filter), from WooCommerce's lookup table. Cached for an hour.
+ *
+ * @return array{0:int,1:int}
+ */
+function lukasports_catalog_price_range() {
+	$range = get_transient( 'lukasports_price_range' );
+	if ( false === $range ) {
+		global $wpdb;
+		$row   = $wpdb->get_row( "SELECT MIN(min_price) AS mn, MAX(max_price) AS mx FROM {$wpdb->wc_product_meta_lookup}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$range = array( (int) floor( (float) ( $row->mn ?? 0 ) ), (int) ceil( (float) ( $row->mx ?? 0 ) ) );
+		set_transient( 'lukasports_price_range', $range, HOUR_IN_SECONDS );
+	}
+	return $range;
+}
+
+/**
+ * Attachment ID of a product category's picture. "banner" prefers the
+ * wide action/lifestyle photo (term meta lukasports_banner_id), "thumb"
+ * the category thumbnail (Products → Categories → Thumbnail); each
+ * falls back to the other. 0 when the category has neither.
+ */
+function lukasports_category_image_id( $term, $prefer = 'thumb' ) {
+	if ( ! $term instanceof WP_Term ) {
+		$term = get_term_by( 'slug', (string) $term, 'product_cat' );
+	}
+	if ( ! $term instanceof WP_Term ) {
+		return 0;
+	}
+	$banner = (int) get_term_meta( $term->term_id, 'lukasports_banner_id', true );
+	$thumb  = (int) get_term_meta( $term->term_id, 'thumbnail_id', true );
+	return 'banner' === $prefer ? ( $banner ? $banner : $thumb ) : ( $thumb ? $thumb : $banner );
 }

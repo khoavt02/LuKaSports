@@ -14,15 +14,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 function lukasports_product_tabs( $tabs ) {
 	unset( $tabs['reviews'] );
 
-	if ( isset( $tabs['description'] ) ) {
-		$tabs['description']['title'] = __( 'Mô tả', 'lukasports' );
-	}
+	$tabs['description'] = array(
+		'title'    => __( 'Thông tin sản phẩm', 'lukasports' ),
+		'priority' => 10,
+		'callback' => 'lukasports_product_info_tab',
+	);
+
 	if ( isset( $tabs['additional_information'] ) ) {
-		$tabs['additional_information']['title'] = __( 'Thông số', 'lukasports' );
+		$tabs['additional_information']['title']    = __( 'Chất liệu', 'lukasports' );
+		$tabs['additional_information']['priority'] = 20;
 	}
 
 	$tabs['size_guide'] = array(
-		'title'    => __( 'Hướng dẫn chọn size', 'lukasports' ),
+		'title'    => __( 'Bảng size', 'lukasports' ),
 		'priority' => 30,
 		'callback' => 'lukasports_size_guide_tab_content',
 	);
@@ -30,6 +34,43 @@ function lukasports_product_tabs( $tabs ) {
 	return $tabs;
 }
 add_filter( 'woocommerce_product_tabs', 'lukasports_product_tabs' );
+
+/**
+ * "Thông tin sản phẩm" tab: benefit tiles (product meta), promotion
+ * tags, then the product description.
+ */
+function lukasports_product_info_tab() {
+	global $product;
+	$id         = $product instanceof WC_Product ? $product->get_id() : get_the_ID();
+	$benefits   = function_exists( 'lukasports_core_get_product_benefits' ) ? lukasports_core_get_product_benefits( $id ) : array();
+	$promotions = function_exists( 'lukasports_core_get_product_promotions' ) ? lukasports_core_get_product_promotions( $id ) : array();
+	if ( function_exists( 'lukasports_core_product_supports_printing' ) && lukasports_core_product_supports_printing( $id ) ) {
+		$benefits[] = __( 'Hỗ trợ in tên, số, logo theo yêu cầu', 'lukasports' );
+	}
+
+	if ( $benefits ) {
+		echo '<ul class="sk-benefits">';
+		foreach ( $benefits as $benefit ) {
+			printf(
+				'<li class="sk-benefits__item"><span class="sk-benefits__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>%s</span></li>',
+				esc_html( $benefit )
+			);
+		}
+		echo '</ul>';
+	}
+
+	if ( $promotions ) {
+		echo '<ul class="sk-product__tags">';
+		foreach ( $promotions as $promo ) {
+			printf( '<li class="sk-tag">%s</li>', esc_html( $promo ) );
+		}
+		echo '</ul>';
+	}
+
+	echo '<div class="sk-tabs__content">';
+	the_content();
+	echo '</div>';
+}
 
 function lukasports_size_guide_tab_content() {
 	get_template_part( 'template-parts/product/size-guide' );
@@ -82,7 +123,13 @@ function lukasports_route_clean_category_url( $query_vars ) {
 	}
 
 	$term = get_term_by( 'slug', $slug, 'product_cat' );
-	if ( ! $term instanceof WP_Term || get_page_by_path( $slug ) ) {
+	if ( ! $term instanceof WP_Term ) {
+		return $query_vars;
+	}
+	// get_page_by_path() also matches attachments (an image titled like
+	// the category); only a real Page may take over the clean URL.
+	$page = get_page_by_path( $slug );
+	if ( $page && 'page' === $page->post_type ) {
 		return $query_vars;
 	}
 
@@ -202,3 +249,39 @@ function lukasports_fallback_favicon() {
 }
 add_action( 'wp_head', 'lukasports_fallback_favicon' );
 add_action( 'admin_head', 'lukasports_fallback_favicon' );
+
+/**
+ * Quick-filter pills on product listings (?loai=):
+ *   co-san       — ready-made models (everything outside the custom-design categories)
+ *   theo-yeu-cau — custom design / team uniform categories
+ * Price range (?min_price= / ?max_price=) is handled by WooCommerce itself.
+ */
+function lukasports_quick_filter_query( $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+	if ( ! ( $query->is_post_type_archive( 'product' ) || $query->is_tax( array( 'product_cat', 'product_collection' ) ) ) ) {
+		return;
+	}
+	$type = isset( $_GET['loai'] ) ? sanitize_key( wp_unslash( $_GET['loai'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( ! in_array( $type, array( 'co-san', 'theo-yeu-cau' ), true ) ) {
+		return;
+	}
+	$tax_query   = (array) $query->get( 'tax_query' );
+	$tax_query[] = array(
+		'taxonomy' => 'product_cat',
+		'field'    => 'slug',
+		'terms'    => lukasports_custom_design_categories(),
+		'operator' => 'theo-yeu-cau' === $type ? 'IN' : 'NOT IN',
+	);
+	$query->set( 'tax_query', $tax_query );
+}
+add_action( 'woocommerce_product_query', 'lukasports_quick_filter_query' );
+
+/** Price range cache must follow product price changes. */
+function lukasports_flush_price_range() {
+	delete_transient( 'lukasports_price_range' );
+}
+add_action( 'woocommerce_update_product', 'lukasports_flush_price_range' );
+add_action( 'woocommerce_new_product', 'lukasports_flush_price_range' );
+

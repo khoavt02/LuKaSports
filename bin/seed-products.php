@@ -1160,3 +1160,7 @@ foreach ( $products as $data ) {
 }
 
 WP_CLI::success( "Seeded {$created} products across " . count( $categories ) . ' categories.' );
+
+// Real photos (bin/product-photos/) replace the illustration where available.
+require __DIR__ . '/apply-product-photos.php';
+require __DIR__ . '/apply-category-images.php';

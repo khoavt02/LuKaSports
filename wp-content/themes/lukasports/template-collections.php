@@ -55,25 +55,24 @@ function lukasports_collection_cover( $term ) {
 }
 ?>
 
+<?php
+// Page content (if any) becomes the intro of the dark band.
+the_post();
+$sk_intro = get_the_content() ? apply_filters( 'the_content', get_the_content() ) : '';
+rewind_posts();
+get_template_part(
+	'template-parts/page-band',
+	null,
+	array(
+		'title'   => get_the_title(),
+		'accent'  => __( 'Tuyển chọn theo mùa', 'lukasports' ),
+		'intro'   => wp_kses_post( $sk_intro ),
+		'compact' => true,
+	)
+);
+?>
 <section class="sk-section sk-collections">
 	<div class="sk-container">
-		<nav class="sk-breadcrumb">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Trang chủ', 'lukasports' ); ?></a> / <?php the_title(); ?>
-		</nav>
-
-		<header class="sk-shop__header">
-			<h1 class="sk-shop__title"><?php the_title(); ?></h1>
-			<?php
-			while ( have_posts() ) :
-				the_post();
-				if ( get_the_content() ) :
-					?>
-					<div class="sk-shop__intro"><?php the_content(); ?></div>
-					<?php
-				endif;
-			endwhile;
-			?>
-		</header>
 
 		<?php if ( $collections ) : ?>
 			<div class="sk-collections__grid">

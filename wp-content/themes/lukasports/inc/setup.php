@@ -26,7 +26,7 @@ function lukasports_theme_setup() {
 			'gallery_thumbnail_image_width' => 150,
 			'single_image_width'    => 900,
 			'product_grid'          => array(
-				'default_rows'    => 2,
+				'default_rows'    => 3,
 				'min_rows'        => 1,
 				'default_columns' => 4,
 				'min_columns'     => 2,
@@ -99,16 +99,24 @@ add_filter( 'nav_menu_link_attributes', 'lukasports_nav_menu_link_class' );
  * header before an admin has assigned a menu.
  */
 function lukasports_primary_menu_fallback() {
-	echo '<ul class="sk-nav__list">';
-	$links = array(
-		'/san-pham/'          => 'Sản phẩm',
-		'/bo-suu-tap/'        => 'Bộ sưu tập',
-		'/ao-bong-da-thiet-ke/' => 'Thiết kế áo',
-		'/ve-daletic/'         => 'Về DALETIC',
-		'/blog/'              => 'Blog',
+	$design_cat = is_tax( 'product_cat', 'ao-bong-da-thiet-ke' );
+	$links      = array(
+		'/san-pham/'            => array( 'Sản phẩm', ! $design_cat && ( ( function_exists( 'is_woocommerce' ) && is_woocommerce() && ! is_tax( 'product_collection' ) ) ) ),
+		'/bo-suu-tap/'          => array( 'Bộ sưu tập', is_tax( 'product_collection' ) || is_page( 'bo-suu-tap' ) ),
+		'/ao-bong-da-thiet-ke/' => array( 'Thiết kế áo', $design_cat ),
+		'/ve-daletic/'          => array( 'Về DALETIC', is_page( 've-daletic' ) ),
+		'/blog/'                => array( 'Blog', is_home() || is_singular( 'post' ) || is_category() || is_tag() ),
 	);
-	foreach ( $links as $url => $label ) {
-		printf( '<li class="sk-nav__item"><a class="sk-nav__link" href="%s">%s</a></li>', esc_url( home_url( $url ) ), esc_html( $label ) );
+
+	echo '<ul class="sk-nav__list">';
+	foreach ( $links as $url => list( $label, $active ) ) {
+		printf(
+			'<li class="sk-nav__item%1$s"><a class="sk-nav__link" href="%2$s"%3$s>%4$s</a></li>',
+			$active ? ' is-active' : '',
+			esc_url( home_url( $url ) ),
+			$active ? ' aria-current="page"' : '',
+			esc_html( $label )
+		);
 	}
 	echo '</ul>';
 }

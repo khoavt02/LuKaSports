@@ -43,17 +43,24 @@ $values = array(
 );
 ?>
 
-<section class="sk-page-hero">
-	<div class="sk-container sk-page-hero__inner">
-		<p class="sk-page-hero__eyebrow"><?php esc_html_e( 'Về DALETIC', 'lukasports' ); ?></p>
-		<h1 class="sk-page-hero__title"><?php esc_html_e( 'Đồ thi đấu cho người chơi thật.', 'lukasports' ); ?></h1>
-		<p class="sk-page-hero__lead"><?php esc_html_e( 'DALETIC làm áo đấu và đồng phục cho cá nhân, đội bóng, CLB — từ sân phủi cuối tuần đến giải phong trào.', 'lukasports' ); ?></p>
-		<div class="sk-page-hero__actions">
-			<a class="sk-btn sk-btn--primary sk-btn--lg" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Xem sản phẩm', 'lukasports' ); ?></a>
-			<a class="sk-btn sk-btn--outline-light sk-btn--lg" href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" data-lukasports-cta="consult" data-source="about_hero"><?php esc_html_e( 'Nhận tư vấn', 'lukasports' ); ?></a>
-		</div>
-	</div>
-</section>
+<?php
+ob_start();
+?>
+<a class="sk-btn sk-btn--primary sk-btn--lg" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Xem sản phẩm', 'lukasports' ); ?> <span class="sk-btn__arrow" aria-hidden="true">→</span></a>
+<a class="sk-btn sk-btn--outline-light sk-btn--lg" href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" data-lukasports-cta="consult" data-source="about_hero"><?php esc_html_e( 'Nhận tư vấn', 'lukasports' ); ?></a>
+<?php
+get_template_part(
+	'template-parts/page-band',
+	null,
+	array(
+		'title'   => __( 'Đồ thi đấu cho', 'lukasports' ),
+		'accent'  => __( 'người chơi thật.', 'lukasports' ),
+		'intro'   => '<p>' . esc_html__( 'DALETIC làm áo đấu và đồng phục cho cá nhân, đội bóng, CLB — từ sân phủi cuối tuần đến giải phong trào.', 'lukasports' ) . '</p>',
+		'media'   => lukasports_image_url( 'hero-jerseys.webp' ),
+		'actions' => ob_get_clean(),
+	)
+);
+?>
 
 <section class="sk-section sk-about-story">
 	<div class="sk-container sk-about-story__inner">
