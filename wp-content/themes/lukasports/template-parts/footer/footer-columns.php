@@ -48,6 +48,9 @@ $contact = lukasports_get_contact_info();
 		<div class="sk-footer__contact">
 			<a class="sk-footer__hotline" href="tel:<?php echo esc_attr( $contact['hotline_tel'] ); ?>"><?php echo esc_html( $contact['hotline_display'] ); ?></a>
 			<span class="sk-footer__hours"><?php esc_html_e( 'Hotline 8:00 – 21:00 hằng ngày', 'lukasports' ); ?></span>
+			<?php if ( ! empty( $contact['facebook_url'] ) ) : ?>
+				<a class="sk-footer__fanpage" href="<?php echo esc_url( $contact['facebook_url'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Fanpage Facebook DALETIC →', 'lukasports' ); ?></a>
+			<?php endif; ?>
 			<?php if ( $contact['address'] ) : ?>
 				<span class="sk-footer__address"><?php echo esc_html( $contact['address'] ); ?></span>
 			<?php endif; ?>

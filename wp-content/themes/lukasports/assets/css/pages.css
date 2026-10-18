@@ -318,3 +318,5 @@ html[data-theme="dark"] .sk-policy__content > p:first-child { background: rgba(v
 	.sk-page > .sk-container { padding-top: 16px; padding-bottom: 48px; }
 	.sk-page__content { padding: 24px 18px; }
 }
+.sk-contact .sk-contact__channel--facebook .sk-contact__channel-icon { background: #1877f2; color: #fff; }
+.sk-contact__channel--facebook .sk-contact__channel-icon svg { fill: currentColor; stroke: none; }

@@ -21,11 +21,15 @@ $map_url = $contact['address'] ? 'https://www.google.com/maps/search/?api=1&quer
 $icons = array(
 	'phone'     => '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
 	'messenger' => '<path d="M12 3C7 3 3 6.7 3 11.3c0 2.6 1.3 4.9 3.3 6.4V21l3-1.7c.9.3 1.8.4 2.7.4 5 0 9-3.7 9-8.4S17 3 12 3z"/><path d="M7.5 13.5l3-3 2.5 2 3.5-3.5"/>',
+	'facebook'  => '<path d="M14 8.5V6.8c0-.8.5-1.3 1.3-1.3H17V2.3h-2.6C11.7 2.3 10.4 4 10.4 6.6v1.9H8v3.3h2.4V22H14V11.8h2.7l.4-3.3z"/>',
 	'pin'       => '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
 );
 
 // Messenger link shown as its short form (m.me/page) when possible.
 $messenger_label = preg_replace( '#^https?://(www\.)?#', '', untrailingslashit( $contact['messenger_url'] ) );
+if ( preg_match( '#^m\.me/\d+$#', $messenger_label ) ) {
+	$messenger_label = __( 'Nhắn tin Fanpage', 'lukasports' ); // numeric page id reads badly
+}
 
 // Zalo number from the zalo.me link; same as the hotline → reuse its formatting.
 $zalo_label = __( 'Nhắn Zalo', 'lukasports' );
@@ -60,6 +64,16 @@ $channels = array(
 		'icon'  => 'messenger',
 	),
 );
+if ( ! empty( $contact['facebook_url'] ) ) {
+	$channels[] = array(
+		'key'   => 'facebook',
+		'label' => __( 'Fanpage', 'lukasports' ),
+		'value' => __( 'DALETIC Sports', 'lukasports' ),
+		'href'  => $contact['facebook_url'],
+		'note'  => __( 'Xem mẫu mới và hình ảnh đội đã đặt áo.', 'lukasports' ),
+		'icon'  => 'facebook',
+	);
+}
 if ( $map_url ) {
 	$channels[] = array(
 		'key'   => 'store',

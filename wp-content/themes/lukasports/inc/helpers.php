@@ -24,9 +24,9 @@ function lukasports_get_contact_info() {
 	$defaults = array(
 		'hotline_display'    => '0819.666.868',
 		'hotline_tel'        => '+84819666868',
-		'messenger_url'      => 'https://m.me/daletic.vn',
+		'messenger_url'      => 'https://m.me/61569257930689',
 		'zalo_url'           => 'https://zalo.me/0819666868',
-		'facebook_url'       => 'https://facebook.com/daletic.vn',
+		'facebook_url'       => 'https://www.facebook.com/profile.php?id=61569257930689',
 		'address'            => 'Số 12, Ngõ 88, Đường Láng, Đống Đa, Hà Nội',
 		'primary_cta_text'   => 'Tư vấn ngay',
 		'secondary_cta_text' => 'Đặt áo cho đội',

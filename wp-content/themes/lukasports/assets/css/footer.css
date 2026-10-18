@@ -181,3 +181,4 @@ body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
 }
 
 .sk-brand--footer img.custom-logo { max-height: 52px; }
+.sk-footer__fanpage { font-size: var(--sk-text-sm); font-weight: 700; }
