@@ -2,7 +2,7 @@
 /**
  * DALETIC.VN in-house designs (Oct 2026): creates the products once
  * (skipped when the slug already exists) in "Áo Bóng Đá Thiết Kế Theo
- * Yêu Cầu" and the "DALETIC.VN 2026" collection, with S–XL sizes.
+ * Yêu Cầu" and the "DALETIC.VN 2026" collection, with S–4XL sizes.
  * Photos come from bin/product-photos/{slug}.jpg via
  * apply-product-photos.php, which this script runs at the end.
  *
@@ -26,7 +26,7 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true ),
 );
 
-$sizes    = array( 'S', 'M', 'L', 'XL' );
+$sizes    = array( 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL' );
 $category = get_term_by( 'slug', 'ao-bong-da-thiet-ke', 'product_cat' );
 if ( ! $category ) {
 	WP_CLI::error( 'Category ao-bong-da-thiet-ke not found.' );
