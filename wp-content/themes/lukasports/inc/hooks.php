@@ -25,6 +25,11 @@ function lukasports_product_tabs( $tabs ) {
 		$tabs['additional_information']['priority'] = 20;
 	}
 
+	if ( lukasports_is_font_product( $GLOBALS['product'] ?? null ) ) {
+		unset( $tabs['additional_information'] );
+		return $tabs;
+	}
+
 	$tabs['size_guide'] = array(
 		'title'    => __( 'Bảng size', 'lukasports' ),
 		'priority' => 30,

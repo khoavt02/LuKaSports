@@ -91,12 +91,14 @@ $excerpt      = $product->get_short_description();
 			<p class="sk-product-card__excerpt"><?php echo esc_html( lukasports_excerpt( $excerpt, 22 ) ); ?></p>
 		<?php endif; ?>
 
+		<?php if ( ! lukasports_is_font_product( $product ) ) : ?>
 		<div class="sk-price sk-product-card__price">
 			<span class="sk-price__current"><?php echo lukasports_format_price( $product->get_price() ); // phpcs:ignore ?></span>
 			<?php if ( $product->is_on_sale() && $regular > 0 ) : ?>
 				<span class="sk-price__original"><?php echo lukasports_format_price( $regular ); // phpcs:ignore ?></span>
 			<?php endif; ?>
 		</div>
+		<?php endif; ?>
 
 		<a class="sk-product-card__cta" href="<?php echo esc_url( $permalink ); ?>">
 			<span class="sk-product-card__cta-label"><?php esc_html_e( 'Xem chi tiết', 'lukasports' ); ?></span>
