@@ -101,7 +101,7 @@ add_filter( 'nav_menu_link_attributes', 'lukasports_nav_menu_link_class' );
 function lukasports_primary_menu_fallback() {
 	$design_cat = is_tax( 'product_cat', 'ao-bong-da-thiet-ke' );
 	$links      = array(
-		'/san-pham/'            => array( 'Sản phẩm', ! $design_cat && ! is_tax( 'product_cat', 'font-chu-in-ao' ) && ( ( function_exists( 'is_woocommerce' ) && is_woocommerce() && ! is_tax( 'product_collection' ) ) ) ),
+		'/san-pham/'            => array( 'Sản phẩm', ! $design_cat && ! is_tax( 'product_cat', 'font-chu-in-ao' ) && ! ( is_singular( 'product' ) && has_term( 'font-chu-in-ao', 'product_cat' ) ) && ( ( function_exists( 'is_woocommerce' ) && is_woocommerce() && ! is_tax( 'product_collection' ) ) ) ),
 		'/bo-suu-tap/'          => array( 'Bộ sưu tập', is_tax( 'product_collection' ) || is_page( 'bo-suu-tap' ) ),
 		'/ao-bong-da-thiet-ke/' => array( 'Thiết kế áo', $design_cat ),
 		'/font-chu-in-ao/'      => array( 'Font chữ', is_tax( 'product_cat', 'font-chu-in-ao' ) || ( is_singular( 'product' ) && has_term( 'font-chu-in-ao', 'product_cat' ) ) ),
