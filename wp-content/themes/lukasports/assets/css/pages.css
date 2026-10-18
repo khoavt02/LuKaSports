@@ -320,3 +320,17 @@ html[data-theme="dark"] .sk-policy__content > p:first-child { background: rgba(v
 }
 .sk-contact .sk-contact__channel--facebook .sk-contact__channel-icon { background: #1877f2; color: #fff; }
 .sk-contact__channel--facebook .sk-contact__channel-icon svg { fill: currentColor; stroke: none; }
+
+/* Zalo store connection (template-parts/zalo-connect.php, contact page) */
+.sk-zalo { padding-bottom: 48px; }
+.sk-zalo__card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; padding: 36px 40px; border: 1px solid var(--sk-line); border-radius: 12px; background: var(--sk-paper); }
+.sk-zalo__text { flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.sk-zalo__title { margin: 0; font-size: clamp(28px, 3.4vw, 40px); line-height: 1; }
+.sk-zalo__desc { margin: 0; max-width: 520px; line-height: 1.65; color: var(--sk-muted, inherit); }
+.sk-zalo__steps { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: 0.9375rem; }
+.sk-zalo__qr { flex: 0 0 auto; width: min(260px, 100%); height: auto; border-radius: 14px; box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35); }
+@media (max-width: 767px) {
+	.sk-zalo { padding-bottom: 28px; }
+	.sk-zalo__card { padding: 24px 18px; justify-content: center; }
+	.sk-zalo__qr { width: min(240px, 80%); }
+}

@@ -182,3 +182,8 @@ body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
 
 .sk-brand--footer img.custom-logo { max-height: 52px; }
 .sk-footer__fanpage { font-size: var(--sk-text-sm); font-weight: 700; }
+
+/* Zalo QR thumbnail in the footer "Kết nối" column */
+.sk-zalo-mini { display: flex; align-items: center; gap: 12px; margin-top: 4px; color: var(--sk-on-dark-muted); font-size: 0.8125rem; line-height: 1.4; }
+.sk-zalo-mini img { width: 72px; height: auto; border-radius: 8px; flex: none; }
+.sk-zalo-mini:hover { color: #fff; }

@@ -199,6 +199,8 @@ get_template_part(
 		</section>
 	</div>
 
+	<?php get_template_part( 'template-parts/zalo-connect' ); ?>
+
 	<?php if ( $map_url ) : ?>
 		<section class="sk-container sk-contact__map-wrap" aria-label="<?php esc_attr_e( 'Bản đồ', 'lukasports' ); ?>">
 			<div class="sk-contact__map">
