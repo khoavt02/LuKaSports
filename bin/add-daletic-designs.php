@@ -31,6 +31,7 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-sai-canh-xanh-trang', 'Bộ Đồng Phục DALETIC Sải Cánh Xanh Trắng', array( 'Trắng', 'Xanh Da Trời', 'Đen' ), 'Trọn bộ áo trắng tay xanh da trời, họa tiết đen mạnh mẽ như đôi cánh dang rộng ở hai bên sườn, cờ đỏ sao vàng ở ngực; quần đen và tất trắng, in tên và số cầu thủ.', true, 'thien-phong' ),
 	array( 'bo-dong-phuc-daletic-tang-may-xanh-trang', 'Bộ Đồng Phục DALETIC Tầng Mây Xanh Trắng', array( 'Trắng', 'Xanh Da Trời' ), 'Trọn bộ áo trắng tay xanh da trời, họa tiết bậc thang chéo xanh nhạt chạy dọc thân áo, cờ đỏ sao vàng ở ngực; quần và tất trắng, in tên và số cầu thủ.', true, 'thien-phong' ),
 	array( 'bo-dong-phuc-daletic-pha-le-xanh-ngoc', 'Bộ Đồng Phục DALETIC Pha Lê Xanh Ngọc', array( 'Xanh Ngọc', 'Trắng' ), 'Trọn bộ áo xanh ngọc họa tiết tinh thể ở vai và ngực, thân dưới trắng vân mê cung, cờ đỏ sao vàng ở ngực; quần và tất trắng, in tên và số cầu thủ.', true, 'thien-phong' ),
+	array( 'bo-dong-phuc-daletic-son-thuy-xanh-co-vit', 'Bộ Đồng Phục DALETIC Sơn Thủy Xanh Cổ Vịt', array( 'Xanh Ngọc', 'Trắng' ), 'Trọn bộ áo xanh cổ vịt đậm với nét cọ đen mạnh mẽ, vai trắng họa tiết đường chéo và đỉnh núi, cờ đỏ sao vàng ở ngực; quần cùng màu, tất trắng, in tên và số cầu thủ.', true, 'son-thuy' ),
 	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true ),
 );
 
@@ -43,6 +44,7 @@ if ( ! $category ) {
 // Collections a design can belong to (6th element of a design; default 2026).
 $collection_defs = array(
 	'daletic-vn-2026' => array( 'DALETIC.VN 2026', 'Các mẫu áo do DALETIC tự thiết kế và sản xuất.' ),
+	'son-thuy'        => array( 'Sơn Thủy', 'Dòng thiết kế xanh cổ vịt đậm, nét cọ mạnh mẽ và đỉnh núi trắng nổi bật.' ),
 	'thien-phong'     => array( 'Thiên Phong', 'Dòng thiết kế nền trắng phối xanh da trời và họa tiết đen mạnh mẽ, lấy cảm hứng từ đôi cánh dang rộng.' ),
 	'sac-viet'        => array( 'Sắc Việt', 'Dòng thiết kế phối đỏ – trắng, mang lá cờ đỏ sao vàng lên áo đấu.' ),
 );
