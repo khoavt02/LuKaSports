@@ -15,27 +15,27 @@ $contact = lukasports_get_contact_info();
 $steps = array(
 	array(
 		'title' => __( 'Tư vấn', 'lukasports' ),
-		'desc'  => __( 'Nhận yêu cầu và ý tưởng của bạn', 'lukasports' ),
+		'desc'  => __( 'Gửi ý tưởng, màu sắc, logo và số lượng. DALETIC tư vấn chất vải và báo giá.', 'lukasports' ),
 		'icon'  => '<path d="M9 26a15 15 0 0 1 30 0"/><rect x="6" y="25" width="7" height="12" rx="3.5"/><rect x="35" y="25" width="7" height="12" rx="3.5"/><path d="M38.5 37v1.5a4.5 4.5 0 0 1-4.5 4.5h-6"/><circle class="sk-ico-a" cx="19" cy="22" r="1.4"/><circle class="sk-ico-a" cx="24" cy="22" r="1.4"/><circle class="sk-ico-a" cx="29" cy="22" r="1.4"/>',
 	),
 	array(
 		'title' => __( 'Thiết kế', 'lukasports' ),
-		'desc'  => __( 'Lên mockup theo yêu cầu của bạn', 'lukasports' ),
+		'desc'  => __( 'Dựng mockup áo, quần, tất theo yêu cầu của đội.', 'lukasports' ),
 		'icon'  => '<rect x="5" y="7" width="31" height="34" rx="4"/><path class="sk-ico-a" d="M13 18l5-2.5c.8 1.8 2 2.5 3 2.5s2.2-.7 3-2.5l5 2.5-2 5-3-1v11h-6V22l-3 1z"/><path class="sk-ico-a" d="M31 38l1-4 11-11 3 3-11 11z"/>',
 	),
 	array(
 		'title' => __( 'Duyệt mẫu', 'lukasports' ),
-		'desc'  => __( 'Chỉnh sửa đến khi ưng ý', 'lukasports' ),
+		'desc'  => __( 'Xem mockup, góp ý và chỉnh sửa đến khi bạn ưng ý.', 'lukasports' ),
 		'icon'  => '<rect x="8" y="7" width="27" height="34" rx="4"/><rect x="16" y="4" width="11" height="6" rx="2"/><path d="M14 19h15M14 25h15M14 31h8"/><circle class="sk-ico-a" cx="35" cy="35" r="9"/><path class="sk-ico-a" d="M30.5 35l3 3 6-6"/>',
 	),
 	array(
 		'title' => __( 'Sản xuất', 'lukasports' ),
-		'desc'  => __( 'Sản xuất sau khi chốt mẫu', 'lukasports' ),
+		'desc'  => __( 'Chốt mẫu, tên, số và size rồi mới bắt đầu sản xuất.', 'lukasports' ),
 		'icon'  => '<path d="M7 38V14a2 2 0 0 1 2-2h19a2 2 0 0 1 2 2v7h10v17"/><path d="M4 41h40"/><circle cx="15" cy="20" r="3.2"/><path class="sk-ico-a" d="M24 22v13"/><path class="sk-ico-a" d="M18.2 20c3.2 0 5 1.2 5.8 3"/>',
 	),
 	array(
 		'title' => __( 'Giao hàng', 'lukasports' ),
-		'desc'  => __( 'Giao tận nơi trên toàn quốc', 'lukasports' ),
+		'desc'  => __( 'Đóng gói và giao tận nơi trên toàn quốc.', 'lukasports' ),
 		'icon'  => '<rect x="3" y="11" width="25" height="23" rx="2.5"/><path d="M28 18h9l7 8.5V34H28z"/><circle cx="13" cy="36" r="4"/><circle cx="36" cy="36" r="4"/><path class="sk-ico-a" d="M32 22h4l3.5 4.5H32z"/><path class="sk-ico-a" d="M9 19h12M9 25h8"/>',
 	),
 );

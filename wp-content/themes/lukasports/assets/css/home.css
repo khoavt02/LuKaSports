@@ -765,7 +765,7 @@ html[data-theme="dark"] .sk-trust { background: #10141d; }
 .sk-order-flow__text { display: flex; flex-direction: column; align-items: center; }
 .sk-order-flow__step-title { margin: 0; font-family: var(--sk-font-display); font-size: 1.5rem; font-weight: 700; text-transform: uppercase; color: var(--sk-ink); }
 .sk-order-flow__step-title::after { content: ""; display: block; width: 28px; height: 3px; margin: 10px auto 12px; border-radius: 2px; background: var(--sk-accent); }
-.sk-order-flow__step-desc { margin: 0; max-width: 20ch; color: var(--sk-text-2); font-size: 0.9375rem; line-height: 1.55; }
+.sk-order-flow__step-desc { margin: 0; max-width: 26ch; color: var(--sk-text-2); font-size: 0.9375rem; line-height: 1.55; }
 .sk-order-flow__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 36px; }
 @media (max-width: 1099px) {
 	.sk-order-flow__list { grid-template-columns: repeat(2, 1fr); gap: 20px; }
