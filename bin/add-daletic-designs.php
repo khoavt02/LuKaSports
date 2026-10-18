@@ -28,6 +28,7 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-trang-soc-do', 'Bộ Đồng Phục DALETIC Trắng Sọc Đỏ', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng sọc dọc đỏ, tay áo đỏ họa tiết xương cá, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-trang-do-vuon-cao', 'Bộ Đồng Phục DALETIC Trắng Đỏ Vươn Cao', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng họa tiết lục giác, thân dưới chuyển đỏ với các mũi tên vươn lên, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-do-trang-xung-kich', 'Bộ Đồng Phục DALETIC Đỏ Trắng Xung Kích', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng chuyển dần sang đỏ ở thân dưới, họa tiết zigzag đỏ trên vai và tay, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
+	array( 'bo-dong-phuc-daletic-sai-canh-xanh-trang', 'Bộ Đồng Phục DALETIC Sải Cánh Xanh Trắng', array( 'Trắng', 'Xanh Da Trời', 'Đen' ), 'Trọn bộ áo trắng tay xanh da trời, họa tiết đen mạnh mẽ như đôi cánh dang rộng ở hai bên sườn, cờ đỏ sao vàng ở ngực; quần đen và tất trắng, in tên và số cầu thủ.', true, 'thien-phong' ),
 	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true ),
 );
 
@@ -40,6 +41,7 @@ if ( ! $category ) {
 // Collections a design can belong to (6th element of a design; default 2026).
 $collection_defs = array(
 	'daletic-vn-2026' => array( 'DALETIC.VN 2026', 'Các mẫu áo do DALETIC tự thiết kế và sản xuất.' ),
+	'thien-phong'     => array( 'Thiên Phong', 'Dòng thiết kế nền trắng phối xanh da trời và họa tiết đen mạnh mẽ, lấy cảm hứng từ đôi cánh dang rộng.' ),
 	'sac-viet'        => array( 'Sắc Việt', 'Dòng thiết kế phối đỏ – trắng, mang lá cờ đỏ sao vàng lên áo đấu.' ),
 );
 $collection_ids = array();
