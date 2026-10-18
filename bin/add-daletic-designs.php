@@ -15,15 +15,15 @@ if ( ! class_exists( 'WooCommerce' ) ) {
 }
 
 $designs = array(
-	array( 'ao-thiet-ke-daletic-reu-san-ho', 'Áo Thiết Kế DALETIC Rêu San Hô', array( 'Xanh Rêu', 'Cam' ), 'Nền xanh rêu đậm phối họa tiết san hô cam nổi bật.' ),
-	array( 'ao-thiet-ke-daletic-song-trang', 'Áo Thiết Kế DALETIC Sóng Trắng', array( 'Trắng', 'Xanh Da Trời' ), 'Nền trắng vân sóng xám, tay áo xanh da trời.' ),
-	array( 'ao-thiet-ke-daletic-ngoc-bich', 'Áo Thiết Kế DALETIC Ngọc Bích', array( 'Xanh Ngọc', 'Trắng' ), 'Họa tiết loang xanh ngọc chạy chéo trên nền trắng.' ),
-	array( 'ao-thiet-ke-daletic-rang-cua-do', 'Áo Thiết Kế DALETIC Răng Cưa Đỏ', array( 'Trắng', 'Đỏ' ), 'Nền trắng, vai và tay áo họa tiết răng cưa đỏ.' ),
-	array( 'ao-thiet-ke-daletic-hoa-van-vang', 'Áo Thiết Kế DALETIC Hoa Văn Vàng', array( 'Trắng', 'Vàng' ), 'Hoa văn hình học vàng trên nền trắng, tay áo vàng.' ),
-	array( 'ao-thiet-ke-daletic-tia-chop-cam', 'Áo Thiết Kế DALETIC Tia Chớp Cam', array( 'Cam', 'Xanh Lá' ), 'Tia chớp trắng trên nền cam, chuyển dần sang vàng chanh ở gấu áo.' ),
-	array( 'ao-thiet-ke-daletic-song-xanh', 'Áo Thiết Kế DALETIC Sóng Xanh', array( 'Xanh Dương', 'Xanh Da Trời' ), 'Vân sóng xanh dương đậm, hai bên sườn xanh da trời.' ),
-	array( 'ao-thiet-ke-daletic-ngoi-sao-xanh', 'Áo Thiết Kế DALETIC Ngôi Sao Xanh', array( 'Xanh Dương', 'Trắng' ), 'Nền xanh dương sọc mảnh, ngôi sao xanh nhạt ở thân dưới.' ),
-	array( 'bo-dong-phuc-daletic-soc-xanh-troi', 'Bộ Đồng Phục DALETIC Sọc Xanh Trời', array( 'Xanh Da Trời', 'Trắng' ), 'Trọn bộ áo, quần và tất sọc ngang xanh trời – trắng, in tên và số cầu thủ.', true ),
+	array( 'ao-thiet-ke-daletic-reu-san-ho', 'Áo Thiết Kế DALETIC Sơn Lâm Rêu Cam', array( 'Xanh Rêu', 'Cam' ), 'Nền xanh rêu đậm phối họa tiết san hô cam nổi bật.', false, 'son-thuy' ),
+	array( 'ao-thiet-ke-daletic-song-trang', 'Áo Thiết Kế DALETIC Bạch Lãng Xanh Trắng', array( 'Trắng', 'Xanh Da Trời' ), 'Nền trắng vân sóng xám, tay áo xanh da trời.', false, 'thien-phong' ),
+	array( 'ao-thiet-ke-daletic-ngoc-bich', 'Áo Thiết Kế DALETIC Bích Ngọc Xanh Ngọc', array( 'Xanh Ngọc', 'Trắng' ), 'Họa tiết loang xanh ngọc chạy chéo trên nền trắng.', false, 'son-thuy' ),
+	array( 'ao-thiet-ke-daletic-rang-cua-do', 'Áo Thiết Kế DALETIC Xích Phong Đỏ Trắng', array( 'Trắng', 'Đỏ' ), 'Nền trắng, vai và tay áo họa tiết răng cưa đỏ.', false, 'sac-viet' ),
+	array( 'ao-thiet-ke-daletic-hoa-van-vang', 'Áo Thiết Kế DALETIC Kim Văn Vàng Trắng', array( 'Trắng', 'Vàng' ), 'Hoa văn hình học vàng trên nền trắng, tay áo vàng.', false, 'hoa-toc' ),
+	array( 'ao-thiet-ke-daletic-tia-chop-cam', 'Áo Thiết Kế DALETIC Hỏa Tốc Cam Chanh', array( 'Cam', 'Xanh Lá' ), 'Tia chớp trắng trên nền cam, chuyển dần sang vàng chanh ở gấu áo.', false, 'hoa-toc' ),
+	array( 'ao-thiet-ke-daletic-song-xanh', 'Áo Thiết Kế DALETIC Hải Lam Xanh Dương', array( 'Xanh Dương', 'Xanh Da Trời' ), 'Vân sóng xanh dương đậm, hai bên sườn xanh da trời.', false, 'hai-lam' ),
+	array( 'ao-thiet-ke-daletic-ngoi-sao-xanh', 'Áo Thiết Kế DALETIC Tinh Hải Xanh Sao', array( 'Xanh Dương', 'Trắng' ), 'Nền xanh dương sọc mảnh, ngôi sao xanh nhạt ở thân dưới.', false, 'hai-lam' ),
+	array( 'bo-dong-phuc-daletic-soc-xanh-troi', 'Bộ Đồng Phục DALETIC Thanh Vân Sọc Xanh Trời', array( 'Xanh Da Trời', 'Trắng' ), 'Trọn bộ áo, quần và tất sọc ngang xanh trời – trắng, in tên và số cầu thủ.', true , 'thien-phong' ),
 	array( 'bo-dong-phuc-daletic-do-sac-viet', 'Bộ Đồng Phục DALETIC Đỏ Sắc Việt', array( 'Đỏ', 'Trắng' ), 'Trọn bộ áo đỏ họa tiết thoi, hai bên viền răng cưa trắng, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-trang-soc-do', 'Bộ Đồng Phục DALETIC Trắng Sọc Đỏ', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng sọc dọc đỏ, tay áo đỏ họa tiết xương cá, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-trang-do-vuon-cao', 'Bộ Đồng Phục DALETIC Trắng Đỏ Vươn Cao', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng họa tiết lục giác, thân dưới chuyển đỏ với các mũi tên vươn lên, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
@@ -32,7 +32,7 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-tang-may-xanh-trang', 'Bộ Đồng Phục DALETIC Tầng Mây Xanh Trắng', array( 'Trắng', 'Xanh Da Trời' ), 'Trọn bộ áo trắng tay xanh da trời, họa tiết bậc thang chéo xanh nhạt chạy dọc thân áo, cờ đỏ sao vàng ở ngực; quần và tất trắng, in tên và số cầu thủ.', true, 'thien-phong' ),
 	array( 'bo-dong-phuc-daletic-pha-le-xanh-ngoc', 'Bộ Đồng Phục DALETIC Pha Lê Xanh Ngọc', array( 'Xanh Ngọc', 'Trắng' ), 'Trọn bộ áo xanh ngọc họa tiết tinh thể ở vai và ngực, thân dưới trắng vân mê cung, cờ đỏ sao vàng ở ngực; quần và tất trắng, in tên và số cầu thủ.', true, 'thien-phong' ),
 	array( 'bo-dong-phuc-daletic-son-thuy-xanh-co-vit', 'Bộ Đồng Phục DALETIC Sơn Thủy Xanh Cổ Vịt', array( 'Xanh Ngọc', 'Trắng' ), 'Trọn bộ áo xanh cổ vịt đậm với nét cọ đen mạnh mẽ, vai trắng họa tiết đường chéo và đỉnh núi, cờ đỏ sao vàng ở ngực; quần cùng màu, tất trắng, in tên và số cầu thủ.', true, 'son-thuy' ),
-	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true ),
+	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Kim Hoàng Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true , 'hoa-toc' ),
 );
 
 $sizes    = array( 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL' );
@@ -44,7 +44,9 @@ if ( ! $category ) {
 // Collections a design can belong to (6th element of a design; default 2026).
 $collection_defs = array(
 	'daletic-vn-2026' => array( 'DALETIC.VN 2026', 'Các mẫu áo do DALETIC tự thiết kế và sản xuất.' ),
-	'son-thuy'        => array( 'Sơn Thủy', 'Dòng thiết kế xanh cổ vịt đậm, nét cọ mạnh mẽ và đỉnh núi trắng nổi bật.' ),
+	'hoa-toc'         => array( 'Hỏa Tốc', 'Dòng thiết kế rực rỡ cam – vàng với đường nét bùng nổ, năng động trên sân.' ),
+	'hai-lam'         => array( 'Hải Lam', 'Dòng thiết kế xanh dương đậm với họa tiết sóng và sao, mạnh mẽ như biển lớn.' ),
+	'son-thuy'        => array( 'Sơn Thủy', 'Dòng thiết kế sắc xanh thẫm của rừng và biển — rêu, ngọc, cổ vịt — với nét cọ và họa tiết tự nhiên.' ),
 	'thien-phong'     => array( 'Thiên Phong', 'Dòng thiết kế nền trắng phối xanh da trời và họa tiết đen mạnh mẽ, lấy cảm hứng từ đôi cánh dang rộng.' ),
 	'sac-viet'        => array( 'Sắc Việt', 'Dòng thiết kế phối đỏ – trắng, mang lá cờ đỏ sao vàng lên áo đấu.' ),
 );
@@ -82,8 +84,12 @@ foreach ( $designs as $design ) {
 	list( $slug, $name, $colors, $short ) = $design;
 	$is_set = ! empty( $design[4] );
 
-	if ( get_page_by_path( $slug, OBJECT, 'product' ) ) {
-		WP_CLI::log( "Exists: $slug" );
+	$existing = get_page_by_path( $slug, OBJECT, 'product' );
+	if ( $existing ) {
+		// Re-running refreshes the name and collections of existing designs.
+		wp_update_post( array( 'ID' => $existing->ID, 'post_title' => $name ) );
+		wp_set_object_terms( $existing->ID, array_unique( array( $collection_ids[ $design[5] ?? 'daletic-vn-2026' ], $collection_ids['daletic-vn-2026'] ) ), 'product_collection' );
+		WP_CLI::log( "Updated: $slug" );
 		continue;
 	}
 
