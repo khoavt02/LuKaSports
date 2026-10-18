@@ -113,7 +113,7 @@
 	.sk-hero__slabs i:nth-child(-n+3) { display: none; }
 	.sk-hero__slabs { z-index: 1; }
 	/* Keep the red slab clear of the CTA buttons. */
-	.sk-hero__slabs i:nth-child(4) { left: -90px; }
+	.sk-hero__slabs i:nth-child(4) { left: -140px; }
 	.sk-hero__actions { padding-left: 40px; }
 	/* Height follows the photo's 1280×476 ratio so the whole store shows. */
 	.sk-hero__inner { position: relative; min-height: clamp(460px, 37.2vw, 720px); padding-block: 48px; }
