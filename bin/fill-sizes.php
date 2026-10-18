@@ -50,7 +50,8 @@ foreach ( wc_get_products( array( 'limit' => -1, 'status' => array( 'publish', '
 
 	// Size attribute with all 7 sizes, used for variations.
 	$attributes = $product->get_attributes();
-	$size_attr  = $attributes['pa_size'] ?? new WC_Product_Attribute();
+	// A fresh object: editing the stored one in place isn't seen as a change.
+	$size_attr  = isset( $attributes['pa_size'] ) ? clone $attributes['pa_size'] : new WC_Product_Attribute();
 	$size_attr->set_id( wc_attribute_taxonomy_id_by_name( 'size' ) );
 	$size_attr->set_name( 'pa_size' );
 	$size_attr->set_options( array_map( fn( $t ) => $t->term_id, array_values( $size_terms ) ) );
@@ -59,6 +60,7 @@ foreach ( wc_get_products( array( 'limit' => -1, 'status' => array( 'publish', '
 	$attributes['pa_size'] = $size_attr;
 	$product->set_attributes( $attributes );
 	$product->save();
+	wp_set_object_terms( $id, array_map( fn( $t ) => $t->term_id, array_values( $size_terms ) ), 'pa_size' );
 
 	// Other variation attributes (e.g. color) → every combination × size.
 	$axes = array( 'pa_size' => array_map( fn( $t ) => $t->slug, array_values( $size_terms ) ) );

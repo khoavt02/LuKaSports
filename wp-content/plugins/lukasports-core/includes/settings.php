@@ -20,7 +20,7 @@ function lukasports_core_settings_defaults() {
 		'messenger_url'     => 'https://m.me/61569257930689',
 		'zalo_url'          => 'https://zalo.me/0819666868',
 		'facebook_url'      => 'https://www.facebook.com/profile.php?id=61569257930689',
-		'address'           => 'Số 12, Ngõ 88, Đường Láng, Đống Đa, Hà Nội',
+		'address'           => '66 Hồng Tiến, Bồ Đề, Long Biên, Hà Nội',
 		'primary_cta_text'  => 'Tư vấn ngay',
 		'secondary_cta_text' => 'Đặt áo cho đội',
 		'meta_pixel_id'      => '',

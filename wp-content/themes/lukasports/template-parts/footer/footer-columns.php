@@ -52,7 +52,7 @@ $contact = lukasports_get_contact_info();
 				<a class="sk-footer__fanpage" href="<?php echo esc_url( $contact['facebook_url'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Fanpage Facebook DALETIC →', 'lukasports' ); ?></a>
 			<?php endif; ?>
 			<?php if ( $contact['address'] ) : ?>
-				<span class="sk-footer__address"><?php echo esc_html( $contact['address'] ); ?></span>
+				<span class="sk-footer__address"><?php echo esc_html( sprintf( /* translators: %s: store address */ __( 'CS1: %s', 'lukasports' ), $contact['address'] ) ); ?></span>
 			<?php endif; ?>
 			<a class="sk-btn sk-btn--primary sk-btn--sm sk-footer__cta" href="<?php echo esc_url( $contact['messenger_url'] ); ?>" target="_blank" rel="noopener" data-lukasports-cta="consult" data-source="footer"><?php echo esc_html( $contact['primary_cta_text'] ); ?></a>
 		</div>
