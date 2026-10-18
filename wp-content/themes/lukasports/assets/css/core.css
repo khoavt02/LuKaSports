@@ -675,8 +675,9 @@ p { margin: 0 0 var(--sk-space-4); }
 .sk-product-card__image-link { display: block; width: 100%; height: 100%; }
 .sk-product-card__media img { width: 100%; height: 100%; object-fit: cover; transition: opacity var(--sk-motion-base), transform 500ms ease; }
 .sk-product-card__media img.sk-product-card__img--alt { position: absolute; inset: 0; opacity: 0; }
-.sk-product-card:hover .sk-product-card__media img.sk-product-card__img--main { opacity: 0; }
-.sk-product-card:hover .sk-product-card__media img.sk-product-card__img--alt { opacity: 1; }
+/* Cross-fade only when a second image exists (--swap is set in the template). */
+.sk-product-card:hover .sk-product-card__media--swap img.sk-product-card__img--main { opacity: 0; }
+.sk-product-card:hover .sk-product-card__media--swap img.sk-product-card__img--alt { opacity: 1; }
 .sk-product-card:hover .sk-product-card__media img { transform: scale(1.03); }
 .sk-product-card__badge {
 	position: absolute;

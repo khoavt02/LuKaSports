@@ -32,7 +32,7 @@ $regular      = lukasports_get_regular_price_for_display( $product );
 $excerpt      = $product->get_short_description();
 ?>
 <article class="sk-card sk-product-card">
-	<div class="sk-product-card__media">
+	<div class="sk-product-card__media<?php echo $alt_image_id ? ' sk-product-card__media--swap' : ''; ?>">
 		<a class="sk-product-card__image-link" href="<?php echo esc_url( $permalink ); ?>" tabindex="-1" aria-hidden="true">
 			<?php
 			if ( $thumbnail_id ) {
