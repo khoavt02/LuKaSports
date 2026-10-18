@@ -113,6 +113,14 @@
 			var head  = document.querySelector( '[data-sk-fabric-price]' );
 			if ( head ) {
 				head.textContent = money( price || head.getAttribute( 'data-from' ) );
+				var from = document.querySelector( '.sk-product__price-from' );
+				var unit = document.querySelector( '[data-sk-fabric-unit]' );
+				if ( from ) {
+					from.hidden = !! price;
+				}
+				if ( unit ) {
+					unit.textContent = price ? '/ bộ — giá chất vải đã chọn, xem ưu đãi theo số lượng bên dưới' : unit.getAttribute( 'data-default' );
+				}
 			}
 			fabric.querySelectorAll( '[data-percent]' ).forEach( function ( row ) {
 				var cell = row.querySelector( '[data-sk-tier-price]' );

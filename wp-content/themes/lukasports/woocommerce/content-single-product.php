@@ -65,11 +65,11 @@ if ( function_exists( 'WC' ) && isset( WC()->structured_data ) ) {
 
 		<div class="sk-product__price-row">
 			<?php if ( lukasports_is_fabric_product( $product ) ) : ?>
-				<?php $sk_fabrics = lukasports_fabric_tiers(); ?>
+				<?php  ?>
 				<div class="sk-product__price sk-product__price--fabric">
 					<span class="sk-product__price-from"><?php esc_html_e( 'Từ', 'lukasports' ); ?></span>
-					<span class="price" data-sk-fabric-price data-from="<?php echo esc_attr( $sk_fabrics[0]['items'][0][1] ); ?>"><?php echo esc_html( number_format_i18n( $sk_fabrics[0]['items'][0][1] ) ); ?>đ</span>
-					<span class="sk-product__price-unit"><?php esc_html_e( '/ bộ — tùy chất vải', 'lukasports' ); ?></span>
+					<span class="price" data-sk-fabric-price data-from="<?php echo esc_attr( lukasports_fabric_from_price() ); ?>"><?php echo esc_html( number_format_i18n( lukasports_fabric_from_price() ) ); ?>đ</span>
+					<span class="sk-product__price-unit" data-sk-fabric-unit data-default="<?php esc_attr_e( '/ bộ — tùy chất vải và số lượng', 'lukasports' ); ?>"><?php esc_html_e( '/ bộ — tùy chất vải và số lượng', 'lukasports' ); ?></span>
 				</div>
 			<?php else : ?>
 				<div class="sk-product__price"><?php woocommerce_template_single_price(); ?></div>

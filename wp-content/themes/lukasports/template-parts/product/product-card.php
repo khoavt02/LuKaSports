@@ -92,7 +92,7 @@ $excerpt      = $product->get_short_description();
 		<?php endif; ?>
 
 		<div class="sk-price sk-product-card__price">
-			<span class="sk-price__current"><?php echo lukasports_is_fabric_product( $product ) ? esc_html__( 'Từ ', 'lukasports' ) : ''; ?><?php echo lukasports_format_price( $product->get_price() ); // phpcs:ignore ?></span>
+			<span class="sk-price__current"><?php echo lukasports_is_fabric_product( $product ) ? esc_html__( 'Từ ', 'lukasports' ) . lukasports_format_price( lukasports_fabric_from_price() ) : lukasports_format_price( $product->get_price() ); // phpcs:ignore ?></span>
 			<?php if ( $product->is_on_sale() && $regular > 0 ) : ?>
 				<span class="sk-price__original"><?php echo lukasports_format_price( $regular ); // phpcs:ignore ?></span>
 			<?php endif; ?>

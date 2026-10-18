@@ -95,6 +95,25 @@ function lukasports_team_discounts() {
 	);
 }
 
+/**
+ * Lowest price a customer can get: cheapest fabric with the biggest team
+ * discount, rounded to thousands (Thun đẹp 150k −10% → 135k). Shown as
+ * "Từ …" on cards and the product page.
+ */
+function lukasports_fabric_from_price() {
+	$cheapest = PHP_INT_MAX;
+	foreach ( lukasports_fabric_tiers() as $tier ) {
+		foreach ( $tier['items'] as $item ) {
+			$cheapest = min( $cheapest, $item[1] );
+		}
+	}
+	$max_off = 0;
+	foreach ( lukasports_team_discounts() as $discount ) {
+		$max_off = max( $max_off, $discount[2] );
+	}
+	return (int) ( round( $cheapest * ( 1 - $max_off / 100 ) / 1000 ) * 1000 );
+}
+
 /** Products priced by fabric: the custom-design jerseys. */
 function lukasports_is_fabric_product( $product ) {
 	return $product instanceof WC_Product && has_term( 'ao-bong-da-thiet-ke', 'product_cat', $product->get_id() );
