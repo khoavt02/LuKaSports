@@ -2,8 +2,8 @@
 /**
  * "Quy trình đặt hàng" — five numbered cards (Tư vấn → Thiết kế → Duyệt
  * mẫu → Sản xuất → Giao hàng), each with a line icon. Homepage section;
- * styles in home.css (Order flow). Icons are inline SVG, drawn on a
- * 48×48 grid: strokes use currentColor, red details use .sk-ico-a.
+ * styles in home.css (Order flow). Icons are 3D-style inline SVG drawn on
+ * a 96×96 grid; their shared gradients live in the hidden <defs> svg below.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,31 +16,32 @@ $steps = array(
 	array(
 		'title' => __( 'Tư vấn', 'lukasports' ),
 		'desc'  => __( 'Gửi ý tưởng, màu sắc, logo và số lượng. DALETIC tư vấn chất vải và báo giá.', 'lukasports' ),
-		'icon'  => '<path d="M9 26a15 15 0 0 1 30 0"/><rect x="6" y="25" width="7" height="12" rx="3.5"/><rect x="35" y="25" width="7" height="12" rx="3.5"/><path d="M38.5 37v1.5a4.5 4.5 0 0 1-4.5 4.5h-6"/><circle class="sk-ico-a" cx="19" cy="22" r="1.4"/><circle class="sk-ico-a" cx="24" cy="22" r="1.4"/><circle class="sk-ico-a" cx="29" cy="22" r="1.4"/>',
+		'icon'  => '<ellipse cx="48" cy="90" rx="26" ry="3.5" fill="#000" opacity=".25"/><rect x="22" y="11" width="44" height="80" rx="10" fill="url(#skg-dark-d)"/><rect x="22" y="8" width="44" height="80" rx="10" fill="url(#skg-dark)"/><rect x="26" y="12" width="36" height="72" rx="6.5" fill="url(#skg-light)"/><rect x="37" y="14.500" width="14" height="3" rx="1.500" fill="#2c3340"/><rect x="30" y="26" width="22" height="11" rx="5.500" fill="url(#skg-red)"/><rect x="36" y="42" width="22" height="11" rx="5.500" fill="#b4bcc9"/><rect x="30" y="58" width="16" height="11" rx="5.500" fill="url(#skg-red)"/><path d="M58 20h20a11 11 0 0 1 11 11v5a11 11 0 0 1-11 11h-9l-9 8v-8h-2a11 11 0 0 1-11-11v-5a11 11 0 0 1 11-11z" fill="url(#skg-red-d)" transform="translate(0 3)"/><path d="M58 20h20a11 11 0 0 1 11 11v5a11 11 0 0 1-11 11h-9l-9 8v-8h-2a11 11 0 0 1-11-11v-5a11 11 0 0 1 11-11z" fill="url(#skg-red)"/><path d="M58 20h20a11 11 0 0 1 11 11v2H47v-2a11 11 0 0 1 11-11z" fill="url(#skg-shine)" opacity=".6"/><circle cx="58" cy="35" r="2.800" fill="#fff"/><circle cx="68" cy="35" r="2.800" fill="#fff"/><circle cx="78" cy="35" r="2.800" fill="#fff"/>',
 	),
 	array(
 		'title' => __( 'Thiết kế', 'lukasports' ),
 		'desc'  => __( 'Dựng mockup áo, quần, tất theo yêu cầu của đội.', 'lukasports' ),
-		'icon'  => '<rect x="5" y="7" width="31" height="34" rx="4"/><path class="sk-ico-a" d="M13 18l5-2.5c.8 1.8 2 2.5 3 2.5s2.2-.7 3-2.5l5 2.5-2 5-3-1v11h-6V22l-3 1z"/><path class="sk-ico-a" d="M31 38l1-4 11-11 3 3-11 11z"/>',
+		'icon'  => '<path d="M46 14C25 14 8 29 8 48c0 17 13 31 29 31 6 0 8-3 7-7-1-5 2-9 7-9h12c12 0 21-8 21-19C84 27 68 14 46 14z" fill="url(#skg-dark-d)" transform="translate(0 4)"/><path d="M46 14C25 14 8 29 8 48c0 17 13 31 29 31 6 0 8-3 7-7-1-5 2-9 7-9h12c12 0 21-8 21-19C84 27 68 14 46 14z" fill="url(#skg-light)"/><path d="M46 14C25 14 8 29 8 48c0 1 .1 2 .2 3C14 36 28 24 46 24c20 0 33 8 37 20-2-16-17-30-37-30z" fill="url(#skg-shine)" opacity=".7"/><circle cx="22" cy="46" r="6.500" fill="url(#skg-red)"/><circle cx="35" cy="31" r="6.500" fill="url(#skg-gold)"/><circle cx="52" cy="29" r="6.500" fill="url(#skg-sky)"/><circle cx="68" cy="38" r="6.500" fill="url(#skg-dark)"/><ellipse cx="30" cy="63" rx="6" ry="5" fill="#12161e"/><g transform="rotate(42 70 28)"><rect x="65" y="-6" width="10" height="52" rx="5" fill="url(#skg-dark-d)" transform="translate(1.500 2)"/><rect x="65" y="-6" width="10" height="46" rx="5" fill="url(#skg-red)"/><rect x="67" y="-4" width="3" height="42" rx="1.500" fill="url(#skg-shine)" opacity=".7"/><rect x="64" y="36" width="12" height="9" rx="2" fill="url(#skg-light)"/><path d="M65 45h10c0 7-2.500 12-5 15-2.500-3-5-8-5-15z" fill="url(#skg-red-d)"/><path d="M66.500 45h4c0 6-.8 10-2 13-1.700-3-2-7-2-13z" fill="url(#skg-red)"/></g>',
 	),
 	array(
 		'title' => __( 'Duyệt mẫu', 'lukasports' ),
 		'desc'  => __( 'Xem mockup, góp ý và chỉnh sửa đến khi bạn ưng ý.', 'lukasports' ),
-		'icon'  => '<rect x="8" y="7" width="27" height="34" rx="4"/><rect x="16" y="4" width="11" height="6" rx="2"/><path d="M14 19h15M14 25h15M14 31h8"/><circle class="sk-ico-a" cx="35" cy="35" r="9"/><path class="sk-ico-a" d="M30.5 35l3 3 6-6"/>',
+		'icon'  => '<ellipse cx="46" cy="90" rx="30" ry="3.5" fill="#000" opacity=".25"/><g transform="rotate(-45 70 70)"><rect x="64" y="52" width="13" height="42" rx="6.500" fill="url(#skg-dark-d)" transform="translate(1.500 2)"/><rect x="64" y="52" width="13" height="42" rx="6.500" fill="url(#skg-red)"/><rect x="66" y="55" width="3.500" height="34" rx="1.700" fill="url(#skg-shine)" opacity=".7"/><rect x="62" y="48" width="17" height="9" rx="4" fill="url(#skg-dark)"/></g><circle cx="42" cy="42" r="32" fill="url(#skg-dark-d)" transform="translate(0 3)"/><circle cx="42" cy="42" r="32" fill="url(#skg-dark)"/><circle cx="42" cy="42" r="25" fill="url(#skg-glass)"/><path d="M20 36a24 24 0 0 1 36-12c-8-2-20 0-30 9-3 3-5 6-6 9z" fill="#fff" opacity=".65"/><circle cx="42" cy="44" r="14" fill="url(#skg-red-d)" transform="translate(0 2)"/><circle cx="42" cy="44" r="14" fill="url(#skg-red)"/><path d="M34.500 44.500l6 6 11-12.500" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>',
 	),
 	array(
 		'title' => __( 'Sản xuất', 'lukasports' ),
 		'desc'  => __( 'Chốt mẫu, tên, số và size rồi mới bắt đầu sản xuất.', 'lukasports' ),
-		'icon'  => '<path d="M7 38V14a2 2 0 0 1 2-2h19a2 2 0 0 1 2 2v7h10v17"/><path d="M4 41h40"/><circle cx="15" cy="20" r="3.2"/><path class="sk-ico-a" d="M24 22v13"/><path class="sk-ico-a" d="M18.2 20c3.2 0 5 1.2 5.8 3"/>',
+		'icon'  => '<ellipse cx="40" cy="88" rx="30" ry="4" fill="#000" opacity=".25"/><ellipse cx="40" cy="73" rx="25" ry="8" fill="url(#skg-light)"/><rect x="15" y="62" width="50" height="11" fill="url(#skg-light)"/><ellipse cx="40" cy="62" rx="25" ry="8" fill="#c5ccd8"/><path d="M18 22v40c0 4 9 7 22 7s22-3 22-7V22z" fill="url(#skg-red-d)"/><path d="M18 22v40c0 4 9 7 22 7s22-3 22-7V22z" fill="url(#skg-red)"/><g stroke="#fff" stroke-opacity=".28" stroke-width="1.800" fill="none"><path d="M18 30c8 5 36 5 44 0M18 38c8 5 36 5 44 0M18 46c8 5 36 5 44 0M18 54c8 5 36 5 44 0M18 62c8 5 36 5 44 0"/></g><rect x="20" y="24" width="8" height="40" fill="url(#skg-shine)" opacity=".5"/><ellipse cx="40" cy="22" rx="25" ry="8" fill="url(#skg-light)"/><ellipse cx="40" cy="22" rx="25" ry="8" fill="url(#skg-shine)" opacity=".5"/><ellipse cx="40" cy="22" rx="8" ry="3" fill="#2c3340"/><path d="M40 24c14 6 22 18 20 34-1 8 4 12 12 8" fill="none" stroke="url(#skg-red)" stroke-width="2.800" stroke-linecap="round"/><g transform="rotate(24 76 40)"><rect x="74.500" y="6" width="3.600" height="62" rx="1.800" fill="url(#skg-light)"/><rect x="74.500" y="6" width="1.600" height="62" rx=".8" fill="#fff" opacity=".7"/><ellipse cx="76.300" cy="13" rx="1.300" ry="4" fill="#2c3340"/><path d="M74.500 66h3.600l-1.800 12z" fill="#aab2c0"/></g>',
 	),
 	array(
 		'title' => __( 'Giao hàng', 'lukasports' ),
 		'desc'  => __( 'Đóng gói và giao tận nơi trên toàn quốc.', 'lukasports' ),
-		'icon'  => '<rect x="3" y="11" width="25" height="23" rx="2.5"/><path d="M28 18h9l7 8.5V34H28z"/><circle cx="13" cy="36" r="4"/><circle cx="36" cy="36" r="4"/><path class="sk-ico-a" d="M32 22h4l3.5 4.5H32z"/><path class="sk-ico-a" d="M9 19h12M9 25h8"/>',
+		'icon'  => '<ellipse cx="48" cy="91" rx="36" ry="4" fill="#000" opacity=".25"/><path d="M12 32l36 18v38L12 70z" fill="url(#skg-box-l)"/><path d="M48 50l36-18v38L48 88z" fill="url(#skg-box-r)"/><path d="M48 14l36 18-36 18-36-18z" fill="url(#skg-light)"/><path d="M48 14l36 18-5 2.500L48 19 17 34.500 12 32z" fill="#fff" opacity=".55"/><path d="M34.300 20.800l36 18-8.600 4.400-36-18z" fill="url(#skg-red)"/><path d="M61.700 43.200l8.600-4.400v38l-8.600 4.400z" fill="url(#skg-red-d)"/><path d="M20 45l18 9v11l-18-9z" fill="url(#skg-light)"/><path d="M23 49.500l12 6M23 53.500l8 4" stroke="#aab2c0" stroke-width="1.800" stroke-linecap="round"/><circle cx="29" cy="48.500" r="0"/><path d="M82 14a9 9 0 0 1 9 9c0 8-9 15-9 15s-9-7-9-15a9 9 0 0 1 9-9z" fill="url(#skg-gold)" transform="translate(0 2)"/><circle cx="82" cy="23.500" r="3.500" fill="#fff"/>',
 	),
 );
 ?>
 <section class="sk-section sk-order-flow" aria-labelledby="sk-order-flow-title">
+	<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="skg-red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6a70"/><stop offset=".45" stop-color="#e01a23"/><stop offset="1" stop-color="#920d13"/></linearGradient><linearGradient id="skg-red-d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c7131b"/><stop offset="1" stop-color="#6b080c"/></linearGradient><linearGradient id="skg-dark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a6477"/><stop offset=".5" stop-color="#2c3340"/><stop offset="1" stop-color="#12161e"/></linearGradient><linearGradient id="skg-dark-d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f2530"/><stop offset="1" stop-color="#090b10"/></linearGradient><linearGradient id="skg-light" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#e3e7ee"/><stop offset="1" stop-color="#b4bcc9"/></linearGradient><linearGradient id="skg-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9f4ff"/><stop offset="1" stop-color="#8fb4d6"/></linearGradient><linearGradient id="skg-shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="skg-box-l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4d9e2"/><stop offset="1" stop-color="#a0a9b9"/></linearGradient><linearGradient id="skg-box-r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3bac7"/><stop offset="1" stop-color="#7f8999"/></linearGradient><linearGradient id="skg-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe27a"/><stop offset="1" stop-color="#e8a800"/></linearGradient><linearGradient id="skg-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fd4ff"/><stop offset="1" stop-color="#1f8fd6"/></linearGradient></defs></svg>
 	<div class="sk-container">
 		<header class="sk-order-flow__head">
 			<h2 class="sk-order-flow__title sk-display" id="sk-order-flow-title">
@@ -56,7 +57,7 @@ $steps = array(
 				<li class="sk-order-flow__step">
 					<span class="sk-order-flow__num"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
 					<span class="sk-order-flow__icon" aria-hidden="true">
-						<svg viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><?php echo $step['icon']; // phpcs:ignore -- static markup ?></svg>
+						<svg viewBox="0 0 96 96" width="86" height="86"><?php echo $step['icon']; // phpcs:ignore -- static markup ?></svg>
 					</span>
 					<div class="sk-order-flow__text">
 						<h3 class="sk-order-flow__step-title"><?php echo esc_html( $step['title'] ); ?></h3>
