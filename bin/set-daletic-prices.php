@@ -32,4 +32,4 @@ foreach ( $ids as $id ) {
 	wc_delete_product_transients( $id );
 	WP_CLI::log( 'Priced: ' . $product->get_slug() );
 }
-WP_CLI::success( count( $ids ) . ' product(s) set to 360.000đ → 189.000đ.' );
+WP_CLI::success( count( $ids ) . ' product(s) set to base price 150.000đ (no sale).' );
