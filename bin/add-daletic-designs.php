@@ -66,8 +66,8 @@ foreach ( $designs as $design ) {
 		continue;
 	}
 
-	$regular = $is_set ? 329000 : 259000;
-	$sale    = $is_set ? 289000 : 229000;
+	$regular = 360000;
+	$sale    = 189000;
 
 	$product = new WC_Product_Variable();
 	$product->set_name( $name );
