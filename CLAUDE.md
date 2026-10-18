@@ -18,15 +18,16 @@ Web bán áo đấu DALETIC (https://daletic.vn): WordPress + WooCommerce, chạ
   - `backup.sh`: sao lưu DB + uploads (dùng trên server trước mọi thay đổi dữ liệu).
   - `seed-products.php`: chỉ dùng cho site trống, KHÔNG chạy lại trên site có dữ liệu (tạo trùng sản phẩm).
 
-## Chạy local
+## Cách làm việc: sửa thẳng lên server, không chạy local
 
-```bash
-bash bin/setup.sh            # lần đầu: tạo .env, cài WP, seed dữ liệu mẫu
-docker compose up -d         # các lần sau
-docker compose run --rm -T wpcli <lệnh wp>   # ví dụ: eval-file lukasports-bin/fill-sizes.php
-```
+Chủ shop không dùng bản local. Mỗi thay đổi:
 
-Web local: http://localhost:8090 (admin: tài khoản trong `.env`). Lint PHP: `docker compose exec -T wordpress php -l /var/www/html/wp-content/themes/lukasports/<file>`.
+1. Sửa code trong repo trên máy (không cần Docker).
+2. Commit + push (xem "Quy trình deploy").
+3. Trên server: `bash bin/backup.sh && git pull --ff-only`, chạy script WP-CLI nếu cần đổi dữ liệu.
+4. Kiểm tra trên https://daletic.vn (curl/ảnh chụp), sửa tiếp nếu lỗi.
+
+Lint PHP trên server: `docker compose exec -T wordpress php -l /var/www/html/wp-content/themes/lukasports/<file>` (máy dev có thể không có `php`). Ảnh mới (sản phẩm, banner) xử lý trên máy rồi commit vào `bin/` hoặc `assets/images/`.
 
 ## Server (daletic.vn)
 
