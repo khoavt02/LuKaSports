@@ -22,10 +22,10 @@ function lukasports_get_contact_info() {
 	}
 
 	$defaults = array(
-		'hotline_display'    => '0987 000 111',
-		'hotline_tel'        => '+84987000111',
+		'hotline_display'    => '0819.666.868',
+		'hotline_tel'        => '+84819666868',
 		'messenger_url'      => 'https://m.me/daletic.vn',
-		'zalo_url'           => 'https://zalo.me/0987000111',
+		'zalo_url'           => 'https://zalo.me/0819666868',
 		'facebook_url'       => 'https://facebook.com/daletic.vn',
 		'address'            => 'Số 12, Ngõ 88, Đường Láng, Đống Đa, Hà Nội',
 		'primary_cta_text'   => 'Tư vấn ngay',

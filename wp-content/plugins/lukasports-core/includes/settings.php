@@ -15,10 +15,10 @@ define( 'LUKASPORTS_CORE_SETTINGS_OPTION', 'lukasports_settings' );
 
 function lukasports_core_settings_defaults() {
 	return array(
-		'hotline_display'   => '0987 000 111',
-		'hotline_tel'       => '+84987000111',
+		'hotline_display'   => '0819.666.868',
+		'hotline_tel'       => '+84819666868',
 		'messenger_url'     => 'https://m.me/daletic.vn',
-		'zalo_url'          => 'https://zalo.me/0987000111',
+		'zalo_url'          => 'https://zalo.me/0819666868',
 		'facebook_url'      => 'https://facebook.com/daletic.vn',
 		'address'           => 'Số 12, Ngõ 88, Đường Láng, Đống Đa, Hà Nội',
 		'primary_cta_text'  => 'Tư vấn ngay',
@@ -143,7 +143,7 @@ function lukasports_core_render_settings_page() {
 				</tr>
 				<tr>
 					<th scope="row"><label for="hotline_tel"><?php esc_html_e( 'Số hotline (dùng cho link tel:)', 'lukasports-core' ); ?></label></th>
-					<td><input type="text" class="regular-text" id="hotline_tel" name="<?php echo esc_attr( LUKASPORTS_CORE_SETTINGS_OPTION ); ?>[hotline_tel]" value="<?php echo esc_attr( $settings['hotline_tel'] ); ?>" placeholder="+84987000111" /></td>
+					<td><input type="text" class="regular-text" id="hotline_tel" name="<?php echo esc_attr( LUKASPORTS_CORE_SETTINGS_OPTION ); ?>[hotline_tel]" value="<?php echo esc_attr( $settings['hotline_tel'] ); ?>" placeholder="+84819666868" /></td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="messenger_url"><?php esc_html_e( 'Messenger URL', 'lukasports-core' ); ?></label></th>
