@@ -15,7 +15,7 @@ define( 'LUKASPORTS_CORE_SETTINGS_OPTION', 'lukasports_settings' );
 
 function lukasports_core_settings_defaults() {
 	return array(
-		'hotline_display'   => '0819.666.868',
+		'hotline_display'   => '0819.66.6868',
 		'hotline_tel'       => '+84819666868',
 		'messenger_url'     => 'https://m.me/61569257930689',
 		'zalo_url'          => 'https://zalo.me/0819666868',

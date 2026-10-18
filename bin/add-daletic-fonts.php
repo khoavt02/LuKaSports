@@ -7,6 +7,9 @@
  * category thumbnail by apply-category-images.php (both run at the end).
  *
  * Add a font = one line in $fonts + bin/product-photos/{slug}.jpg (1200px).
+ * Re-running updates names/descriptions of existing slugs.
+ * Previews are rendered from free Google Fonts (OFL): Big Shoulders Display,
+ * Teko, Anton, Russo One, Graduate, Saira Extra Condensed.
  *
  * Run via: docker compose run --rm wpcli eval-file lukasports-bin/add-daletic-fonts.php
  */
@@ -16,12 +19,12 @@ if ( ! class_exists( 'WooCommerce' ) ) {
 }
 
 $fonts = array(
-	array( 'font-daletic-01-vang', 'Font DALETIC 01 – Chữ Nghiêng Đậm Vàng', 'Font chữ và số nghiêng đậm, màu vàng nổi bật — hợp áo tối màu.' ),
-	array( 'font-daletic-02-do', 'Font DALETIC 02 – Chữ Nghiêng Đậm Đỏ', 'Font chữ và số nghiêng đậm, màu đỏ mạnh mẽ cho áo đấu.' ),
-	array( 'font-daletic-03-xanh-troi', 'Font DALETIC 03 – Chữ Bản Rộng Xanh Trời', 'Font bản rộng nghiêng, màu xanh trời, dễ đọc từ xa.' ),
-	array( 'font-daletic-04-xanh-la', 'Font DALETIC 04 – Chữ Bản Rộng Xanh Lá', 'Font bản rộng thẳng, màu xanh lá sáng, nét đều và gọn.' ),
-	array( 'font-daletic-05-cam', 'Font DALETIC 05 – Chữ Nghiêng Gọn Cam', 'Font nghiêng nét gọn, màu cam năng động.' ),
-	array( 'font-daletic-06-trang', 'Font DALETIC 06 – Chữ Bản Rộng Trắng', 'Font bản rộng nghiêng, màu trắng — hợp mọi màu áo tối.' ),
+	array( 'font-daletic-01-vang', 'Font DALETIC 01 – Số Hẹp Vai Vuông (Big Shoulders)', 'Số và chữ hẹp, vai vuông, nét đậm — kiểu số áo đấu giải chuyên nghiệp châu Âu, Mỹ.' ),
+	array( 'font-daletic-02-do', 'Font DALETIC 02 – Số Hẹp Góc Cạnh (Teko)', 'Số và chữ hẹp, góc cạnh, nét dày — hiện đại, dễ đọc từ xa trên sân.' ),
+	array( 'font-daletic-03-xanh-troi', 'Font DALETIC 03 – Số Siêu Đậm (Anton)', 'Số cực đậm, thân cao — nổi bật trên mọi màu áo, in decal và ép nhiệt đều rõ nét.' ),
+	array( 'font-daletic-04-xanh-la', 'Font DALETIC 04 – Số Vát Cạnh Công Nghệ (Russo One)', 'Số vát góc kiểu áo đấu công nghệ, nét đều, bản vừa — hợp áo thi đấu trẻ trung.' ),
+	array( 'font-daletic-05-cam', 'Font DALETIC 05 – Số Varsity Cổ Điển (Graduate)', 'Số kiểu varsity có chân vuông, phong cách đội trường, bóng rổ và áo retro.' ),
+	array( 'font-daletic-06-trang', 'Font DALETIC 06 – Số Hẹp Vát Cạnh (Saira)', 'Số hẹp, cạnh vát gọn — kiểu áo đua và thể thao điện tử, hợp tên dài trên lưng áo.' ),
 );
 
 $term = term_exists( 'font-chu-in-ao', 'product_cat' );
@@ -42,8 +45,14 @@ $category_id = (int) ( is_array( $term ) ? $term['term_id'] : $term );
 
 $created = 0;
 foreach ( $fonts as list( $slug, $name, $short ) ) {
-	if ( get_page_by_path( $slug, OBJECT, 'product' ) ) {
-		WP_CLI::log( "Exists: $slug" );
+	$existing = get_page_by_path( $slug, OBJECT, 'product' );
+	if ( $existing ) {
+		$product = wc_get_product( $existing->ID );
+		$product->set_name( $name );
+		$product->set_short_description( $short );
+		$product->set_description( "<p>{$short}</p>\n<p>Nhắn DALETIC để chọn font, nhận mockup tên và số trước khi in. Có thể in tên, số, logo đội theo yêu cầu.</p>" );
+		$product->save();
+		WP_CLI::log( "Updated: $slug" );
 		continue;
 	}
 	$product = new WC_Product_Simple();
