@@ -1,27 +1,28 @@
 <?php
 /**
- * Initial editorial badges (thẻ) for the custom designs. Safe to re-run;
+ * Initial hand-picked badges (thẻ) for the custom designs. Safe to re-run;
  * edit any product's tag afterwards in wp-admin (General → "Thẻ sản phẩm").
- * Products not listed keep no tag ("Mới" is automatic for the newest 3).
+ * Products not listed get an automatic tag by rule (see
+ * lukasports_auto_badges() in the theme's inc/product-badges.php).
  *
- * Keys: ban-chay, yeu-thich, noi-bat, doc-quyen, tron-bo, moi.
+ * Keys: ban-chay, yeu-thich, noi-bat, xu-huong, doc-quyen, tron-bo,
+ * quan-tam, bst-moi, moi. "Bán chạy" has no sales data behind it yet, so it
+ * is only for tags you decide on yourself.
  *
  * Run via: docker compose run --rm wpcli eval-file lukasports-bin/set-product-badges.php
  */
 
 $badges = array(
-	'bo-dong-phuc-daletic-do-sac-viet'          => 'yeu-thich',
-	'bo-dong-phuc-daletic-trang-soc-do'         => 'ban-chay',
-	'bo-dong-phuc-daletic-trang-do-vuon-cao'    => 'noi-bat',
-	'bo-dong-phuc-daletic-do-trang-xung-kich'   => 'doc-quyen',
-	'bo-dong-phuc-daletic-sai-canh-xanh-trang'  => 'ban-chay',
-	'bo-dong-phuc-daletic-soc-xanh-troi'        => 'tron-bo',
-	'bo-dong-phuc-daletic-vang-xanh'            => 'tron-bo',
-	'ao-thiet-ke-daletic-reu-san-ho'            => 'doc-quyen',
-	'ao-thiet-ke-daletic-song-trang'            => 'yeu-thich',
-	'ao-thiet-ke-daletic-ngoc-bich'             => 'noi-bat',
-	'ao-thiet-ke-daletic-hoa-van-vang'          => 'yeu-thich',
-	'ao-thiet-ke-daletic-tia-chop-cam'          => 'ban-chay',
+	'bo-dong-phuc-daletic-do-sac-viet'         => 'yeu-thich',
+	'bo-dong-phuc-daletic-trang-soc-do'        => 'noi-bat',
+	'bo-dong-phuc-daletic-trang-do-vuon-cao'   => 'xu-huong',
+	'bo-dong-phuc-daletic-do-trang-xung-kich'  => 'doc-quyen',
+	'bo-dong-phuc-daletic-sai-canh-xanh-trang' => 'yeu-thich',
+	'ao-thiet-ke-daletic-reu-san-ho'           => 'doc-quyen',
+	'ao-thiet-ke-daletic-song-trang'           => 'xu-huong',
+	'ao-thiet-ke-daletic-ngoc-bich'            => 'noi-bat',
+	'ao-thiet-ke-daletic-hoa-van-vang'         => 'yeu-thich',
+	'ao-thiet-ke-daletic-tia-chop-cam'         => 'xu-huong',
 );
 
 foreach ( $badges as $slug => $key ) {
@@ -33,4 +34,5 @@ foreach ( $badges as $slug => $key ) {
 	update_post_meta( $post->ID, '_lukasports_badge', $key );
 	WP_CLI::log( "$slug → $key" );
 }
+delete_transient( 'lukasports_auto_badges' );
 WP_CLI::success( 'Badges set.' );

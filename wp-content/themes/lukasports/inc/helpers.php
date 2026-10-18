@@ -229,8 +229,8 @@ function lukasports_color_hex( $name ) {
 
 /**
  * Card/gallery badge: sale percentage first, then the editorial tag chosen
- * in the product editor (inc/product-badges.php), then an automatic "Mới"
- * for the newest few products. Returns array( label, modifier ) or null.
+ * in the product editor, then the automatic rules (inc/product-badges.php:
+ * lukasports_auto_badges). Returns array( label, modifier ) or null.
  */
 function lukasports_product_badge( $product ) {
 	if ( ! $product instanceof WC_Product ) {
@@ -245,8 +245,9 @@ function lukasports_product_badge( $product ) {
 	if ( isset( $options[ $key ] ) ) {
 		return $options[ $key ];
 	}
-	if ( in_array( $product->get_id(), lukasports_newest_product_ids(), true ) ) {
-		return $options['moi'];
+	$auto = lukasports_auto_badges();
+	if ( isset( $auto[ $product->get_id() ], $options[ $auto[ $product->get_id() ] ] ) ) {
+		return $options[ $auto[ $product->get_id() ] ];
 	}
 	return null;
 }
