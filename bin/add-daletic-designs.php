@@ -27,6 +27,7 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-do-sac-viet', 'Bộ Đồng Phục DALETIC Đỏ Sắc Việt', array( 'Đỏ', 'Trắng' ), 'Trọn bộ áo đỏ họa tiết thoi, hai bên viền răng cưa trắng, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-trang-soc-do', 'Bộ Đồng Phục DALETIC Trắng Sọc Đỏ', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng sọc dọc đỏ, tay áo đỏ họa tiết xương cá, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-trang-do-vuon-cao', 'Bộ Đồng Phục DALETIC Trắng Đỏ Vươn Cao', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng họa tiết lục giác, thân dưới chuyển đỏ với các mũi tên vươn lên, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
+	array( 'bo-dong-phuc-daletic-do-trang-xung-kich', 'Bộ Đồng Phục DALETIC Đỏ Trắng Xung Kích', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng chuyển dần sang đỏ ở thân dưới, họa tiết zigzag đỏ trên vai và tay, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true ),
 );
 
