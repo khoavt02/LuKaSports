@@ -77,7 +77,7 @@ if ( ! empty( $contact['facebook_url'] ) ) {
 if ( $map_url ) {
 	$channels[] = array(
 		'key'   => 'store',
-		'label' => __( 'Cửa hàng CS1', 'lukasports' ),
+		'label' => __( 'Showroom DALETIC', 'lukasports' ),
 		'value' => $contact['address'],
 		'href'  => $map_url,
 		'note'  => __( 'Xem bản đồ →', 'lukasports' ),
@@ -207,7 +207,7 @@ get_template_part(
 				<div class="sk-contact__map-art" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
 				<svg class="sk-contact__map-pin" width="44" height="56" viewBox="0 0 24 30" aria-hidden="true"><path d="M12 30S2 18.5 2 11a10 10 0 0 1 20 0c0 7.5-10 19-10 19z" fill="currentColor"/><circle cx="12" cy="11" r="4" fill="#fff"/></svg>
 				<div class="sk-contact__map-card">
-					<div class="sk-contact__map-label"><?php esc_html_e( 'Cửa hàng DALETIC – CS1', 'lukasports' ); ?></div>
+					<div class="sk-contact__map-label"><?php esc_html_e( 'Showroom DALETIC', 'lukasports' ); ?></div>
 					<div class="sk-contact__map-address"><?php echo esc_html( $contact['address'] ); ?></div>
 					<a class="sk-contact__map-link" href="<?php echo esc_url( $map_url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Chỉ đường trên Google Maps →', 'lukasports' ); ?></a>
 				</div>

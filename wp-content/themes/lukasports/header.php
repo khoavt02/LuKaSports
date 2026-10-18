@@ -42,7 +42,7 @@ try { var skScheme = localStorage.getItem('sk_scheme'); if (skScheme === 'dark')
 		</ul>
 		<ul class="sk-topbar__list sk-topbar__list--end">
 			<?php if ( ! empty( $sk_contact['address'] ) ) : ?>
-				<li class="sk-topbar__item sk-topbar__item--address"><?php echo esc_html( sprintf( /* translators: %s: store address */ __( 'CS1: %s', 'lukasports' ), $sk_contact['address'] ) ); ?></li>
+				<li class="sk-topbar__item sk-topbar__item--address"><?php echo esc_html( sprintf( /* translators: %s: store address */ __( 'Showroom: %s', 'lukasports' ), $sk_contact['address'] ) ); ?></li>
 			<?php endif; ?>
 			<li class="sk-topbar__item"><a href="<?php echo esc_url( $sk_contact['zalo_url'] ); ?>" target="_blank" rel="noopener">Zalo</a></li>
 			<li class="sk-topbar__item"><a href="<?php echo esc_url( $sk_contact['messenger_url'] ); ?>" target="_blank" rel="noopener">Messenger</a></li>

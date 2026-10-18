@@ -61,7 +61,7 @@ Commit/push/deploy chỉ khi chủ shop yêu cầu. Luôn `bin/backup.sh` trư�
 - Giao diện theo bản Claude Design "Daletic Sports – Website": font tiêu đề Barlow Condensed nghiêng (tự host), nền `#0b0e14`, đỏ `#d9141c`. Có nút chuyển sáng/tối; khách mới mặc định phông tối.
 - Bộ lọc danh mục: Danh mục, Khoảng giá, Bộ sưu tập (không có "Loại áo", "Thương hiệu").
 - 3 trang chính sách là 3 URL riêng, có thanh tab chuyển qua lại.
-- Không bịa số liệu/cam kết. Thông tin liên hệ lấy từ DALETIC → Settings: hotline 0819.66.6868, fanpage facebook.com/profile.php?id=61569257930689, địa chỉ CS1: 66 Hồng Tiến, Bồ Đề, Long Biên, Hà Nội.
+- Không bịa số liệu/cam kết. Thông tin liên hệ lấy từ DALETIC → Settings: hotline 0819.66.6868, fanpage facebook.com/profile.php?id=61569257930689, địa chỉ showroom: 66 Hồng Tiến, Bồ Đề, Long Biên, Hà Nội.
 - Ảnh đăng lên web không được có logo Nike/hãng khác.
 - Mục trang chủ "Mẫu bán chạy" lấy bộ sưu tập DALETIC.VN 2026 trước; "Sản phẩm mới" luôn đứng đầu bằng sản phẩm mới nhất và không lặp mục trên.
 
