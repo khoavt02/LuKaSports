@@ -3,7 +3,7 @@
  * "Sản phẩm mới" — real WooCommerce query, latest products first.
  *
  * Homepage passes array( 'layout' => 'promo' ): a dark "Vừa lên kệ"
- * promo card next to the 4 newest products not already shown in "Mẫu bán chạy". Without args (search, 404)
+ * promo card next to the newest product plus the 3 newest not already shown in "Mẫu bán chạy". Without args (search, 404)
  * it renders a plain section head + 8-up grid that only needs core.css.
  */
 
@@ -21,7 +21,7 @@ $products = wc_get_products(
 	array(
 		'status'  => 'publish',
 		'limit'   => $is_promo ? 4 : 8,
-		'exclude' => $is_promo ? ( $GLOBALS['lukasports_home_shown'] ?? array() ) : array(),
+		'exclude' => $is_promo ? lukasports_home_new_exclusions() : array(),
 		'orderby' => 'date',
 		'order'   => 'DESC',
 	)

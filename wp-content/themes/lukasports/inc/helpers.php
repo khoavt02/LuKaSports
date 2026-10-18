@@ -256,3 +256,14 @@ function lukasports_category_image_id( $term, $prefer = 'thumb' ) {
 	$thumb  = (int) get_term_meta( $term->term_id, 'thumbnail_id', true );
 	return 'banner' === $prefer ? ( $banner ? $banner : $thumb ) : ( $thumb ? $thumb : $banner );
 }
+
+/**
+ * Products "Sản phẩm mới" on the homepage should skip: whatever
+ * "Mẫu bán chạy" already showed (featured-collection.php), except the
+ * single newest product, which always leads the new-arrivals row.
+ */
+function lukasports_home_new_exclusions() {
+	$shown  = $GLOBALS['lukasports_home_shown'] ?? array();
+	$newest = function_exists( 'wc_get_products' ) ? wc_get_products( array( 'status' => 'publish', 'limit' => 1, 'orderby' => 'date', 'order' => 'DESC', 'return' => 'ids' ) ) : array();
+	return array_values( array_diff( $shown, $newest ) );
+}

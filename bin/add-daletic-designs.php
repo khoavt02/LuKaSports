@@ -23,6 +23,7 @@ $designs = array(
 	array( 'ao-thiet-ke-daletic-song-xanh', 'Áo Thiết Kế DALETIC Sóng Xanh', array( 'Xanh Dương', 'Xanh Da Trời' ), 'Vân sóng xanh dương đậm, hai bên sườn xanh da trời.' ),
 	array( 'ao-thiet-ke-daletic-ngoi-sao-xanh', 'Áo Thiết Kế DALETIC Ngôi Sao Xanh', array( 'Xanh Dương', 'Trắng' ), 'Nền xanh dương sọc mảnh, ngôi sao xanh nhạt ở thân dưới.' ),
 	array( 'bo-dong-phuc-daletic-soc-xanh-troi', 'Bộ Đồng Phục DALETIC Sọc Xanh Trời', array( 'Xanh Da Trời', 'Trắng' ), 'Trọn bộ áo, quần và tất sọc ngang xanh trời – trắng, in tên và số cầu thủ.', true ),
+	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true ),
 );
 
 $sizes    = array( 'S', 'M', 'L', 'XL' );
