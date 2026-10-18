@@ -9,23 +9,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// From DALETIC's "Bảng size áo bóng đá thiết kế" (Oct 2026).
 $rows = array(
-	array( 'S', '56-64', '160-168', '48-58' ),
-	array( 'M', '64-72', '168-174', '58-68' ),
-	array( 'L', '72-80', '174-180', '68-78' ),
-	array( 'XL', '80-88', '178-184', '78-88' ),
+	array( 'S', '1m55 – 1m60', '45 – 55kg' ),
+	array( 'M', '1m61 – 1m67', '55 – 65kg' ),
+	array( 'L', '1m68 – 1m75', '65 – 75kg' ),
+	array( 'XL', '1m76 – 1m81', '75 – 85kg' ),
+	array( 'XXL', '1m82 – 1m87', '85 – 95kg' ),
+	array( '3XL', '1m88 – 1m93', 'Trên 95kg' ),
+	array( '4XL', '1m88 – 1m93', 'Trên 110kg' ),
 );
 ?>
 <div class="sk-size-guide">
-	<p><?php esc_html_e( 'Áo có form thể thao (ôm nhẹ). Nếu bạn thích mặc rộng rãi, nên chọn size lớn hơn 1 mức so với bảng dưới.', 'lukasports' ); ?></p>
+	<p><?php esc_html_e( 'Bảng size áo bóng đá thiết kế DALETIC. Chọn theo chiều cao và cân nặng của bạn.', 'lukasports' ); ?></p>
 	<div class="sk-table-scroll">
 		<table class="sk-size-guide__table">
 			<thead>
 				<tr>
 					<th scope="col"><?php esc_html_e( 'Size', 'lukasports' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Cân nặng (kg)', 'lukasports' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Chiều cao (cm)', 'lukasports' ); ?></th>
-					<th scope="col"><?php esc_html_e( 'Vòng ngực (cm)', 'lukasports' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Chiều cao', 'lukasports' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Cân nặng', 'lukasports' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,5 +43,6 @@ $rows = array(
 			</tbody>
 		</table>
 	</div>
+	<p class="sk-size-guide__tip"><strong><?php esc_html_e( 'Áo bóng đá 1 người có thể mặc 2 size:', 'lukasports' ); ?></strong> <?php esc_html_e( 'mặc body thì chọn size bé, mặc thoải mái thì chọn size to.', 'lukasports' ); ?></p>
 	<p><?php esc_html_e( 'Chưa chắc chọn size nào? Nhắn Zalo/Messenger cho DALETIC — tư vấn size miễn phí.', 'lukasports' ); ?></p>
 </div>
