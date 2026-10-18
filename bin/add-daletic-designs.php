@@ -29,6 +29,7 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-trang-do-vuon-cao', 'Bộ Đồng Phục DALETIC Trắng Đỏ Vươn Cao', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng họa tiết lục giác, thân dưới chuyển đỏ với các mũi tên vươn lên, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-do-trang-xung-kich', 'Bộ Đồng Phục DALETIC Đỏ Trắng Xung Kích', array( 'Trắng', 'Đỏ' ), 'Trọn bộ áo trắng chuyển dần sang đỏ ở thân dưới, họa tiết zigzag đỏ trên vai và tay, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-sai-canh-xanh-trang', 'Bộ Đồng Phục DALETIC Sải Cánh Xanh Trắng', array( 'Trắng', 'Xanh Da Trời', 'Đen' ), 'Trọn bộ áo trắng tay xanh da trời, họa tiết đen mạnh mẽ như đôi cánh dang rộng ở hai bên sườn, cờ đỏ sao vàng ở ngực; quần đen và tất trắng, in tên và số cầu thủ.', true, 'thien-phong' ),
+	array( 'bo-dong-phuc-daletic-tang-may-xanh-trang', 'Bộ Đồng Phục DALETIC Tầng Mây Xanh Trắng', array( 'Trắng', 'Xanh Da Trời' ), 'Trọn bộ áo trắng tay xanh da trời, họa tiết bậc thang chéo xanh nhạt chạy dọc thân áo, cờ đỏ sao vàng ở ngực; quần và tất trắng, in tên và số cầu thủ.', true, 'thien-phong' ),
 	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true ),
 );
 
@@ -109,7 +110,7 @@ foreach ( $designs as $design ) {
 	);
 	$product_id = $product->save();
 
-	wp_set_object_terms( $product_id, array( $collection_ids[ $design[5] ?? 'daletic-vn-2026' ] ), 'product_collection' );
+	wp_set_object_terms( $product_id, array_unique( array( $collection_ids[ $design[5] ?? 'daletic-vn-2026' ], $collection_ids['daletic-vn-2026'] ) ), 'product_collection' );
 	update_post_meta( $product_id, '_lukasports_benefits', implode( "\n", array( 'Thiết kế độc quyền DALETIC', 'In tên, số, logo đội theo yêu cầu', $is_set ? 'Trọn bộ áo, quần và tất' : 'Vải polyester lạnh thoáng khí' ) ) );
 	update_post_meta( $product_id, '_lukasports_printing_available', '1' );
 
