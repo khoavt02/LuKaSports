@@ -2,7 +2,8 @@
 /**
  * DALETIC.VN in-house designs (Oct 2026): creates the products once
  * (skipped when the slug already exists) in "Áo Bóng Đá Thiết Kế Theo
- * Yêu Cầu" and the "DALETIC.VN 2026" collection, with S–4XL sizes.
+ * Yêu Cầu" and the "DALETIC.VN 2026" collection (or the collection named
+ * in a design's 6th element, e.g. "Sắc Việt"), with S–4XL sizes.
  * Photos come from bin/product-photos/{slug}.jpg via
  * apply-product-photos.php, which this script runs at the end.
  *
@@ -23,6 +24,7 @@ $designs = array(
 	array( 'ao-thiet-ke-daletic-song-xanh', 'Áo Thiết Kế DALETIC Sóng Xanh', array( 'Xanh Dương', 'Xanh Da Trời' ), 'Vân sóng xanh dương đậm, hai bên sườn xanh da trời.' ),
 	array( 'ao-thiet-ke-daletic-ngoi-sao-xanh', 'Áo Thiết Kế DALETIC Ngôi Sao Xanh', array( 'Xanh Dương', 'Trắng' ), 'Nền xanh dương sọc mảnh, ngôi sao xanh nhạt ở thân dưới.' ),
 	array( 'bo-dong-phuc-daletic-soc-xanh-troi', 'Bộ Đồng Phục DALETIC Sọc Xanh Trời', array( 'Xanh Da Trời', 'Trắng' ), 'Trọn bộ áo, quần và tất sọc ngang xanh trời – trắng, in tên và số cầu thủ.', true ),
+	array( 'bo-dong-phuc-daletic-do-sac-viet', 'Bộ Đồng Phục DALETIC Đỏ Sắc Việt', array( 'Đỏ', 'Trắng' ), 'Trọn bộ áo đỏ họa tiết thoi, hai bên viền răng cưa trắng, cờ đỏ sao vàng ở ngực; quần đỏ và tất trắng, in tên và số cầu thủ.', true, 'sac-viet' ),
 	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true ),
 );
 
@@ -32,11 +34,19 @@ if ( ! $category ) {
 	WP_CLI::error( 'Category ao-bong-da-thiet-ke not found.' );
 }
 
-$collection = term_exists( 'DALETIC.VN 2026', 'product_collection' );
-if ( ! $collection ) {
-	$collection = wp_insert_term( 'DALETIC.VN 2026', 'product_collection', array( 'slug' => 'daletic-vn-2026', 'description' => 'Các mẫu áo do DALETIC tự thiết kế và sản xuất.' ) );
+// Collections a design can belong to (6th element of a design; default 2026).
+$collection_defs = array(
+	'daletic-vn-2026' => array( 'DALETIC.VN 2026', 'Các mẫu áo do DALETIC tự thiết kế và sản xuất.' ),
+	'sac-viet'        => array( 'Sắc Việt', 'Dòng thiết kế nền đỏ, viền răng cưa và họa tiết thoi, mang lá cờ đỏ sao vàng lên áo đấu.' ),
+);
+$collection_ids = array();
+foreach ( $collection_defs as $collection_slug => list( $collection_name, $collection_desc ) ) {
+	$collection = term_exists( $collection_slug, 'product_collection' );
+	if ( ! $collection ) {
+		$collection = wp_insert_term( $collection_name, 'product_collection', array( 'slug' => $collection_slug, 'description' => $collection_desc ) );
+	}
+	$collection_ids[ $collection_slug ] = (int) ( is_array( $collection ) ? $collection['term_id'] : $collection );
 }
-$collection_id = (int) ( is_array( $collection ) ? $collection['term_id'] : $collection );
 
 /** Term id in an attribute taxonomy, created if missing. */
 $term_id = function ( $taxonomy, $name ) {
@@ -92,7 +102,7 @@ foreach ( $designs as $design ) {
 	);
 	$product_id = $product->save();
 
-	wp_set_object_terms( $product_id, array( $collection_id ), 'product_collection' );
+	wp_set_object_terms( $product_id, array( $collection_ids[ $design[5] ?? 'daletic-vn-2026' ] ), 'product_collection' );
 	update_post_meta( $product_id, '_lukasports_benefits', implode( "\n", array( 'Thiết kế độc quyền DALETIC', 'In tên, số, logo đội theo yêu cầu', $is_set ? 'Trọn bộ áo, quần và tất' : 'Vải polyester lạnh thoáng khí' ) ) );
 	update_post_meta( $product_id, '_lukasports_printing_available', '1' );
 
