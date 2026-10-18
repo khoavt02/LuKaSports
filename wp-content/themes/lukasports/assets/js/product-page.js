@@ -90,41 +90,78 @@
 		return select;
 	}
 
+	function money( value ) {
+		return Number( value ).toLocaleString( 'vi-VN' ) + 'đ';
+	}
+
 	/**
 	 * The consult buttons carry the product name into the lead form;
-	 * append the size/color the visitor picked, e.g.
-	 * "Áo Bóng Đá Basic – Size: L, Màu sắc: Đỏ".
+	 * append what the visitor picked, e.g.
+	 * "Áo Bóng Đá Basic – Size: L, Màu sắc: Đỏ, Vải: Mè Hàn 2C (230.000đ/bộ)".
+	 * Reads the WooCommerce variation selects (size/color) and the fabric
+	 * picker (data-sk-fabric), which also updates the displayed prices.
 	 */
-	function initConsultOptions( form ) {
+	function initConsultOptions( form, fabric ) {
 		var buttons = Array.prototype.slice.call( document.querySelectorAll( '[data-sk-consult-product]' ) );
 		if ( ! buttons.length ) {
 			return;
 		}
 		var base = buttons[ 0 ].getAttribute( 'data-product-name' ) || '';
-		function sync() {
-			var picked = [];
-			form.querySelectorAll( 'table.variations select' ).forEach( function ( select ) {
-				if ( ! select.value ) {
+
+		function updateFabricPrices( input ) {
+			var price = input ? Number( input.getAttribute( 'data-price' ) ) : 0;
+			var head  = document.querySelector( '[data-sk-fabric-price]' );
+			if ( head ) {
+				head.textContent = money( price || head.getAttribute( 'data-from' ) );
+			}
+			fabric.querySelectorAll( '[data-percent]' ).forEach( function ( row ) {
+				var cell = row.querySelector( '[data-sk-tier-price]' );
+				if ( ! cell ) {
 					return;
 				}
-				var row   = select.closest( 'tr' );
-				var label = row ? row.querySelector( 'th label, .label label' ) : null;
-				var text  = select.options[ select.selectedIndex ].textContent.trim();
-				// The label also holds the ": value" span from product-variations.js.
-				var name  = label ? ( label.firstChild ? label.firstChild.textContent : label.textContent ).trim() : '';
-				picked.push( ( name ? name + ': ' : '' ) + text );
+				var off = Number( row.getAttribute( 'data-percent' ) ) / 100;
+				cell.textContent = price ? money( Math.round( price * ( 1 - off ) / 1000 ) * 1000 ) : 'Chọn chất vải';
 			} );
+		}
+
+		function sync() {
+			var picked = [];
+			if ( form ) {
+				form.querySelectorAll( 'table.variations select' ).forEach( function ( select ) {
+					if ( ! select.value ) {
+						return;
+					}
+					var row   = select.closest( 'tr' );
+					var label = row ? row.querySelector( 'th label, .label label' ) : null;
+					var text  = select.options[ select.selectedIndex ].textContent.trim();
+					// The label also holds the ": value" span from product-variations.js.
+					var name  = label ? ( label.firstChild ? label.firstChild.textContent : label.textContent ).trim() : '';
+					picked.push( ( name ? name + ': ' : '' ) + text );
+				} );
+			}
+			if ( fabric ) {
+				var chosen = fabric.querySelector( 'input[name="sk_fabric"]:checked' );
+				updateFabricPrices( chosen );
+				if ( chosen ) {
+					picked.push( 'Vải: ' + chosen.value + ' (' + money( chosen.getAttribute( 'data-price' ) ) + '/bộ)' );
+				}
+			}
 			buttons.forEach( function ( button ) {
 				button.setAttribute( 'data-product-name', picked.length ? base + ' – ' + picked.join( ', ' ) : base );
 			} );
 		}
-		form.addEventListener( 'change', sync );
+		if ( form ) {
+			form.addEventListener( 'change', sync );
+		}
+		if ( fabric ) {
+			fabric.addEventListener( 'change', sync );
+		}
 		sync();
 	}
 
 	document.addEventListener( 'DOMContentLoaded', function () {
 		document.querySelectorAll( '[data-sk-gallery]' ).forEach( initGallery );
-		document.querySelectorAll( 'form.variations_form' ).forEach( initConsultOptions );
+		initConsultOptions( document.querySelector( 'form.variations_form' ), document.querySelector( '[data-sk-fabric]' ) );
 
 		var tabsRoot = document.querySelector( '[data-sk-tabs]' );
 		var select   = tabsRoot ? initTabs( tabsRoot ) : null;

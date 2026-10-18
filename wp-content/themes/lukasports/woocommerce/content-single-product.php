@@ -64,7 +64,16 @@ if ( function_exists( 'WC' ) && isset( WC()->structured_data ) ) {
 		</div>
 
 		<div class="sk-product__price-row">
-			<div class="sk-product__price"><?php woocommerce_template_single_price(); ?></div>
+			<?php if ( lukasports_is_fabric_product( $product ) ) : ?>
+				<?php $sk_fabrics = lukasports_fabric_tiers(); ?>
+				<div class="sk-product__price sk-product__price--fabric">
+					<span class="sk-product__price-from"><?php esc_html_e( 'Từ', 'lukasports' ); ?></span>
+					<span class="price" data-sk-fabric-price data-from="<?php echo esc_attr( $sk_fabrics[0]['items'][0][1] ); ?>"><?php echo esc_html( number_format_i18n( $sk_fabrics[0]['items'][0][1] ) ); ?>đ</span>
+					<span class="sk-product__price-unit"><?php esc_html_e( '/ bộ — tùy chất vải', 'lukasports' ); ?></span>
+				</div>
+			<?php else : ?>
+				<div class="sk-product__price"><?php woocommerce_template_single_price(); ?></div>
+			<?php endif; ?>
 			<?php if ( '' !== $saving ) : ?>
 				<span class="sk-product__saving"><span><?php echo esc_html( sprintf( /* translators: %s: e.g. 12% */ __( 'Tiết kiệm %s', 'lukasports' ), ltrim( $saving, '-' ) ) ); ?></span></span>
 			<?php endif; ?>
@@ -94,6 +103,12 @@ if ( function_exists( 'WC' ) && isset( WC()->structured_data ) ) {
 			}
 			?>
 		</div>
+
+		<?php
+		if ( lukasports_is_fabric_product( $product ) ) {
+			get_template_part( 'template-parts/product/fabric-pricing' );
+		}
+		?>
 
 		<?php get_template_part( 'template-parts/product/product-cta' ); ?>
 

@@ -70,6 +70,37 @@ function lukasports_format_price( $amount ) {
 }
 
 /**
+ * Fabric price list for the custom-design jerseys (price per bộ, from the
+ * cheapest basic fabric to the top grade). Single source of truth for the
+ * product page picker, the cards ("Từ …") and the consult message.
+ * Edit prices here only.
+ *
+ * @return array<int, array{label:string, items:array<int, array{0:string,1:int}>}>
+ */
+function lukasports_fabric_tiers() {
+	return array(
+		array( 'label' => __( 'Cơ bản', 'lukasports' ), 'items' => array( array( 'Thun đẹp', 150000 ), array( 'Mè Thái', 180000 ) ) ),
+		array( 'label' => __( 'Phổ thông', 'lukasports' ), 'items' => array( array( 'Mè Das', 210000 ), array( 'Mè Nhật', 220000 ) ) ),
+		array( 'label' => __( 'Cao cấp', 'lukasports' ), 'items' => array( array( 'Mè Hàn 2C', 230000 ), array( 'Mè Cool', 240000 ), array( 'Mè Hàn 4C', 260000 ) ) ),
+		array( 'label' => __( 'Đặc biệt', 'lukasports' ), 'items' => array( array( 'Drifit Nike', 280000 ), array( 'Puma cao cấp', 300000 ) ) ),
+	);
+}
+
+/** Team-order discounts: min bộ => percent off the fabric price. */
+function lukasports_team_discounts() {
+	return array(
+		array( 10, 19, 5 ),
+		array( 20, 49, 8 ),
+		array( 50, 0, 10 ), // 0 = no upper limit
+	);
+}
+
+/** Products priced by fabric: the custom-design jerseys. */
+function lukasports_is_fabric_product( $product ) {
+	return $product instanceof WC_Product && has_term( 'ao-bong-da-thiet-ke', 'product_cat', $product->get_id() );
+}
+
+/**
  * Truncates plain text to a word-safe length for card excerpts.
  */
 function lukasports_excerpt( $text, $words = 18 ) {

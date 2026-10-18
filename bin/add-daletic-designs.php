@@ -84,8 +84,8 @@ foreach ( $designs as $design ) {
 		continue;
 	}
 
-	$regular = 360000;
-	$sale    = 189000;
+	$regular = 150000; // lowest fabric (Thun đẹp); each fabric's price lives in lukasports_fabric_tiers()
+	$sale    = '';
 
 	$product = new WC_Product_Variable();
 	$product->set_name( $name );
@@ -118,7 +118,7 @@ foreach ( $designs as $design ) {
 		$variation = new WC_Product_Variation();
 		$variation->set_parent_id( $product_id );
 		$variation->set_regular_price( (string) $regular );
-		$variation->set_sale_price( (string) $sale );
+		$variation->set_sale_price( $sale );
 		$variation->set_stock_status( 'instock' );
 		$variation->set_attributes( array( 'pa_size' => get_term( $term_id( 'pa_size', $size ), 'pa_size' )->slug ) );
 		$variation->save();

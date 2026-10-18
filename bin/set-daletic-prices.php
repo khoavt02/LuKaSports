@@ -1,17 +1,19 @@
 <?php
 /**
- * Price for every product in the "DALETIC.VN 2026" collection:
- * 360.000đ, on sale 189.000đ (all variations).
+ * Base price for every custom-design jersey (category ao-bong-da-thiet-ke):
+ * 150.000đ (cheapest fabric, Thun đẹp), no sale price (all variations).
+ * The real price per fabric is picked on the product page — see
+ * lukasports_fabric_tiers() in the theme's inc/helpers.php.
  *
  * Run via: docker compose run --rm wpcli eval-file lukasports-bin/set-daletic-prices.php
  */
 
 $ids = wc_get_products(
 	array(
-		'status'    => 'publish',
+		'status'    => 'any',
 		'limit'     => -1,
 		'return'    => 'ids',
-		'tax_query' => array( array( 'taxonomy' => 'product_collection', 'field' => 'slug', 'terms' => 'daletic-vn-2026' ) ), // phpcs:ignore
+		'tax_query' => array( array( 'taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => 'ao-bong-da-thiet-ke' ) ), // phpcs:ignore
 	)
 );
 
@@ -20,8 +22,8 @@ foreach ( $ids as $id ) {
 	$targets = $product->is_type( 'variable' ) ? $product->get_children() : array( $id );
 	foreach ( $targets as $target_id ) {
 		$item = wc_get_product( $target_id );
-		$item->set_regular_price( '360000' );
-		$item->set_sale_price( '189000' );
+		$item->set_regular_price( '150000' );
+		$item->set_sale_price( '' );
 		$item->save();
 	}
 	if ( $product->is_type( 'variable' ) ) {
