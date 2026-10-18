@@ -18,7 +18,7 @@ get_header();
 <?php get_template_part( 'template-parts/sections/featured-collection' ); ?>
 <?php get_template_part( 'template-parts/sections/best-sellers', null, array( 'layout' => 'promo' ) ); ?>
 <?php get_template_part( 'template-parts/sections/sports-stories' ); ?>
-<?php get_template_part( 'template-parts/sections/team-cta' ); ?>
+<?php get_template_part( 'template-parts/sections/order-flow' ); ?>
 <?php get_template_part( 'template-parts/sections/lookbook' ); ?>
 <?php get_template_part( 'template-parts/sections/social-proof' ); ?>
 <?php get_template_part( 'template-parts/sections/contact-cta' ); ?>
