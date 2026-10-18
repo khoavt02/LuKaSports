@@ -65,6 +65,13 @@ Commit/push/deploy chỉ khi chủ shop yêu cầu. Luôn `bin/backup.sh` trư�
 - Ảnh đăng lên web không được có logo Nike/hãng khác.
 - Mục trang chủ "Mẫu bán chạy" lấy bộ sưu tập DALETIC.VN 2026 trước; "Sản phẩm mới" luôn đứng đầu bằng sản phẩm mới nhất và không lặp mục trên.
 
+## Thẻ sản phẩm (badge)
+
+- Thẻ chọn tay: wp-admin → sản phẩm → tab General → "Thẻ sản phẩm" (meta `_lukasports_badge`). Luôn thắng thẻ tự động. Gán hàng loạt: `bin/set-product-badges.php`.
+- Thẻ tự động (`lukasports_auto_badges()` trong `inc/product-badges.php`, cache 1 giờ, tự làm mới khi sửa sản phẩm / có yêu cầu tư vấn mới), ưu tiên từ cao xuống thấp: Mới (3 sản phẩm mới nhất) → Quan tâm nhiều (3 sản phẩm nhiều yêu cầu tư vấn nhất 30 ngày, tối thiểu 2) → BST mới (bộ sưu tập tạo gần nhất) → Trọn bộ (tên bắt đầu bằng "Bộ ").
+- "Bán chạy" chưa có số liệu bán hàng, chỉ dùng khi chủ shop tự quyết. Thêm loại thẻ mới: 1 dòng trong `lukasports_badge_options()` + 1 rule `.sk-badge--*` trong `core.css`.
+- Giá theo chất vải và giảm theo số lượng nằm ở `inc/helpers.php` (`lukasports_fabric_tiers()`, `lukasports_team_discounts()`); "Từ 135.000đ" tự tính từ đó.
+
 ## Việc còn mở
 
 - Danh mục "Áo Pickleball Thiết Kế Theo Yêu Cầu" (`ao-pickleball-thiet-ke`) chưa có sản phẩm, chờ chủ shop gửi ảnh.
