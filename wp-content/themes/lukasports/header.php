@@ -70,9 +70,8 @@ try { var skScheme = localStorage.getItem('sk_scheme'); if (skScheme === 'dark')
 <nav class="sk-mobile-nav" id="sk-mobile-nav" aria-label="<?php esc_attr_e( 'Menu di động', 'lukasports' ); ?>" hidden>
 	<?php get_template_part( 'template-parts/header/primary-menu' ); ?>
 	<div class="sk-mobile-nav__contact">
-		<a class="sk-btn sk-btn--outline-light sk-btn--block" href="tel:<?php echo esc_attr( $sk_contact['hotline_tel'] ); ?>">
-			<?php echo esc_html( $sk_contact['hotline_display'] ); ?>
-		</a>
+		<a class="sk-btn sk-btn--primary sk-btn--block" href="<?php echo esc_url( $sk_contact['messenger_url'] ); ?>" target="_blank" rel="noopener" data-lukasports-cta="consult" data-source="mobile_nav"><?php echo esc_html( $sk_contact['primary_cta_text'] ); ?></a>
+		<p class="sk-mobile-nav__hotline"><?php esc_html_e( 'Hotline:', 'lukasports' ); ?> <a href="tel:<?php echo esc_attr( $sk_contact['hotline_tel'] ); ?>"><?php echo esc_html( $sk_contact['hotline_display'] ); ?></a> · 8:00–21:00</p>
 	</div>
 </nav>
 

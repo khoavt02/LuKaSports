@@ -1,12 +1,11 @@
 <?php
 /**
- * Deliberately empty by default — see #3 in the Phase 1 brief: no fake
- * reviews, sold counts, or customer logos. Real testimonials get added
- * later by hooking `lukasports_social_proof_items` (e.g. once a review
- * or testimonial source exists). Rather than show a placeholder ("no
- * reviews yet") that reads as a broken/unfinished site, the whole
- * section stays out of the page until real testimonials exist —
- * an empty state here would be more visible than an absent section.
+ * "Đánh giá / Khách hàng nói gì?" — deliberately empty by default (see
+ * #3 in the Phase 1 brief: no fake reviews, sold counts, or customer
+ * logos). Real testimonials get added by hooking
+ * `lukasports_social_proof_items` (each item: quote, author — "Name —
+ * Team" is split into name and team line). The whole section stays out
+ * of the page until real testimonials exist.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,18 +18,41 @@ if ( empty( $items ) ) {
 	return;
 }
 ?>
-<section class="sk-section sk-social-proof">
+<section class="sk-home-section sk-reviews" aria-labelledby="sk-reviews-title">
 	<div class="sk-container">
 		<div class="sk-section-head">
-			<h2 class="sk-section-head__title"><?php esc_html_e( 'Khách hàng nói gì?', 'lukasports' ); ?></h2>
+			<div>
+				<p class="sk-section-head__eyebrow"><?php esc_html_e( 'Đánh giá', 'lukasports' ); ?></p>
+				<h2 id="sk-reviews-title" class="sk-section-head__title"><?php esc_html_e( 'Khách hàng nói gì?', 'lukasports' ); ?></h2>
+			</div>
 		</div>
-
-		<div class="sk-grid sk-grid--3">
+	</div>
+	<div class="sk-reviews__scroller">
+		<div class="sk-container sk-reviews__grid">
 			<?php foreach ( $items as $item ) : ?>
-				<div class="sk-card sk-testimonial">
-					<p class="sk-testimonial__quote">&ldquo;<?php echo esc_html( $item['quote'] ); ?>&rdquo;</p>
-					<p class="sk-testimonial__author"><?php echo esc_html( $item['author'] ); ?></p>
-				</div>
+				<?php
+				$parts   = array_map( 'trim', preg_split( '/\s+[—–-]\s+/u', (string) $item['author'], 2 ) );
+				$name    = $parts[0];
+				$team    = isset( $parts[1] ) ? $parts[1] : '';
+				$words   = preg_split( '/\s+/u', $name );
+				$initial = mb_strtoupper( mb_substr( (string) end( $words ), 0, 1 ) );
+				?>
+				<figure class="sk-review">
+					<div class="sk-review__top">
+						<svg class="sk-review__quote-mark" width="36" height="28" viewBox="0 0 36 28" aria-hidden="true"><path d="M0 28V16C0 7 5 1 14 0l1 5c-5 1-8 4-8 9h7v14zM21 28V16c0-9 5-15 14-16l1 5c-5 1-8 4-8 9h7v14z" fill="currentColor"/></svg>
+						<span class="sk-review__stars" role="img" aria-label="<?php esc_attr_e( '5 sao', 'lukasports' ); ?>">★★★★★</span>
+					</div>
+					<blockquote class="sk-review__text"><?php echo esc_html( $item['quote'] ); ?></blockquote>
+					<figcaption class="sk-review__author">
+						<span class="sk-review__avatar" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
+						<span>
+							<span class="sk-review__name"><?php echo esc_html( $name ); ?></span>
+							<?php if ( $team ) : ?>
+								<span class="sk-review__team"><?php echo esc_html( $team ); ?></span>
+							<?php endif; ?>
+						</span>
+					</figcaption>
+				</figure>
 			<?php endforeach; ?>
 		</div>
 	</div>

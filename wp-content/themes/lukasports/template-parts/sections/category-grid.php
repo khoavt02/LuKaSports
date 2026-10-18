@@ -1,7 +1,9 @@
 <?php
 /**
- * Pulls real WooCommerce product categories rather than a hardcoded
- * list, so this section always reflects what's actually in the catalog.
+ * "Môn thể thao / Chọn đúng sân chơi" — one dark tile per sport, using
+ * real WooCommerce product categories and their photos. The six sport
+ * categories come first in a fixed order (short labels as in the
+ * design); any other top-level category fills in if one is missing.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,72 +28,69 @@ if ( empty( $terms ) || is_wp_error( $terms ) ) {
 	return;
 }
 
-/**
- * Category-specific fallback art per slug — used until an admin sets a
- * real category image (Products → Categories → Thumbnail).
- */
-$lukasports_category_art = array(
-	'ao-bong-da'          => 'football.svg',
-	'ao-bong-da-thiet-ke' => 'jersey-design.svg',
-	'ao-team'             => 'team.svg',
-	'ao-bong-chuyen'      => 'volleyball.svg',
-	'ao-bong-ro'          => 'basketball.svg',
-	'ao-cau-long'         => 'badminton.svg',
-	'ao-pickerball'       => 'pickleball.svg',
-	'phu-kien'            => 'accessory.svg',
+// Preferred order + short display label per slug.
+$preferred = array(
+	'ao-bong-da'     => __( 'Bóng đá', 'lukasports' ),
+	'ao-bong-chuyen' => __( 'Bóng chuyền', 'lukasports' ),
+	'ao-bong-ro'     => __( 'Bóng rổ', 'lukasports' ),
+	'ao-cau-long'    => __( 'Cầu lông', 'lukasports' ),
+	'ao-pickerball'  => __( 'Pickleball', 'lukasports' ),
+	'ao-team'        => __( 'Áo team', 'lukasports' ),
 );
 
-/**
- * Bento layout, not a uniform grid: one featured category (football,
- * if present — it's the anchor of the catalog) fills the large tile,
- * everything else fills the smaller side tiles.
- */
-$featured_index = 0;
-foreach ( $terms as $i => $term ) {
-	if ( 'ao-bong-da' === $term->slug ) {
-		$featured_index = $i;
+$by_slug = array();
+foreach ( $terms as $term ) {
+	$by_slug[ $term->slug ] = $term;
+}
+$tiles = array();
+foreach ( $preferred as $slug => $label ) {
+	if ( isset( $by_slug[ $slug ] ) ) {
+		$tiles[] = array( $by_slug[ $slug ], $label );
+		unset( $by_slug[ $slug ] );
+	}
+}
+foreach ( $by_slug as $term ) {
+	if ( count( $tiles ) >= 6 ) {
 		break;
 	}
+	$tiles[] = array( $term, $term->name );
 }
-$featured_term = $terms[ $featured_index ];
-$side_terms    = array_slice( array_merge( array_slice( $terms, $featured_index + 1 ), array_slice( $terms, 0, $featured_index ) ), 0, 6 );
 
-function lukasports_category_tile_image( $term, $art_map ) {
-	$thumbnail_id = get_term_meta( $term->term_id, 'thumbnail_id', true );
-	if ( $thumbnail_id ) {
-		return lukasports_attachment_image( $thumbnail_id, 'lukasports-category', 'lazy', '', $term->name );
-	}
-	$art = $art_map[ $term->slug ] ?? 'jersey-design.svg';
-	return '<img src="' . esc_url( lukasports_image_url( 'categories/' . $art ) ) . '" alt="" loading="lazy" />';
-}
+$shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/san-pham/' );
 ?>
-<section class="sk-section sk-categories">
+<section class="sk-home-section sk-sports" aria-labelledby="sk-sports-title">
 	<div class="sk-container">
 		<div class="sk-section-head">
 			<div>
-				<h2 class="sk-section-head__title"><?php esc_html_e( 'Môn thể thao', 'lukasports' ); ?></h2>
-				<p class="sk-section-head__desc"><?php esc_html_e( 'Mỗi môn một form riêng — chọn đúng sân chơi của bạn.', 'lukasports' ); ?></p>
+				<p class="sk-section-head__eyebrow"><?php esc_html_e( 'Môn thể thao', 'lukasports' ); ?></p>
+				<h2 id="sk-sports-title" class="sk-section-head__title"><?php esc_html_e( 'Chọn đúng sân chơi', 'lukasports' ); ?></h2>
+				<p class="sk-section-head__lead"><?php esc_html_e( 'Mỗi môn một form riêng — chọn đúng sân chơi của bạn.', 'lukasports' ); ?></p>
 			</div>
+			<a class="sk-section-head__link" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Tất cả sản phẩm', 'lukasports' ); ?></a>
 		</div>
-		<div class="sk-categories__bento">
-			<a class="sk-category-card sk-category-card--featured" href="<?php echo esc_url( home_url( '/' . $featured_term->slug . '/' ) ); ?>">
-				<div class="sk-category-card__media"><?php echo lukasports_category_tile_image( $featured_term, $lukasports_category_art ); // phpcs:ignore ?></div>
-				<div class="sk-category-card__body">
-					<h3 class="sk-category-card__title"><?php echo esc_html( $featured_term->name ); ?></h3>
-					<span class="sk-category-card__cta"><?php esc_html_e( 'Khám phá', 'lukasports' ); ?> <span aria-hidden="true">→</span></span>
-				</div>
-			</a>
-			<div class="sk-categories__side">
-				<?php foreach ( $side_terms as $term ) : ?>
-					<a class="sk-category-card sk-category-card--small" href="<?php echo esc_url( home_url( '/' . $term->slug . '/' ) ); ?>">
-						<div class="sk-category-card__media"><?php echo lukasports_category_tile_image( $term, $lukasports_category_art ); // phpcs:ignore ?></div>
-						<div class="sk-category-card__body">
-							<h3 class="sk-category-card__title"><?php echo esc_html( $term->name ); ?></h3>
-							<span class="sk-category-card__cta" aria-hidden="true">→</span>
-						</div>
-					</a>
-				<?php endforeach; ?>
-			</div>
+	</div>
+	<div class="sk-sports__scroller">
+		<div class="sk-container sk-sports__grid">
+			<?php foreach ( $tiles as $tile ) : ?>
+				<?php
+				list( $term, $label ) = $tile;
+				$image_id             = lukasports_category_image_id( $term, 'thumb' );
+				?>
+				<a class="sk-sport-tile" href="<?php echo esc_url( home_url( '/' . $term->slug . '/' ) ); ?>">
+					<span class="sk-sport-tile__media" aria-hidden="true">
+						<?php
+						if ( $image_id ) {
+							echo lukasports_attachment_image( $image_id, 'lukasports-card', 'lazy', '', '' ); // phpcs:ignore
+						}
+						?>
+					</span>
+					<span class="sk-sport-tile__slab" aria-hidden="true"></span>
+					<span class="sk-sport-tile__foot">
+						<span class="sk-sport-tile__name"><?php echo esc_html( $label ); ?></span>
+						<span class="sk-sport-tile__arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+					</span>
+				</a>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </section>

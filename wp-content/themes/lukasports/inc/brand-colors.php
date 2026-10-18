@@ -18,9 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function lukasports_brand_color_defaults() {
 	return array(
-		'dark'    => '#111111',
-		'accent'  => '#e10600',
-		'surface' => '#f4f4f5',
+		'dark'    => '#0b0e14',
+		'accent'  => '#d9141c',
+		'surface' => '#eef0f3',
 	);
 }
 
@@ -43,7 +43,7 @@ function lukasports_customize_brand_colors( $wp_customize ) {
 	$wp_customize->add_setting(
 		'lukasports_color_scheme',
 		array(
-			'default'           => 'light',
+			'default'           => 'dark',
 			'sanitize_callback' => function ( $value ) {
 				return 'dark' === $value ? 'dark' : 'light';
 			},
@@ -128,8 +128,8 @@ function lukasports_luminance( $hex ) {
 function lukasports_readable_ink( $hex ) {
 	$l          = lukasports_luminance( $hex );
 	$with_white = 1.05 / ( $l + 0.05 );
-	$with_black = ( $l + 0.05 ) / ( lukasports_luminance( '#111111' ) + 0.05 );
-	return $with_white >= $with_black ? '#ffffff' : '#111111';
+	$with_black = ( $l + 0.05 ) / ( lukasports_luminance( '#12151c' ) + 0.05 );
+	return $with_white >= $with_black ? '#ffffff' : '#12151c';
 }
 
 function lukasports_print_brand_colors() {
@@ -166,7 +166,7 @@ add_action( 'wp_head', 'lukasports_print_brand_colors', 20 );
 
 /** Browser UI color on mobile (address bar) follows the dark brand color. */
 function lukasports_theme_color_meta() {
-	printf( '<meta name="theme-color" content="%s" />' . "\n", esc_attr( 'dark' === lukasports_color_scheme() ? '#0d0d0f' : lukasports_brand_color( 'dark' ) ) );
+	printf( '<meta name="theme-color" content="%s" />' . "\n", esc_attr( lukasports_brand_color( 'dark' ) ) );
 }
 add_action( 'wp_head', 'lukasports_theme_color_meta', 2 );
 
@@ -180,7 +180,7 @@ function lukasports_color_scheme() {
 	if ( null !== $scheme ) {
 		return $scheme;
 	}
-	$scheme  = 'dark' === get_theme_mod( 'lukasports_color_scheme', 'light' ) ? 'dark' : 'light';
+	$scheme  = 'dark' === get_theme_mod( 'lukasports_color_scheme', 'dark' ) ? 'dark' : 'light';
 	$preview = isset( $_GET['giao-dien'] ) ? sanitize_key( wp_unslash( $_GET['giao-dien'] ) ) : ( isset( $_COOKIE['sk_scheme'] ) ? sanitize_key( wp_unslash( $_COOKIE['sk_scheme'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	if ( in_array( $preview, array( 'toi', 'dark' ), true ) ) {
 		$scheme = 'dark';

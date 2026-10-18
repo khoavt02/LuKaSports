@@ -28,14 +28,13 @@ function lukasports_enqueue_assets() {
 	wp_enqueue_style( 'lukasports-header', $css . '/header.css', array( 'lukasports-core' ), lukasports_asset_version( 'css/header.css' ) );
 	wp_enqueue_style( 'lukasports-footer', $css . '/footer.css', array( 'lukasports-core' ), lukasports_asset_version( 'css/footer.css' ) );
 
-	// The about page reuses homepage sections (team CTA, trust bar,
-	// contact CTA), so it needs their styles too.
-	$is_about = is_page_template( 'template-about.php' );
-	if ( is_front_page() || $is_about ) {
+	if ( is_front_page() ) {
 		wp_enqueue_style( 'lukasports-home', $css . '/home.css', array( 'lukasports-core' ), lukasports_asset_version( 'css/home.css' ) );
 	}
 
-	if ( $is_about || is_page_template( array( 'template-contact.php', 'template-collections.php' ) ) ) {
+	// Content pages: about, contact, collections and the policy pages
+	// (plain page.php) — every rule in pages.css is scoped to them.
+	if ( is_page() && ! is_front_page() ) {
 		wp_enqueue_style( 'lukasports-pages', $css . '/pages.css', array( 'lukasports-core' ), lukasports_asset_version( 'css/pages.css' ) );
 	}
 

@@ -13,6 +13,9 @@
  *     @type bool   $compact  Smaller variant for text pages.
  *     @type string $tag      Heading tag, default h1.
  *     @type string $actions  Optional buttons HTML (already escaped by caller).
+ *     @type bool   $hero     Large landing variant (about page): bigger title.
+ *     @type string $label    Optional red skewed tag above the title.
+ *     @type bool   $dot      End the title with a red full stop.
  * }
  */
 
@@ -31,6 +34,9 @@ $band = wp_parse_args(
 		'compact'  => false,
 		'tag'      => 'h1',
 		'actions'  => '',
+		'hero'     => false,
+		'label'    => '',
+		'dot'      => false,
 	)
 );
 
@@ -44,6 +50,9 @@ if ( $band['features'] ) {
 if ( $band['compact'] ) {
 	$classes[] = 'sk-page-band--compact';
 }
+if ( $band['hero'] ) {
+	$classes[] = 'sk-page-band--hero';
+}
 
 $tag = in_array( $band['tag'], array( 'h1', 'h2', 'p' ), true ) ? $band['tag'] : 'h1';
 
@@ -55,22 +64,26 @@ $features = array(
 );
 ?>
 <section class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+	<span class="sk-page-band__slab" aria-hidden="true"></span>
 	<div class="sk-container sk-page-band__inner">
+		<?php if ( function_exists( 'woocommerce_breadcrumb' ) && ! is_front_page() ) : ?>
+			<div class="sk-breadcrumb">
+				<?php
+				woocommerce_breadcrumb(
+					array(
+						'delimiter'   => ' <span aria-hidden="true">›</span> ',
+						'wrap_before' => '<nav class="woocommerce-breadcrumb" aria-label="' . esc_attr__( 'Đường dẫn', 'lukasports' ) . '">',
+					)
+				);
+				?>
+			</div>
+		<?php endif; ?>
 		<div class="sk-page-band__text">
-			<?php if ( function_exists( 'woocommerce_breadcrumb' ) && ! is_front_page() ) : ?>
-				<div class="sk-breadcrumb">
-					<?php
-					woocommerce_breadcrumb(
-						array(
-							'delimiter'   => ' <span aria-hidden="true">›</span> ',
-							'wrap_before' => '<nav class="woocommerce-breadcrumb" aria-label="' . esc_attr__( 'Đường dẫn', 'lukasports' ) . '">',
-						)
-					);
-					?>
-				</div>
+			<?php if ( $band['label'] ) : ?>
+				<div class="sk-eyebrow sk-page-band__tag"><span class="sk-eyebrow__tag"><?php echo esc_html( $band['label'] ); ?></span></div>
 			<?php endif; ?>
 			<<?php echo $tag; // phpcs:ignore ?> class="sk-page-band__title sk-display">
-				<?php echo esc_html( $band['title'] ); ?>
+				<?php echo esc_html( $band['title'] ); ?><?php echo $band['dot'] ? '<span class="sk-dot">.</span>' : ''; ?>
 				<?php if ( $band['accent'] ) : ?>
 					<span class="sk-accent-text"><?php echo esc_html( $band['accent'] ); ?></span>
 				<?php endif; ?>

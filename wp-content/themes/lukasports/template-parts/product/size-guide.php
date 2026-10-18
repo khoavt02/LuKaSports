@@ -22,16 +22,17 @@ $rows = array(
 		<table class="sk-size-guide__table">
 			<thead>
 				<tr>
-					<th><?php esc_html_e( 'Size', 'lukasports' ); ?></th>
-					<th><?php esc_html_e( 'Cân nặng (kg)', 'lukasports' ); ?></th>
-					<th><?php esc_html_e( 'Chiều cao (cm)', 'lukasports' ); ?></th>
-					<th><?php esc_html_e( 'Vòng ngực (cm)', 'lukasports' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Size', 'lukasports' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Cân nặng (kg)', 'lukasports' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Chiều cao (cm)', 'lukasports' ); ?></th>
+					<th scope="col"><?php esc_html_e( 'Vòng ngực (cm)', 'lukasports' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach ( $rows as $row ) : ?>
 					<tr>
-						<?php foreach ( $row as $cell ) : ?>
+						<th scope="row"><?php echo esc_html( $row[0] ); ?></th>
+						<?php foreach ( array_slice( $row, 1 ) as $cell ) : ?>
 							<td><?php echo esc_html( $cell ); ?></td>
 						<?php endforeach; ?>
 					</tr>

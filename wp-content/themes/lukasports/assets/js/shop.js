@@ -20,16 +20,22 @@
 	}
 
 	function formatVnd( value ) {
-		return Number( value ).toLocaleString( 'vi-VN' ) + '₫';
+		return Number( value ).toLocaleString( 'vi-VN' ) + 'đ';
 	}
 
-	/* ---- Price slider ------------------------------------------------ */
+	/* ---- Price slider + typed range ---------------------------------- */
 	function initPriceFilter( form ) {
 		var min   = form.querySelector( '[data-sk-price-min]' );
 		var max   = form.querySelector( '[data-sk-price-max]' );
 		var fill  = form.querySelector( '[data-sk-price-fill]' );
 		var minLb = form.querySelector( '[data-sk-price-min-label]' );
 		var maxLb = form.querySelector( '[data-sk-price-max-label]' );
+		var minIn = form.querySelector( '[data-sk-price-min-input]' );
+		var maxIn = form.querySelector( '[data-sk-price-max-input]' );
+		// Desktop sidebar has no Apply button in the design: submit as soon
+		// as a handle is released or a typed value is committed. In the
+		// phone drawer the "Áp dụng" button submits instead.
+		var desktop = window.matchMedia( '(min-width: 1024px)' );
 		if ( ! min || ! max ) {
 			return;
 		}
@@ -59,12 +65,51 @@
 			if ( maxLb ) {
 				maxLb.textContent = formatVnd( b );
 			}
+			if ( minIn && document.activeElement !== minIn ) {
+				minIn.value = formatVnd( a );
+			}
+			if ( maxIn && document.activeElement !== maxIn ) {
+				maxIn.value = formatVnd( b );
+			}
 			// Keep the handle being dragged on top when both meet.
 			min.style.zIndex = a >= ceil - Number( min.step || 1 ) ? 3 : 2;
 		}
 
 		min.addEventListener( 'input', function () { paint( min ); } );
 		max.addEventListener( 'input', function () { paint( max ); } );
+
+		function autoSubmit() {
+			if ( desktop.matches ) {
+				form.requestSubmit ? form.requestSubmit() : form.submit();
+			}
+		}
+		min.addEventListener( 'change', autoSubmit );
+		max.addEventListener( 'change', autoSubmit );
+
+		// Typed "Từ / Đến" values drive the (named) range inputs.
+		[ [ minIn, min ], [ maxIn, max ] ].forEach( function ( pair ) {
+			var input = pair[ 0 ];
+			var range = pair[ 1 ];
+			if ( ! input ) {
+				return;
+			}
+			input.addEventListener( 'focus', function () {
+				input.value = String( range.value );
+				input.select();
+			} );
+			input.addEventListener( 'change', function () {
+				var digits = input.value.replace( /\D/g, '' );
+				if ( digits ) {
+					range.value = Math.min( ceil, Math.max( floor, Number( digits ) ) );
+				}
+				paint( range );
+				input.value = formatVnd( range.value );
+				autoSubmit();
+			} );
+			input.addEventListener( 'blur', function () {
+				input.value = formatVnd( range.value );
+			} );
+		} );
 
 		form.addEventListener( 'submit', function () {
 			// Don't put the untouched full range into the URL.

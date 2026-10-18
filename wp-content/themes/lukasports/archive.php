@@ -1,8 +1,9 @@
 <?php
 /**
- * Blog index, category, tag, date and author archives for post-type
- * "post". WooCommerce product archives use woocommerce/archive-product.php
- * instead — WordPress picks whichever is more specific automatically.
+ * Category, tag, date and author archives for post-type "post" — same
+ * layout as the blog index (template-parts/blog/listing.php), without
+ * the feature card. WooCommerce product archives use
+ * woocommerce/archive-product.php instead.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,34 +11,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-?>
-<?php
+
 get_template_part(
 	'template-parts/page-band',
 	null,
 	array(
-		'title'   => wp_strip_all_tags( get_the_archive_title() ),
-		'intro'   => wp_kses_post( get_the_archive_description() ),
-		'compact' => true,
+		'title' => wp_strip_all_tags( single_term_title( '', false ) ? single_term_title( '', false ) : get_the_archive_title() ),
+		'dot'   => true,
+		'intro' => wp_kses_post( get_the_archive_description() ),
 	)
 );
-?>
-<section class="sk-section sk-blog-archive">
-	<div class="sk-container">
 
-		<?php if ( have_posts() ) : ?>
-			<div class="sk-grid sk-grid--3">
-				<?php
-				while ( have_posts() ) :
-					the_post();
-					get_template_part( 'template-parts/blog/post-card' );
-				endwhile;
-				?>
-			</div>
-			<div class="sk-pagination"><?php the_posts_pagination(); ?></div>
-		<?php else : ?>
-			<p><?php esc_html_e( 'Chưa có bài viết nào.', 'lukasports' ); ?></p>
-		<?php endif; ?>
-	</div>
-</section>
-<?php get_footer(); ?>
+get_template_part( 'template-parts/blog/listing', null, array( 'feature' => false ) );
+
+get_footer();

@@ -356,19 +356,11 @@
 	 */
 	function initThemeToggle() {
 		var root = document.documentElement;
-		var meta = document.querySelector( 'meta[name="theme-color"]' );
-		var lightColor = meta ? meta.getAttribute( 'content' ) : '';
-		if ( 'dark' === root.getAttribute( 'data-theme' ) && '#0d0d0f' === lightColor ) {
-			lightColor = '#111111';
-		}
 		function sync() {
 			var dark = 'dark' === root.getAttribute( 'data-theme' );
 			document.querySelectorAll( '[data-sk-theme-toggle]' ).forEach( function ( b ) {
 				b.setAttribute( 'aria-pressed', dark ? 'true' : 'false' );
 			} );
-			if ( meta ) {
-				meta.setAttribute( 'content', dark ? '#0d0d0f' : lightColor );
-			}
 		}
 		document.querySelectorAll( '[data-sk-theme-toggle]' ).forEach( function ( btn ) {
 			btn.addEventListener( 'click', function () {

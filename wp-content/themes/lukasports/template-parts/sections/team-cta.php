@@ -1,57 +1,60 @@
 <?php
 /**
- * "Custom Design" — the identity section for team/club orders. Dark
- * navy, numbered 3-step process, single strong CTA. Renders the same
- * regardless of catalog state (no query involved).
+ * "Áo đội theo yêu cầu / Thiết kế theo cách của bạn" — dark section,
+ * intro + two CTAs on the left, three numbered steps on the right.
+ * Also used on the About page. No query involved.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$consult_url = home_url( '/lien-he/' );
-$contact     = lukasports_get_contact_info();
+$contact = lukasports_get_contact_info();
 
 $steps = array(
 	array(
 		'num'   => '01',
-		'title' => 'Chọn ý tưởng',
-		'desc'  => 'Gửi mẫu tham khảo, màu sắc, logo đội bạn muốn thể hiện.',
+		'title' => __( 'Chọn ý tưởng', 'lukasports' ),
+		'desc'  => __( 'Gửi hình tham khảo, màu sắc và logo của đội.', 'lukasports' ),
 	),
 	array(
 		'num'   => '02',
-		'title' => 'Thiết kế',
-		'desc'  => 'DALETIC dựng mẫu, gửi bản duyệt trước khi sản xuất.',
+		'title' => __( 'Thiết kế', 'lukasports' ),
+		'desc'  => __( 'DALETIC dựng mockup và gửi bạn duyệt trước khi sản xuất.', 'lukasports' ),
 	),
 	array(
 		'num'   => '03',
-		'title' => 'Hoàn thiện',
-		'desc'  => 'In tên, số, giao hàng đúng hẹn cho cả đội.',
+		'title' => __( 'Hoàn thiện', 'lukasports' ),
+		'desc'  => __( 'In tên, số áo và giao đúng hẹn cho cả đội.', 'lukasports' ),
 	),
 );
 ?>
-<section class="sk-custom-design">
-	<div class="sk-container sk-custom-design__inner">
-		<h2 class="sk-custom-design__title"><?php esc_html_e( 'Thiết kế theo cách của bạn.', 'lukasports' ); ?></h2>
-		<p class="sk-custom-design__subtitle">
-			<?php esc_html_e( 'Đồng phục riêng cho đội bóng, CLB và nhóm thể thao.', 'lukasports' ); ?>
-		</p>
-		<div class="sk-custom-design__steps">
+<section class="sk-process sk-on-dark" aria-labelledby="sk-process-title">
+	<span class="sk-process__slab" aria-hidden="true"></span>
+	<div class="sk-container sk-process__inner">
+		<div class="sk-process__intro">
+			<p class="sk-section-head__eyebrow"><?php esc_html_e( 'Áo đội theo yêu cầu', 'lukasports' ); ?></p>
+			<h2 id="sk-process-title" class="sk-process__title sk-display"><?php esc_html_e( 'Thiết kế theo cách của bạn', 'lukasports' ); ?></h2>
+			<p class="sk-process__lead"><?php esc_html_e( 'Bạn có ý tưởng, DALETIC lo phần còn lại – từ mockup đến tên số và giao hàng cho cả đội.', 'lukasports' ); ?></p>
+			<div class="sk-process__actions">
+				<a class="sk-btn sk-btn--primary sk-btn--md" href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" data-lukasports-cta="consult" data-source="custom_design">
+					<?php esc_html_e( 'Tư vấn thiết kế', 'lukasports' ); ?>
+				</a>
+				<a class="sk-btn sk-btn--outline-light sk-btn--md" href="<?php echo esc_url( $contact['messenger_url'] ); ?>" target="_blank" rel="noopener">
+					<?php esc_html_e( 'Nhắn tin tư vấn', 'lukasports' ); ?>
+				</a>
+			</div>
+		</div>
+		<ol class="sk-process__steps">
 			<?php foreach ( $steps as $step ) : ?>
-				<div class="sk-custom-design__step">
-					<div class="sk-custom-design__step-num"><?php echo esc_html( $step['num'] ); ?></div>
-					<h3 class="sk-custom-design__step-title"><?php echo esc_html( $step['title'] ); ?></h3>
-					<p class="sk-custom-design__step-desc"><?php echo esc_html( $step['desc'] ); ?></p>
-				</div>
+				<li class="sk-process__step">
+					<span class="sk-process__num"><?php echo esc_html( $step['num'] ); ?></span>
+					<div>
+						<h3 class="sk-process__step-title"><?php echo esc_html( $step['title'] ); ?></h3>
+						<p class="sk-process__step-desc"><?php echo esc_html( $step['desc'] ); ?></p>
+					</div>
+				</li>
 			<?php endforeach; ?>
-		</div>
-		<div class="sk-custom-design__actions">
-			<a class="sk-btn sk-btn--primary sk-btn--lg" href="<?php echo esc_url( $consult_url ); ?>" data-lukasports-cta="design_team">
-				<?php esc_html_e( 'Tư vấn thiết kế', 'lukasports' ); ?>
-			</a>
-			<a class="sk-btn sk-btn--outline-light sk-btn--lg" href="<?php echo esc_url( $contact['messenger_url'] ); ?>" target="_blank" rel="noopener" data-lukasports-cta="consult" data-source="custom_design">
-				<?php esc_html_e( 'Nhắn tin tư vấn', 'lukasports' ); ?>
-			</a>
-		</div>
+		</ol>
 	</div>
 </section>

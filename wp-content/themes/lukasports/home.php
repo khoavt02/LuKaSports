@@ -3,6 +3,7 @@
  * Blog index (used for the page set as "Posts page" in Settings →
  * Reading — /blog/ in this site's URL structure). front-page.php
  * still governs the actual site root regardless of that setting.
+ * Body: template-parts/blog/listing.php. Styles: blog.css.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,35 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-?>
-<?php
+
+$posts_page = (int) get_option( 'page_for_posts' );
+
 get_template_part(
 	'template-parts/page-band',
 	null,
 	array(
-		'title'   => __( 'Blog', 'lukasports' ),
-		'accent'  => __( 'Kinh nghiệm sân cỏ', 'lukasports' ),
-		'intro'   => '<p>' . esc_html__( 'Chọn size, chọn chất liệu, đặt đồng phục cho đội — mẹo thực tế từ DALETIC.', 'lukasports' ) . '</p>',
-		'compact' => true,
+		'title' => $posts_page ? get_the_title( $posts_page ) : __( 'Blog', 'lukasports' ),
+		'dot'   => true,
+		'intro' => '<p>' . esc_html__( 'Kinh nghiệm chọn size, đặt đồng phục và chăm sóc áo đấu từ DALETIC.', 'lukasports' ) . '</p>',
 	)
 );
-?>
-<section class="sk-section sk-blog-archive">
-	<div class="sk-container">
 
-		<?php if ( have_posts() ) : ?>
-			<div class="sk-grid sk-grid--3">
-				<?php
-				while ( have_posts() ) :
-					the_post();
-					get_template_part( 'template-parts/blog/post-card' );
-				endwhile;
-				?>
-			</div>
-			<div class="sk-pagination"><?php the_posts_pagination(); ?></div>
-		<?php else : ?>
-			<p><?php esc_html_e( 'Chưa có bài viết nào.', 'lukasports' ); ?></p>
-		<?php endif; ?>
-	</div>
-</section>
-<?php get_footer(); ?>
+get_template_part( 'template-parts/blog/listing', null, array( 'feature' => true ) );
+
+get_footer();

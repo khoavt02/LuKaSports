@@ -51,7 +51,7 @@ function lukasports_get_hero_image_url() {
 	$url = $attachment_id ? wp_get_attachment_image_url( $attachment_id, 'lukasports-hero-banner' ) : '';
 
 	if ( ! $url ) {
-		$url = lukasports_image_url( 'hero-jerseys.webp' );
+		$url = lukasports_image_url( 'hero-store.jpg' );
 	}
 
 	return apply_filters( 'lukasports_hero_image_url', $url );
@@ -169,6 +169,8 @@ function lukasports_color_hex( $name ) {
 		'be'         => '#d8cbb0',
 		'xanh rêu'   => '#5c5f4a',
 		'xanh lá'    => '#16a34a',
+		'xanh ngọc'  => '#14b8a6',
+		'xanh da trời' => '#38bdf8',
 		'hồng'       => '#ec4899',
 	);
 	$key = function_exists( 'mb_strtolower' ) ? mb_strtolower( trim( $name ) ) : strtolower( trim( $name ) );

@@ -3,9 +3,9 @@
  * Template Name: DALETIC — Giới thiệu
  *
  * Brand story page. The story paragraphs are the Page's own content
- * (editable in wp-admin); the surrounding structure — numbers, values,
- * the 3-step custom-design process and the closing CTA — is fixed
- * layout, reusing the homepage section parts so both stay in sync.
+ * (editable in wp-admin); the surrounding structure — hero, numbers,
+ * commitments, the 3-step custom-design process and the closing CTA —
+ * is fixed layout. Styles: pages.css (About).
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 
 $shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/san-pham/' );
+$contact  = lukasports_get_contact_info();
 
 $stats = array(
 	array( 'value' => '5', 'label' => __( 'môn thể thao', 'lukasports' ) ),
@@ -41,20 +42,35 @@ $values = array(
 		'desc'  => __( 'Đội ngũ DALETIC đồng hành từ lúc lên ý tưởng đến khi áo tới tay cả đội.', 'lukasports' ),
 	),
 );
-?>
 
-<?php
+$steps = array(
+	array(
+		'title' => __( 'Chọn ý tưởng', 'lukasports' ),
+		'desc'  => __( 'Gửi mẫu tham khảo, màu sắc, logo đội bạn muốn thể hiện.', 'lukasports' ),
+	),
+	array(
+		'title' => __( 'Thiết kế', 'lukasports' ),
+		'desc'  => __( 'DALETIC dựng mẫu, gửi bản duyệt trước khi sản xuất.', 'lukasports' ),
+	),
+	array(
+		'title' => __( 'Hoàn thiện', 'lukasports' ),
+		'desc'  => __( 'In tên, số, giao hàng đúng hẹn cho cả đội.', 'lukasports' ),
+	),
+);
+
 ob_start();
 ?>
-<a class="sk-btn sk-btn--primary sk-btn--lg" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Xem sản phẩm', 'lukasports' ); ?> <span class="sk-btn__arrow" aria-hidden="true">→</span></a>
-<a class="sk-btn sk-btn--outline-light sk-btn--lg" href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" data-lukasports-cta="consult" data-source="about_hero"><?php esc_html_e( 'Nhận tư vấn', 'lukasports' ); ?></a>
+<a class="sk-btn sk-btn--primary sk-btn--lg" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Xem sản phẩm', 'lukasports' ); ?></a>
+<a class="sk-btn sk-btn--outline-light sk-btn--lg" href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" data-lukasports-cta="consult" data-source="about_hero"><?php echo esc_html( $contact['primary_cta_text'] ); ?></a>
 <?php
 get_template_part(
 	'template-parts/page-band',
 	null,
 	array(
-		'title'   => __( 'Đồ thi đấu cho', 'lukasports' ),
-		'accent'  => __( 'người chơi thật.', 'lukasports' ),
+		'label'   => __( 'Về DALETIC', 'lukasports' ),
+		'title'   => __( 'Đồ thi đấu cho người chơi thật', 'lukasports' ),
+		'dot'     => true,
+		'hero'    => true,
 		'intro'   => '<p>' . esc_html__( 'DALETIC làm áo đấu và đồng phục cho cá nhân, đội bóng, CLB — từ sân phủi cuối tuần đến giải phong trào.', 'lukasports' ) . '</p>',
 		'media'   => lukasports_image_url( 'hero-jerseys.webp' ),
 		'actions' => ob_get_clean(),
@@ -62,55 +78,87 @@ get_template_part(
 );
 ?>
 
-<section class="sk-section sk-about-story">
-	<div class="sk-container sk-about-story__inner">
-		<h2 class="sk-about-story__title"><?php esc_html_e( 'Câu chuyện của chúng tôi', 'lukasports' ); ?></h2>
-		<div class="sk-about-story__content sk-page__content">
-			<?php
-			while ( have_posts() ) :
-				the_post();
-				the_content();
-			endwhile;
-			?>
-		</div>
-	</div>
-</section>
-
-<section class="sk-about-stats">
+<section class="sk-about-story" aria-labelledby="sk-story-title">
 	<div class="sk-container">
-		<dl class="sk-about-stats__grid">
+		<div class="sk-about-story__grid">
+			<div class="sk-about-story__head">
+				<p class="sk-section-head__eyebrow"><?php esc_html_e( 'Câu chuyện', 'lukasports' ); ?></p>
+				<h2 class="sk-about-story__title sk-display" id="sk-story-title"><?php esc_html_e( 'Bắt đầu từ sân bóng', 'lukasports' ); ?></h2>
+			</div>
+			<div class="sk-about-story__content">
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					the_content();
+				endwhile;
+				?>
+			</div>
+		</div>
+
+		<dl class="sk-about-tiles">
 			<?php foreach ( $stats as $stat ) : ?>
-				<div class="sk-about-stats__item">
-					<dt class="sk-about-stats__value"><?php echo esc_html( $stat['value'] ); ?></dt>
-					<dd class="sk-about-stats__label"><?php echo esc_html( $stat['label'] ); ?></dd>
+				<div class="sk-about-tiles__item">
+					<dd class="sk-about-tiles__value"><?php echo esc_html( $stat['value'] ); ?></dd>
+					<dt class="sk-about-tiles__label"><?php echo esc_html( $stat['label'] ); ?></dt>
 				</div>
 			<?php endforeach; ?>
 		</dl>
 	</div>
 </section>
 
-<section class="sk-section sk-about-values">
+<section class="sk-about-values" aria-labelledby="sk-values-title">
 	<div class="sk-container">
-		<div class="sk-section-head">
-			<div>
-				<h2 class="sk-section-head__title"><?php esc_html_e( 'Điều chúng tôi cam kết', 'lukasports' ); ?></h2>
-				<p class="sk-section-head__desc"><?php esc_html_e( 'Bốn nguyên tắc cho mọi chiếc áo rời xưởng DALETIC.', 'lukasports' ); ?></p>
-			</div>
-		</div>
-		<div class="sk-about-values__grid">
+		<p class="sk-section-head__eyebrow"><?php esc_html_e( 'Cam kết', 'lukasports' ); ?></p>
+		<h2 class="sk-section-head__title" id="sk-values-title"><?php esc_html_e( 'Điều DALETIC giữ vững', 'lukasports' ); ?></h2>
+		<ol class="sk-about-values__grid">
 			<?php foreach ( $values as $i => $value ) : ?>
-				<div class="sk-about-values__card">
+				<li class="sk-about-values__card">
 					<span class="sk-about-values__num"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
-					<h3 class="sk-about-values__title"><?php echo esc_html( $value['title'] ); ?></h3>
-					<p class="sk-about-values__desc"><?php echo esc_html( $value['desc'] ); ?></p>
-				</div>
+					<div>
+						<h3 class="sk-about-values__title"><?php echo esc_html( $value['title'] ); ?></h3>
+						<p class="sk-about-values__desc"><?php echo esc_html( $value['desc'] ); ?></p>
+					</div>
+				</li>
 			<?php endforeach; ?>
-		</div>
+		</ol>
 	</div>
 </section>
 
-<?php get_template_part( 'template-parts/sections/team-cta' ); ?>
-<?php get_template_part( 'template-parts/sections/trust-bar' ); ?>
-<?php get_template_part( 'template-parts/sections/contact-cta' ); ?>
+<section class="sk-about-process sk-on-dark" aria-labelledby="sk-process-title">
+	<div class="sk-container sk-about-process__inner">
+		<div class="sk-about-process__head">
+			<p class="sk-section-head__eyebrow"><?php esc_html_e( 'Quy trình', 'lukasports' ); ?></p>
+			<h2 class="sk-about-process__title sk-display" id="sk-process-title"><?php esc_html_e( 'Thiết kế theo cách của bạn', 'lukasports' ); ?></h2>
+			<div class="sk-about-process__actions">
+				<a class="sk-btn sk-btn--primary sk-btn--md" href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" data-lukasports-cta="consult" data-source="about_process"><?php esc_html_e( 'Tư vấn thiết kế', 'lukasports' ); ?></a>
+				<a class="sk-btn sk-btn--outline-light sk-btn--md" href="<?php echo esc_url( $contact['messenger_url'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Nhắn tin tư vấn', 'lukasports' ); ?></a>
+			</div>
+		</div>
+		<ol class="sk-about-process__steps">
+			<?php foreach ( $steps as $i => $step ) : ?>
+				<li class="sk-about-process__step">
+					<span class="sk-about-process__num"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
+					<div>
+						<h3 class="sk-about-process__step-title"><?php echo esc_html( $step['title'] ); ?></h3>
+						<p class="sk-about-process__step-desc"><?php echo esc_html( $step['desc'] ); ?></p>
+					</div>
+				</li>
+			<?php endforeach; ?>
+		</ol>
+	</div>
+</section>
+
+<?php
+get_template_part(
+	'template-parts/content-cta',
+	null,
+	array(
+		'title' => __( 'Bạn đang tìm mẫu áo cho đội?', 'lukasports' ),
+		/* translators: %s: hotline number */
+		'text'  => sprintf( __( 'Nhắn DALETIC qua Messenger, Zalo hoặc gọi %s.', 'lukasports' ), $contact['hotline_display'] ),
+		'call'  => true,
+	)
+);
+?>
 
 <?php get_footer(); ?>

@@ -46,8 +46,30 @@ $first = array_key_first( $product_tabs );
 			<?php echo $key === $first ? 'data-first' : ''; ?>
 		>
 			<?php
+			if ( 'reviews' === $key ) {
+				// Rating summary card beside the reviews list (design).
+				global $product;
+				$sk_count  = $product instanceof WC_Product ? (int) $product->get_review_count() : 0;
+				$sk_rating = $product instanceof WC_Product ? (float) $product->get_average_rating() : 0;
+				echo '<div class="sk-reviews-layout">';
+				if ( $sk_count > 0 ) {
+					?>
+					<div class="sk-reviews-summary">
+						<span class="sk-reviews-summary__score"><?php echo esc_html( number_format_i18n( $sk_rating, 1 ) ); ?></span>
+						<span class="sk-reviews-summary__meta">
+							<span class="sk-rating__stars" style="--rating: <?php echo esc_attr( $sk_rating ); ?>" aria-hidden="true"></span>
+							<span class="sk-reviews-summary__count"><?php echo esc_html( sprintf( /* translators: %d: reviews */ _n( '%d đánh giá', '%d đánh giá', $sk_count, 'lukasports' ), $sk_count ) ); ?></span>
+						</span>
+					</div>
+					<?php
+				}
+				echo '<div class="sk-reviews-layout__main">';
+			}
 			if ( isset( $product_tab['callback'] ) ) {
 				call_user_func( $product_tab['callback'], $key, $product_tab );
+			}
+			if ( 'reviews' === $key ) {
+				echo '</div></div>';
 			}
 			?>
 		</div>

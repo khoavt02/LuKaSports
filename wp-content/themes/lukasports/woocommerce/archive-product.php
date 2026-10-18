@@ -48,7 +48,7 @@ get_template_part(
 		'accent'   => $band_accent,
 		'intro'    => $band_intro,
 		'media'    => $band_media,
-		'features' => true,
+		'features' => false,
 	)
 );
 ?>
@@ -59,13 +59,15 @@ get_template_part(
 		<div class="sk-filters-backdrop" data-sk-filters-close hidden></div>
 
 		<div class="sk-shop__main">
-			<?php
-			// Category chips stay as a quick horizontal switcher on phones,
-			// where the sidebar is tucked into a drawer.
-			get_template_part( 'template-parts/shop/category-filter', null, array( 'active' => $active_cat ) );
-			get_template_part( 'template-parts/shop/toolbar' );
-			woocommerce_output_all_notices();
-			?>
+			<div class="sk-shop__bar">
+				<?php
+				// Category chips: phones only (a horizontal switcher above
+				// "Bộ lọc" + sort), the desktop sidebar already lists them.
+				get_template_part( 'template-parts/shop/category-filter', null, array( 'active' => $active_cat ) );
+				get_template_part( 'template-parts/shop/toolbar' );
+				?>
+			</div>
+			<?php woocommerce_output_all_notices(); ?>
 
 			<?php if ( woocommerce_product_loop() ) : ?>
 				<div class="sk-shop__meta"><?php woocommerce_result_count(); ?></div>

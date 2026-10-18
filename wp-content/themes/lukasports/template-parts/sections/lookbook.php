@@ -1,42 +1,41 @@
 <?php
 /**
- * "DALETIC trên sân đấu" — asymmetric editorial grid of category
- * photos (banner, else thumbnail), each linking to its category; the
- * line-art is only a fallback for categories without a photo.
+ * "DALETIC trên sân đấu / Đồng hành cùng các đội" — the site's stat
+ * cards (trust-bar.php, embedded) above a dark photo wall of category
+ * photos (banner, else thumbnail), each linking to its category.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Category slug => line-art fallback when the category has no photo yet.
-$items = array(
-	'ao-bong-da'          => 'football.svg',
-	'ao-team'             => 'team.svg',
-	'ao-bong-ro'          => 'basketball.svg',
-	'ao-bong-da-thiet-ke' => 'jersey-design.svg',
-	'ao-bong-chuyen'      => 'volleyball.svg',
-	'ao-cau-long'         => 'badminton.svg',
-);
+$slugs = array( 'ao-bong-da', 'ao-team', 'ao-bong-ro', 'ao-bong-da-thiet-ke', 'ao-bong-chuyen', 'ao-cau-long' );
+$wall  = array();
+foreach ( $slugs as $slug ) {
+	$photo = lukasports_category_image_id( $slug, 'banner' );
+	if ( $photo ) {
+		$wall[ $slug ] = $photo;
+	}
+}
 ?>
-<section class="sk-section sk-lookbook">
+<section class="sk-home-section sk-onfield" aria-labelledby="sk-onfield-title">
 	<div class="sk-container">
 		<div class="sk-section-head">
-			<h2 class="sk-section-head__title"><?php esc_html_e( 'DALETIC trên sân đấu', 'lukasports' ); ?></h2>
+			<div>
+				<p class="sk-section-head__eyebrow"><?php esc_html_e( 'DALETIC trên sân đấu', 'lukasports' ); ?></p>
+				<h2 id="sk-onfield-title" class="sk-section-head__title"><?php esc_html_e( 'Đồng hành cùng các đội', 'lukasports' ); ?></h2>
+			</div>
 		</div>
-		<div class="sk-lookbook__grid">
-			<?php foreach ( $items as $slug => $art ) : ?>
-				<a class="sk-lookbook__item" href="<?php echo esc_url( home_url( '/' . $slug . '/' ) ); ?>">
-					<?php
-					$photo = lukasports_category_image_id( $slug, 'banner' );
-					if ( $photo ) {
-						echo lukasports_attachment_image( $photo, 'lukasports-category', 'lazy' ); // phpcs:ignore
-					} else {
-						echo '<img src="' . esc_url( lukasports_image_url( 'categories/' . $art ) ) . '" alt="" loading="lazy" />';
-					}
-					?>
-				</a>
-			<?php endforeach; ?>
-		</div>
+		<?php get_template_part( 'template-parts/sections/trust-bar', null, array( 'embedded' => true ) ); ?>
+		<?php if ( $wall ) : ?>
+			<div class="sk-onfield__wall">
+				<?php foreach ( $wall as $slug => $photo ) : ?>
+					<?php $term = get_term_by( 'slug', $slug, 'product_cat' ); ?>
+					<a class="sk-onfield__photo" href="<?php echo esc_url( home_url( '/' . $slug . '/' ) ); ?>">
+						<?php echo lukasports_attachment_image( $photo, 'lukasports-card', 'lazy', '', $term ? $term->name : '' ); // phpcs:ignore ?>
+					</a>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>

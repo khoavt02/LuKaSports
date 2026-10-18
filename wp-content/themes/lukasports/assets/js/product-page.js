@@ -10,6 +10,7 @@
 	function initGallery( gallery ) {
 		var main   = gallery.querySelector( '.sk-gallery__main' );
 		var thumbs = Array.prototype.slice.call( gallery.querySelectorAll( '[data-sk-gallery-target]' ) );
+		var counter = gallery.querySelector( '[data-sk-gallery-counter]' );
 		if ( ! main ) {
 			return;
 		}
@@ -42,7 +43,11 @@
 				var i = current();
 				thumbs.forEach( function ( t, n ) {
 					t.classList.toggle( 'is-active', n === i );
+					t.setAttribute( 'aria-pressed', n === i ? 'true' : 'false' );
 				} );
+				if ( counter ) {
+					counter.textContent = ( i + 1 ) + '/' + slides.length;
+				}
 				ticking = false;
 			} );
 		} );
@@ -86,16 +91,16 @@
 	}
 
 	/**
-	 * The consult button carries the product name into the lead form;
+	 * The consult buttons carry the product name into the lead form;
 	 * append the size/color the visitor picked, e.g.
 	 * "Áo Bóng Đá Basic – Size: L, Màu sắc: Đỏ".
 	 */
 	function initConsultOptions( form ) {
-		var button = document.querySelector( '[data-sk-consult-product]' );
-		if ( ! button ) {
+		var buttons = Array.prototype.slice.call( document.querySelectorAll( '[data-sk-consult-product]' ) );
+		if ( ! buttons.length ) {
 			return;
 		}
-		var base = button.getAttribute( 'data-product-name' ) || '';
+		var base = buttons[ 0 ].getAttribute( 'data-product-name' ) || '';
 		function sync() {
 			var picked = [];
 			form.querySelectorAll( 'table.variations select' ).forEach( function ( select ) {
@@ -105,9 +110,13 @@
 				var row   = select.closest( 'tr' );
 				var label = row ? row.querySelector( 'th label, .label label' ) : null;
 				var text  = select.options[ select.selectedIndex ].textContent.trim();
-				picked.push( ( label ? label.textContent.trim() + ': ' : '' ) + text );
+				// The label also holds the ": value" span from product-variations.js.
+				var name  = label ? ( label.firstChild ? label.firstChild.textContent : label.textContent ).trim() : '';
+				picked.push( ( name ? name + ': ' : '' ) + text );
 			} );
-			button.setAttribute( 'data-product-name', picked.length ? base + ' – ' + picked.join( ', ' ) : base );
+			buttons.forEach( function ( button ) {
+				button.setAttribute( 'data-product-name', picked.length ? base + ' – ' + picked.join( ', ' ) : base );
+			} );
 		}
 		form.addEventListener( 'change', sync );
 		sync();

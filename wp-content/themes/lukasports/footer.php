@@ -12,17 +12,15 @@ $sk_contact = lukasports_get_contact_info();
 </main>
 
 <footer class="sk-footer">
-	<div class="sk-container">
+	<span class="sk-footer__slab sk-footer__slab--left" aria-hidden="true"></span>
+	<span class="sk-footer__slab sk-footer__slab--right" aria-hidden="true"></span>
+	<div class="sk-container sk-footer__main">
 		<?php get_template_part( 'template-parts/footer/footer-columns' ); ?>
-
-		<div class="sk-footer__bottom">
-			<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'Bản quyền thuộc về DALETIC.', 'lukasports' ); ?></p>
-		</div>
 	</div>
-	<div class="sk-footer__strip">
-		<div class="sk-container sk-footer__strip-inner">
+	<div class="sk-footer__bottom">
+		<div class="sk-container sk-footer__bottom-inner">
 			<p class="sk-footer__strip-title"><?php echo esc_html( sprintf( /* translators: %s: site name */ __( '%s – Đồng hành cùng đam mê thể thao', 'lukasports' ), get_bloginfo( 'name' ) ) ); ?></p>
-			<p class="sk-footer__strip-tags"><span>Custom jersey</span><span>Team uniform</span><span>Sportswear</span></p>
+			<p class="sk-footer__copy">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'Bản quyền thuộc về DALETIC.', 'lukasports' ); ?></p>
 		</div>
 	</div>
 </footer>

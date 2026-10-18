@@ -1,9 +1,9 @@
 <?php
 /**
- * Editorial per-sport blocks — links out to the matching product
- * category. Purely presentational (no query), so it always renders
- * regardless of catalog state; each block's target category simply
- * 404s gracefully via WordPress if that category doesn't exist yet.
+ * "Câu chuyện thể thao / Mỗi sân một chất riêng" — four tall photo
+ * cards (category banner photo, else thumbnail) with a dark gradient,
+ * linking to the matching product category. No product query, so it
+ * always renders; cards whose category has no photo get a dark tile.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,54 +12,53 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $stories = array(
 	array(
-		'title' => 'Bóng Đá',
-		'desc'  => 'Áo đấu và đồng phục CLB, đội tuyển.',
+		'title' => __( 'Bóng đá', 'lukasports' ),
+		'desc'  => __( 'Form ôm gọn, vải thoáng cho trọn 90 phút.', 'lukasports' ),
 		'slug'  => 'ao-bong-da',
-		'art'   => 'football.svg',
 	),
 	array(
-		'title' => 'Bóng Rổ',
-		'desc'  => 'Form áo streetball, vải lưới thoáng khí.',
+		'title' => __( 'Bóng rổ', 'lukasports' ),
+		'desc'  => __( 'Thoáng vai, nhẹ người cho từng cú bật nhảy.', 'lukasports' ),
 		'slug'  => 'ao-bong-ro',
-		'art'   => 'basketball.svg',
 	),
 	array(
-		'title' => 'Bóng Chuyền',
-		'desc'  => 'Áo thi đấu co giãn, vận động linh hoạt.',
+		'title' => __( 'Bóng chuyền', 'lukasports' ),
+		'desc'  => __( 'Co giãn 4 chiều cho từng pha đập bóng.', 'lukasports' ),
 		'slug'  => 'ao-bong-chuyen',
-		'art'   => 'volleyball.svg',
 	),
 	array(
-		'title' => 'Pickleball',
-		'desc'  => 'Áo pickleball nhẹ, khô nhanh.',
+		'title' => __( 'Pickleball', 'lukasports' ),
+		'desc'  => __( 'Gọn gàng, lịch sự mà vẫn thoải mái.', 'lukasports' ),
 		'slug'  => 'ao-pickerball',
-		'art'   => 'pickleball.svg',
 	),
 );
 ?>
-<section class="sk-section sk-stories sk-section--surface">
+<section class="sk-home-section sk-stories" aria-labelledby="sk-stories-title">
 	<div class="sk-container">
 		<div class="sk-section-head">
-			<h2 class="sk-section-head__title"><?php esc_html_e( 'Câu chuyện thể thao', 'lukasports' ); ?></h2>
+			<div>
+				<p class="sk-section-head__eyebrow"><?php esc_html_e( 'Câu chuyện thể thao', 'lukasports' ); ?></p>
+				<h2 id="sk-stories-title" class="sk-section-head__title"><?php esc_html_e( 'Mỗi sân một chất riêng', 'lukasports' ); ?></h2>
+			</div>
 		</div>
-		<div class="sk-stories__grid">
+	</div>
+	<div class="sk-stories__scroller">
+		<div class="sk-container sk-stories__grid">
 			<?php foreach ( $stories as $story ) : ?>
 				<a class="sk-story-card" href="<?php echo esc_url( home_url( '/' . $story['slug'] . '/' ) ); ?>">
-					<div class="sk-story-card__media">
+					<span class="sk-story-card__media" aria-hidden="true">
 						<?php
 						$story_image = lukasports_category_image_id( $story['slug'], 'banner' );
 						if ( $story_image ) {
-							echo lukasports_attachment_image( $story_image, 'lukasports-category', 'lazy', '', $story['title'] ); // phpcs:ignore
-						} else {
-							echo '<img src="' . esc_url( lukasports_image_url( 'categories/' . $story['art'] ) ) . '" alt="" loading="lazy" />';
+							echo lukasports_attachment_image( $story_image, 'lukasports-category', 'lazy', '', '' ); // phpcs:ignore
 						}
 						?>
-					</div>
-					<div class="sk-story-card__overlay">
-						<h3 class="sk-story-card__title"><?php echo esc_html( $story['title'] ); ?></h3>
-						<p class="sk-story-card__desc"><?php echo esc_html( $story['desc'] ); ?></p>
-						<span class="sk-story-card__link"><?php esc_html_e( 'Khám phá →', 'lukasports' ); ?></span>
-					</div>
+					</span>
+					<span class="sk-story-card__body">
+						<span class="sk-story-card__title"><?php echo esc_html( $story['title'] ); ?></span>
+						<span class="sk-story-card__desc"><?php echo esc_html( $story['desc'] ); ?></span>
+						<span class="sk-story-card__link"><?php esc_html_e( 'Khám phá', 'lukasports' ); ?> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+					</span>
 				</a>
 			<?php endforeach; ?>
 		</div>

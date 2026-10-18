@@ -86,8 +86,46 @@
 			} );
 		}
 
+		// "MÀU SẮC: Đen" — the picked value next to the row label.
+		var row   = select.closest( 'tr' );
+		var label = row ? row.querySelector( 'th.label label, .label label' ) : null;
+		var shown = null;
+		if ( label ) {
+			shown = document.createElement( 'span' );
+			shown.className = 'sk-variation-current';
+			shown.setAttribute( 'aria-hidden', 'true' );
+			label.appendChild( shown );
+		}
+
+		// The "Bảng size" link sits at the end of the size row's header.
+		var isSize = attrName.indexOf( 'size' ) !== -1 || attrName.indexOf( 'kich' ) !== -1;
+		var sizeLink = document.querySelector( '.sk-product__size-link' );
+		if ( isSize && sizeLink && row ) {
+			var th = row.querySelector( 'th.label' ) || row.firstElementChild;
+			if ( th ) {
+				th.classList.add( 'sk-has-size-link' );
+				th.appendChild( sizeLink );
+			}
+		}
+
+		function syncLabel() {
+			if ( ! shown ) {
+				return;
+			}
+			var opt = select.value ? select.options[ select.selectedIndex ] : null;
+			shown.textContent = opt ? ': ' + opt.textContent.trim() : '';
+		}
+
 		select.addEventListener( 'change', syncActive );
+		select.addEventListener( 'change', syncLabel );
+		// WooCommerce resets selects programmatically ("Xóa") and fires
+		// its own jQuery events; resync on those too.
+		if ( window.jQuery ) {
+			window.jQuery( select ).on( 'change', function () { syncActive(); syncLabel(); } );
+			window.jQuery( select.form ).on( 'reset_data woocommerce_update_variation_values', function () { syncActive(); syncLabel(); } );
+		}
 		syncActive();
+		syncLabel();
 	}
 
 	function init() {

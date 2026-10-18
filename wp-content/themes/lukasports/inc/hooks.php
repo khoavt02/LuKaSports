@@ -36,8 +36,11 @@ function lukasports_product_tabs( $tabs ) {
 add_filter( 'woocommerce_product_tabs', 'lukasports_product_tabs' );
 
 /**
- * "Thông tin sản phẩm" tab: benefit tiles (product meta), promotion
- * tags, then the product description.
+ * "Thông tin sản phẩm" tab: feature list (product benefits meta) with
+ * icon tiles, promotion tags and the description on the left; dark
+ * detail tiles on the right — the product's extra gallery photos, each
+ * captioned with one of its real attributes (Chất liệu, Bộ môn …).
+ * Anything without data is simply left out.
  */
 function lukasports_product_info_tab() {
 	global $product;
@@ -48,11 +51,43 @@ function lukasports_product_info_tab() {
 		$benefits[] = __( 'Hỗ trợ in tên, số, logo theo yêu cầu', 'lukasports' );
 	}
 
+	// Line icons cycled over the feature list (fabric, shield, team, print).
+	$icons = array(
+		'<path d="M3 8c3-2 6 2 9 0s6-2 9 0"/><path d="M3 13c3-2 6 2 9 0s6-2 9 0"/><path d="M3 18c3-2 6 2 9 0s6-2 9 0"/>',
+		'<path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/>',
+		'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.8a3.5 3.5 0 0 1 0 6.4"/><path d="M18 14.8c1.8.7 3 2.4 3.5 5.2"/>',
+		'<path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/>',
+	);
+
+	// Detail tiles: extra photos paired with visible attributes.
+	$tiles = array();
+	if ( $product instanceof WC_Product ) {
+		$captions = array();
+		foreach ( $product->get_attributes() as $attribute ) {
+			if ( ! $attribute->get_visible() || $attribute->get_variation() ) {
+				continue;
+			}
+			$values = $attribute->is_taxonomy()
+				? wc_get_product_terms( $id, $attribute->get_name(), array( 'fields' => 'names' ) )
+				: $attribute->get_options();
+			if ( $values ) {
+				$captions[] = array( wc_attribute_label( $attribute->get_name(), $product ), implode( ', ', $values ) );
+			}
+		}
+		foreach ( array_slice( $product->get_gallery_image_ids(), 0, 3 ) as $index => $image_id ) {
+			$tiles[] = array( $image_id, $captions[ $index ] ?? null );
+		}
+	}
+
+	echo '<div class="sk-info-tab' . ( $tiles ? ' sk-info-tab--has-tiles' : '' ) . '">';
+	echo '<div class="sk-info-tab__main">';
+
 	if ( $benefits ) {
-		echo '<ul class="sk-benefits">';
-		foreach ( $benefits as $benefit ) {
+		echo '<ul class="sk-features">';
+		foreach ( array_values( $benefits ) as $index => $benefit ) {
 			printf(
-				'<li class="sk-benefits__item"><span class="sk-benefits__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>%s</span></li>',
+				'<li class="sk-features__item"><span class="sk-features__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">%1$s</svg></span><h3 class="sk-features__title">%2$s</h3></li>',
+				$icons[ $index % count( $icons ) ], // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG.
 				esc_html( $benefit )
 			);
 		}
@@ -69,6 +104,26 @@ function lukasports_product_info_tab() {
 
 	echo '<div class="sk-tabs__content">';
 	the_content();
+	echo '</div>';
+	echo '</div>';
+
+	if ( $tiles ) {
+		echo '<div class="sk-detail-tiles">';
+		foreach ( $tiles as $tile ) {
+			echo '<figure class="sk-detail-tile">';
+			echo '<div class="sk-detail-tile__media">' . lukasports_attachment_image( $tile[0], 'lukasports-card', 'lazy', '', $product->get_name() ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			if ( $tile[1] ) {
+				printf(
+					'<figcaption class="sk-detail-tile__caption"><span class="sk-detail-tile__label">%1$s</span><span class="sk-detail-tile__text">%2$s</span></figcaption>',
+					esc_html( $tile[1][0] ),
+					esc_html( $tile[1][1] )
+				);
+			}
+			echo '</figure>';
+		}
+		echo '</div>';
+	}
+
 	echo '</div>';
 }
 

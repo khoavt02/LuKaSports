@@ -45,7 +45,7 @@ $shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 
 			<li>
 				<a class="sk-filter__chip<?php echo $is_active ? ' is-active' : ''; ?>" href="<?php echo esc_url( home_url( '/' . $term->slug . '/' ) ); ?>"<?php echo $is_active ? ' aria-current="page"' : ''; ?>>
 					<?php echo esc_html( $term->name ); ?>
-					<span class="sk-filter__count"><?php echo esc_html( $term->count ); ?></span>
+					<span class="sk-filter__count">(<?php echo esc_html( $term->count ); ?>)</span>
 				</a>
 			</li>
 		<?php endforeach; ?>
