@@ -202,7 +202,7 @@ function lukasports_product_badge( $product ) {
 
 /** Category slugs that make up the "Thiết kế theo yêu cầu" quick filter. */
 function lukasports_custom_design_categories() {
-	return apply_filters( 'lukasports_custom_design_categories', array( 'ao-bong-da-thiet-ke', 'ao-team' ) );
+	return apply_filters( 'lukasports_custom_design_categories', array( 'ao-bong-da-thiet-ke', 'ao-pickleball-thiet-ke', 'ao-team' ) );
 }
 
 /** Most recently created product collection (the "Bộ sưu tập mới" pill). */
