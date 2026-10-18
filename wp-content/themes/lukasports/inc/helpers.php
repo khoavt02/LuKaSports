@@ -228,9 +228,9 @@ function lukasports_color_hex( $name ) {
 }
 
 /**
- * Card/gallery badge: sale percentage first, then "Bán chạy" for
- * featured products, then "Mới" for anything published in the last
- * 30 days. Returns array( label, modifier ) or null.
+ * Card/gallery badge: sale percentage first, then the editorial tag chosen
+ * in the product editor (inc/product-badges.php), then an automatic "Mới"
+ * for the newest few products. Returns array( label, modifier ) or null.
  */
 function lukasports_product_badge( $product ) {
 	if ( ! $product instanceof WC_Product ) {
@@ -240,12 +240,13 @@ function lukasports_product_badge( $product ) {
 	if ( '' !== $sale ) {
 		return array( $sale, 'sale' );
 	}
-	if ( $product->is_featured() ) {
-		return array( __( 'Bán chạy', 'lukasports' ), 'hot' );
+	$options = lukasports_badge_options();
+	$key     = (string) get_post_meta( $product->get_id(), LUKASPORTS_BADGE_META, true );
+	if ( isset( $options[ $key ] ) ) {
+		return $options[ $key ];
 	}
-	$created = $product->get_date_created();
-	if ( $created && $created->getTimestamp() > time() - 30 * DAY_IN_SECONDS ) {
-		return array( __( 'Mới', 'lukasports' ), 'new' );
+	if ( in_array( $product->get_id(), lukasports_newest_product_ids(), true ) ) {
+		return $options['moi'];
 	}
 	return null;
 }
