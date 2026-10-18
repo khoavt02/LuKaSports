@@ -18,7 +18,7 @@ $alt     = __( 'Mã QR danh thiếp Zalo DALETIC', 'lukasports' );
 if ( 'compact' === $variant ) :
 	?>
 	<a class="sk-zalo-mini" href="<?php echo esc_url( $contact['zalo_url'] ); ?>" target="_blank" rel="noopener">
-		<img src="<?php echo esc_url( $qr ); ?>" alt="<?php echo esc_attr( $alt ); ?>" width="72" height="90" loading="lazy" decoding="async" />
+		<img src="<?php echo esc_url( $qr ); ?>" alt="<?php echo esc_attr( $alt ); ?>" width="72" height="72" loading="lazy" decoding="async" />
 		<span><?php esc_html_e( 'Quét mã QR để kết nối Zalo cửa hàng', 'lukasports' ); ?></span>
 	</a>
 	<?php
@@ -38,6 +38,6 @@ endif;
 			</ol>
 			<a class="sk-btn sk-btn--primary" href="<?php echo esc_url( $contact['zalo_url'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Mở Zalo ngay', 'lukasports' ); ?></a>
 		</div>
-		<img class="sk-zalo__qr" src="<?php echo esc_url( $qr ); ?>" alt="<?php echo esc_attr( $alt ); ?>" width="360" height="450" loading="lazy" decoding="async" />
+		<img class="sk-zalo__qr" src="<?php echo esc_url( $qr ); ?>" alt="<?php echo esc_attr( $alt ); ?>" width="260" height="260" loading="lazy" decoding="async" />
 	</div>
 </section>

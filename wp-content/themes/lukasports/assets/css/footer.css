@@ -185,5 +185,5 @@ body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
 
 /* Zalo QR thumbnail in the footer "Kết nối" column */
 .sk-zalo-mini { display: flex; align-items: center; gap: 12px; margin-top: 4px; color: var(--sk-on-dark-muted); font-size: 0.8125rem; line-height: 1.4; }
-.sk-zalo-mini img { width: 72px; height: auto; border-radius: 8px; flex: none; }
+.sk-zalo-mini img { width: 76px; height: 76px; padding: 4px; border-radius: 8px; background: #fff; flex: none; }
 .sk-zalo-mini:hover { color: #fff; }

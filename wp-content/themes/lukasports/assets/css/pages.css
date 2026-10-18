@@ -328,9 +328,9 @@ html[data-theme="dark"] .sk-policy__content > p:first-child { background: rgba(v
 .sk-zalo__title { margin: 0; font-size: clamp(28px, 3.4vw, 40px); line-height: 1; }
 .sk-zalo__desc { margin: 0; max-width: 520px; line-height: 1.65; color: var(--sk-muted, inherit); }
 .sk-zalo__steps { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: 0.9375rem; }
-.sk-zalo__qr { flex: 0 0 auto; width: min(260px, 100%); height: auto; border-radius: 14px; box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35); }
+.sk-zalo__qr { flex: 0 0 auto; width: min(240px, 100%); height: auto; aspect-ratio: 1; padding: 10px; border-radius: 12px; background: #fff; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35); }
 @media (max-width: 767px) {
 	.sk-zalo { padding-bottom: 28px; }
 	.sk-zalo__card { padding: 24px 18px; justify-content: center; }
-	.sk-zalo__qr { width: min(240px, 80%); }
+	.sk-zalo__qr { width: min(220px, 70%); }
 }
