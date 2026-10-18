@@ -27,6 +27,29 @@ try { var skScheme = localStorage.getItem('sk_scheme'); if (skScheme === 'dark')
 
 <a class="sk-skip-link" href="#sk-main"><?php esc_html_e( 'Bỏ qua để xem nội dung chính', 'lukasports' ); ?></a>
 
+<div class="sk-topbar">
+	<div class="sk-container sk-topbar__inner">
+		<ul class="sk-topbar__list">
+			<li class="sk-topbar__item sk-topbar__item--hotline">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>
+				<span class="sk-topbar__label"><?php esc_html_e( 'Hotline', 'lukasports' ); ?></span>
+				<a class="sk-topbar__phone" href="tel:<?php echo esc_attr( $sk_contact['hotline_tel'] ); ?>"><?php echo esc_html( $sk_contact['hotline_display'] ); ?></a>
+			</li>
+			<li class="sk-topbar__item sk-topbar__item--hours">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></svg>
+				<span><?php esc_html_e( '8:00 – 21:00 hằng ngày', 'lukasports' ); ?></span>
+			</li>
+		</ul>
+		<ul class="sk-topbar__list sk-topbar__list--end">
+			<?php if ( ! empty( $sk_contact['address'] ) ) : ?>
+				<li class="sk-topbar__item sk-topbar__item--address"><?php echo esc_html( sprintf( /* translators: %s: store address */ __( 'CS1: %s', 'lukasports' ), $sk_contact['address'] ) ); ?></li>
+			<?php endif; ?>
+			<li class="sk-topbar__item"><a href="<?php echo esc_url( $sk_contact['zalo_url'] ); ?>" target="_blank" rel="noopener">Zalo</a></li>
+			<li class="sk-topbar__item"><a href="<?php echo esc_url( $sk_contact['messenger_url'] ); ?>" target="_blank" rel="noopener">Messenger</a></li>
+		</ul>
+	</div>
+</div>
+
 <header class="sk-header" id="sk-header">
 	<div class="sk-container sk-header__bar">
 		<button class="sk-header__burger" type="button" aria-expanded="false" aria-controls="sk-mobile-nav" data-sk-nav-toggle>
