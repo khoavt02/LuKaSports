@@ -333,6 +333,20 @@ function lukasports_quick_filter_query( $query ) {
 }
 add_action( 'woocommerce_product_query', 'lukasports_quick_filter_query' );
 
+/**
+ * Newest products first by default (the "Sắp xếp mặc định" order was
+ * alphabetical): new designs lead every shop, category and collection page.
+ */
+add_filter( 'woocommerce_default_catalog_orderby', fn() => 'date' );
+add_filter(
+	'woocommerce_catalog_orderby',
+	function ( $options ) {
+		$options['date'] = __( 'Mới nhất', 'lukasports' );
+		unset( $options['menu_order'] );
+		return $options;
+	}
+);
+
 /** Price range cache must follow product price changes. */
 function lukasports_flush_price_range() {
 	delete_transient( 'lukasports_price_range' );
