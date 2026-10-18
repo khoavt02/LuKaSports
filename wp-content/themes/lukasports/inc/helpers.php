@@ -70,14 +70,6 @@ function lukasports_format_price( $amount ) {
 }
 
 /**
- * True for the "Font chữ & số in áo" gallery products: preview images
- * only, so no price, size guide or size/color pickers.
- */
-function lukasports_is_font_product( $product ) {
-	return $product instanceof WC_Product && has_term( 'font-chu-in-ao', 'product_cat', $product->get_id() );
-}
-
-/**
  * Truncates plain text to a word-safe length for card excerpts.
  */
 function lukasports_excerpt( $text, $words = 18 ) {

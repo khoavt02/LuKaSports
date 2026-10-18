@@ -80,12 +80,10 @@ if ( function_exists( 'WC' ) && isset( WC()->structured_data ) ) {
 
 		<div class="sk-product__order-form<?php echo $product->is_type( 'variable' ) ? '' : ' sk-product__order-form--simple'; ?>">
 			<?php // product-variations.js moves this link into the size row when there is one. ?>
-			<?php if ( ! lukasports_is_font_product( $product ) ) : ?>
 			<a class="sk-product__size-link" href="#tab-size_guide" data-sk-open-tab="size_guide">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16L16 3l5 5L8 21z"/><path d="M7 12l2 2M10 9l2 2M13 6l2 2"/></svg>
 				<?php esc_html_e( 'Bảng size', 'lukasports' ); ?>
 			</a>
-			<?php endif; ?>
 			<?php
 			// Consultation-led store: variable products keep the size/color
 			// pickers (WooCommerce's variation form — its quantity and cart
