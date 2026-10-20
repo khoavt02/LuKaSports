@@ -39,6 +39,7 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-trieu-lam-xanh-thep', 'Bộ Đồng Phục DALETIC Triều Lam Xanh Thép', array( 'Xanh Da Trời', 'Xám' ), 'Trọn bộ áo xanh thép vân sóng chìm, mảng loang xám ở ngực, cờ đỏ sao vàng ở ngực; quần xanh đậm và tất trắng, in tên và số cầu thủ.', true, 'hai-lam' ),
 	array( 'bo-dong-phuc-daletic-thao-nguyen-xanh-reu-nhat', 'Bộ Đồng Phục DALETIC Thảo Nguyên Xanh Rêu Nhạt', array( 'Xanh Rêu', 'Trắng' ), 'Trọn bộ áo xanh rêu nhạt sọc dọc mảnh, họa tiết vòm cung chìm ở thân dưới, cờ đỏ sao vàng ở ngực; quần xanh rêu và tất trắng, in tên và số cầu thủ.', true, 'son-thuy' ),
 	array( 'bo-dong-phuc-daletic-ho-van-xanh-chanh', 'Bộ Đồng Phục DALETIC Hổ Văn Xanh Chanh', array( 'Xanh Lá', 'Đen' ), 'Trọn bộ áo xanh chanh rực với nét vằn xanh đậm kiểu da hổ chạy ngang thân, cờ đỏ sao vàng ở ngực; quần đen và tất trắng, in tên và số cầu thủ.', true, 'hoa-toc' ),
+	array( 'bo-dong-phuc-daletic-ngan-van-trang-navy', 'Bộ Đồng Phục DALETIC Ngân Văn Trắng Navy', array( 'Trắng', 'Xanh Navy' ), 'Trọn bộ áo trắng vân đường mảnh xám bạc, viền cổ, tay và sườn áo navy phối đỏ, cờ đỏ sao vàng ở ngực; quần navy và tất trắng, in tên và số cầu thủ.', true, 'hai-lam' ),
 	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Kim Hoàng Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true , 'hoa-toc' ),
 );
 
@@ -53,7 +54,7 @@ $collection_defs = array(
 	'daletic-vn-2026' => array( 'DALETIC.VN 2026', 'Các mẫu áo do DALETIC tự thiết kế và sản xuất.' ),
 	'dai-dia'         => array( 'Đại Địa', 'Dòng thiết kế tông đất be – nâu với họa tiết chấm bán sắc và nét cào, phong cách retro mạnh mẽ.' ),
 	'hoa-toc'         => array( 'Hỏa Tốc', 'Dòng thiết kế rực rỡ cam, vàng, xanh chanh với đường nét bùng nổ, năng động trên sân.' ),
-	'hai-lam'         => array( 'Hải Lam', 'Dòng thiết kế xanh dương đậm với họa tiết sóng và sao, mạnh mẽ như biển lớn.' ),
+	'hai-lam'         => array( 'Hải Lam', 'Dòng thiết kế xanh dương và navy với họa tiết sóng, sao và vân tinh tế, mạnh mẽ như biển lớn.' ),
 	'son-thuy'        => array( 'Sơn Thủy', 'Dòng thiết kế sắc xanh thẫm của rừng và biển — rêu, ngọc, cổ vịt — với nét cọ và họa tiết tự nhiên.' ),
 	'thien-phong'     => array( 'Thiên Phong', 'Dòng thiết kế nền trắng phối xanh da trời và họa tiết đen mạnh mẽ, lấy cảm hứng từ đôi cánh dang rộng.' ),
 	'sac-viet'        => array( 'Sắc Việt', 'Dòng thiết kế phối đỏ – trắng, mang lá cờ đỏ sao vàng lên áo đấu.' ),
