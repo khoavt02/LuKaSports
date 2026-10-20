@@ -37,6 +37,7 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-tho-hoang-be-nau', 'Bộ Đồng Phục DALETIC Thổ Hoàng Be Nâu', array( 'Be', 'Đen' ), 'Trọn bộ áo tông be – nâu họa tiết chấm bán sắc và nét cào cam phong cách retro, cờ đỏ sao vàng ở ngực; quần đen và tất trắng, in tên và số cầu thủ.', true, 'dai-dia' ),
 	array( 'bo-dong-phuc-daletic-tuyet-van-xanh-trang', 'Bộ Đồng Phục DALETIC Tuyết Vân Xanh Trắng', array( 'Trắng', 'Xanh Da Trời' ), 'Trọn bộ áo sọc dọc xanh trắng họa tiết mây loang, tay áo xanh da trời, cờ đỏ sao vàng ở ngực; quần và tất xanh nhạt, in tên và số cầu thủ.', true, 'thien-phong' ),
 	array( 'bo-dong-phuc-daletic-trieu-lam-xanh-thep', 'Bộ Đồng Phục DALETIC Triều Lam Xanh Thép', array( 'Xanh Da Trời', 'Xám' ), 'Trọn bộ áo xanh thép vân sóng chìm, mảng loang xám ở ngực, cờ đỏ sao vàng ở ngực; quần xanh đậm và tất trắng, in tên và số cầu thủ.', true, 'hai-lam' ),
+	array( 'bo-dong-phuc-daletic-thao-nguyen-xanh-reu-nhat', 'Bộ Đồng Phục DALETIC Thảo Nguyên Xanh Rêu Nhạt', array( 'Xanh Rêu', 'Trắng' ), 'Trọn bộ áo xanh rêu nhạt sọc dọc mảnh, họa tiết vòm cung chìm ở thân dưới, cờ đỏ sao vàng ở ngực; quần xanh rêu và tất trắng, in tên và số cầu thủ.', true, 'son-thuy' ),
 	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Kim Hoàng Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true , 'hoa-toc' ),
 );
 
