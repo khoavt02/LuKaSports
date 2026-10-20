@@ -23,6 +23,11 @@ $badges = array(
 	'ao-thiet-ke-daletic-ngoc-bich'            => 'noi-bat',
 	'ao-thiet-ke-daletic-hoa-van-vang'         => 'yeu-thich',
 	'ao-thiet-ke-daletic-tia-chop-cam'         => 'xu-huong',
+	'bo-dong-phuc-daletic-suong-vu-xanh-ngoc'  => 'xu-huong',
+	'bo-dong-phuc-daletic-loi-van-xanh-co-vit' => 'noi-bat',
+	'bo-dong-phuc-daletic-son-thuy-xanh-co-vit' => 'yeu-thich',
+	'bo-dong-phuc-daletic-pha-le-xanh-ngoc'    => 'doc-quyen',
+	'bo-dong-phuc-daletic-tang-may-xanh-trang' => 'xu-huong',
 );
 
 foreach ( $badges as $slug => $key ) {
