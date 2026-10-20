@@ -22,6 +22,7 @@ $lukasports_modules = array(
 	'inc/brand-colors.php',
 	'inc/hooks.php',
 	'inc/product-badges.php',
+	'inc/sport-icons.php',
 	'inc/seo.php',
 	'inc/performance.php',
 	'inc/security.php',

@@ -1,7 +1,8 @@
 <?php
 /**
  * "Môn thể thao / Chọn đúng sân chơi" — one dark tile per sport, using
- * real WooCommerce product categories and their photos. The six sport
+ * real WooCommerce product categories, each with a 3D sport icon
+ * (inc/sport-icons.php) instead of a photo. The six sport
  * categories come first in a fixed order (short labels as in the
  * design); any other top-level category fills in if one is missing.
  */
@@ -59,6 +60,7 @@ foreach ( $by_slug as $term ) {
 $shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/san-pham/' );
 ?>
 <section class="sk-home-section sk-sports" aria-labelledby="sk-sports-title">
+	<?php lukasports_icon_defs(); ?>
 	<div class="sk-container">
 		<div class="sk-section-head">
 			<div>
@@ -72,17 +74,10 @@ $shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 
 	<div class="sk-sports__scroller">
 		<div class="sk-container sk-sports__grid">
 			<?php foreach ( $tiles as $tile ) : ?>
-				<?php
-				list( $term, $label ) = $tile;
-				$image_id             = lukasports_category_image_id( $term, 'thumb' );
-				?>
+				<?php list( $term, $label ) = $tile; ?>
 				<a class="sk-sport-tile" href="<?php echo esc_url( home_url( '/' . $term->slug . '/' ) ); ?>">
-					<span class="sk-sport-tile__media" aria-hidden="true">
-						<?php
-						if ( $image_id ) {
-							echo lukasports_attachment_image( $image_id, 'lukasports-card', 'lazy', '', '' ); // phpcs:ignore
-						}
-						?>
+					<span class="sk-sport-tile__icon" aria-hidden="true">
+						<svg viewBox="0 0 96 96" width="120" height="120"><?php echo lukasports_sport_icon( $term->slug ); // phpcs:ignore -- static markup ?></svg>
 					</span>
 					<span class="sk-sport-tile__slab" aria-hidden="true"></span>
 					<span class="sk-sport-tile__foot">

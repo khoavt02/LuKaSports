@@ -244,15 +244,15 @@
 	overflow: hidden;
 }
 .sk-sport-tile:hover { color: #fff; }
-.sk-sport-tile__media { position: absolute; inset: 0; z-index: -2; }
-.sk-sport-tile__media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--sk-motion-base); }
-.sk-sport-tile:hover .sk-sport-tile__media img { transform: scale(1.06); }
+.sk-sport-tile__icon { position: absolute; inset: 0 0 64px 0; z-index: -1; display: grid; place-items: center; }
+.sk-sport-tile__icon svg { width: 124px; height: 124px; filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.5)); transition: transform var(--sk-motion-base); }
+.sk-sport-tile:hover .sk-sport-tile__icon svg { transform: translateY(-4px) scale(1.07); }
 .sk-sport-tile::after {
 	content: "";
 	position: absolute;
 	inset: 0;
-	z-index: -1;
-	background: linear-gradient(180deg, rgba(var(--sk-navy-rgb), 0) 35%, rgba(var(--sk-navy-rgb), 0.9) 88%);
+	z-index: -2;
+	background: radial-gradient(circle at 42% 38%, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0) 58%), linear-gradient(180deg, #1c2230 0%, #0b0e14 100%);
 }
 .sk-sport-tile__slab {
 	position: absolute;
@@ -288,6 +288,8 @@
 
 @media (max-width: 767px) {
 	.sk-sport-tile { flex: 0 0 150px; min-height: 200px; padding: 12px; }
+	.sk-sport-tile__icon { inset: 0 0 44px 0; }
+	.sk-sport-tile__icon svg { width: 92px; height: 92px; }
 	.sk-sport-tile__slab { right: -30px; width: 52px; }
 	.sk-sport-tile__name { font-size: 22px; }
 	.sk-sport-tile__arrow { display: none; }
