@@ -1,6 +1,7 @@
 <?php
 /**
- * "DALETIC tuyển chọn / Mẫu bán chạy" — curated picks sourced from the
+ * "DALETIC tuyển chọn / Mẫu mới nhất" — newest designs first (18 = three rows
+ * of 6, older ones below), sourced from the
  * `product_collection` taxonomy (admin-assignable per product under
  * Products → Bộ sưu tập) rather than a hardcoded product list. Shows
  * the in-house "DALETIC.VN 2026" collection first, topped up from
@@ -35,9 +36,9 @@ if ( ! $term instanceof WP_Term || ! $term->count ) {
 $products = wc_get_products(
 	array(
 		'status'    => 'publish',
-		'limit'     => 12,
+		'limit'     => 18,
 		'orderby'   => 'date',
-		'order'     => 'ASC',
+		'order'     => 'DESC',
 		'tax_query' => array( // phpcs:ignore
 			array(
 				'taxonomy' => 'product_collection',
@@ -86,7 +87,7 @@ if ( is_wp_error( $term_link ) ) {
 		<div class="sk-section-head">
 			<div>
 				<p class="sk-section-head__eyebrow"><?php esc_html_e( 'DALETIC tuyển chọn', 'lukasports' ); ?></p>
-				<h2 id="sk-picks-title" class="sk-section-head__title"><?php esc_html_e( 'Mẫu bán chạy', 'lukasports' ); ?></h2>
+				<h2 id="sk-picks-title" class="sk-section-head__title"><?php esc_html_e( 'Mẫu mới nhất', 'lukasports' ); ?></h2>
 				<?php if ( $term->description ) : ?>
 					<p class="sk-section-head__lead"><?php echo esc_html( lukasports_excerpt( $term->description, 30 ) ); ?></p>
 				<?php endif; ?>
