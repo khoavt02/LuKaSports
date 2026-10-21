@@ -42,6 +42,9 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-ngan-van-trang-navy', 'Bộ Đồng Phục DALETIC Ngân Văn Trắng Navy', array( 'Trắng', 'Xanh Navy' ), 'Trọn bộ áo trắng vân đường mảnh xám bạc, viền cổ, tay và sườn áo navy phối đỏ, cờ đỏ sao vàng ở ngực; quần navy và tất trắng, in tên và số cầu thủ.', true, 'hai-lam' ),
 	array( 'bo-dong-phuc-daletic-bang-ha-xanh-troi', 'Bộ Đồng Phục DALETIC Băng Hà Xanh Trời', array( 'Xanh Da Trời', 'Xanh Navy' ), 'Trọn bộ áo xanh trời nhạt họa tiết nét chéo và vệt loang như băng, viền cổ và tay navy phối đỏ, cờ đỏ sao vàng ở ngực; quần xanh dương và tất trắng, in tên và số cầu thủ.', true, 'thien-phong' ),
 	array( 'bo-dong-phuc-daletic-da-hoa-den-cam', 'Bộ Đồng Phục DALETIC Dạ Hỏa Đen Cam', array( 'Đen', 'Cam' ), 'Trọn bộ áo đen navy họa tiết chấm pixel cam như ngọn lửa trong đêm, tay áo cam, cổ trắng, cờ đỏ sao vàng ở ngực; quần đen và tất trắng, in tên và số cầu thủ.', true, 'hoa-toc' ),
+	array( 'bo-dong-phuc-daletic-xich-lam-soc-doc', 'Bộ Đồng Phục DALETIC Xích Lam Sọc Dọc', array( 'Đỏ', 'Xanh Navy' ), 'Trọn bộ áo sọc dọc đỏ – xanh navy kinh điển, cổ và tay trắng, chữ và số vàng, cờ đỏ sao vàng ở ngực; quần navy và tất trắng, in tên và số cầu thủ.', true, 'xich-lam' ),
+	array( 'bo-dong-phuc-daletic-xich-lam-soc-cheo', 'Bộ Đồng Phục DALETIC Xích Lam Sọc Chéo', array( 'Trắng', 'Xanh Navy', 'Đỏ' ), 'Trọn bộ áo sọc dọc trắng, navy và đỏ đô phủ nét chéo mảnh tạo hiệu ứng chuyển động, cờ đỏ sao vàng ở ngực; quần navy và tất trắng, in tên và số cầu thủ.', true, 'xich-lam' ),
+	array( 'bo-dong-phuc-daletic-xich-lam-ban-sac', 'Bộ Đồng Phục DALETIC Xích Lam Bán Sắc', array( 'Trắng', 'Xanh Dương', 'Đỏ' ), 'Trọn bộ áo trắng họa tiết bán sắc xanh dương và đỏ đô như sóng điểm ảnh, cờ đỏ sao vàng ở ngực; quần navy và tất trắng, in tên và số cầu thủ.', true, 'xich-lam' ),
 	array( 'bo-dong-phuc-daletic-vang-xanh', 'Bộ Đồng Phục DALETIC Kim Hoàng Vàng Xanh', array( 'Vàng', 'Xanh Da Trời' ), 'Trọn bộ áo vàng họa tiết zigzag cổ tim, quần xanh da trời và tất vàng – navy, in tên và số cầu thủ.', true , 'hoa-toc' ),
 );
 
@@ -54,6 +57,7 @@ if ( ! $category ) {
 // Collections a design can belong to (6th element of a design; default 2026).
 $collection_defs = array(
 	'daletic-vn-2026' => array( 'DALETIC.VN 2026', 'Các mẫu áo do DALETIC tự thiết kế và sản xuất.' ),
+	'xich-lam'        => array( 'Xích Lam', 'Dòng thiết kế đỏ – xanh navy lấy cảm hứng từ sọc dọc kinh điển của bóng đá châu Âu, phối họa tiết hiện đại.' ),
 	'dai-dia'         => array( 'Đại Địa', 'Dòng thiết kế tông đất be – nâu với họa tiết chấm bán sắc và nét cào, phong cách retro mạnh mẽ.' ),
 	'hoa-toc'         => array( 'Hỏa Tốc', 'Dòng thiết kế rực rỡ cam, vàng, xanh chanh với đường nét bùng nổ, năng động trên sân.' ),
 	'hai-lam'         => array( 'Hải Lam', 'Dòng thiết kế xanh dương và navy với họa tiết sóng, sao và vân tinh tế, mạnh mẽ như biển lớn.' ),

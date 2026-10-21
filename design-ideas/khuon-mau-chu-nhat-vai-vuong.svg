@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 760" width="1640" height="760" font-family="Helvetica,Arial,sans-serif">
+<rect width="1640" height="760" fill="#0b0e14"/>
+<text x="40" y="44" font-size="28" fill="#fff" font-weight="700">KHUÔN MẪU ÁO ĐẤU · thân chữ nhật, vai vuông (không logo thương hiệu)</text>
+<text x="40" y="70" font-size="14" fill="#9aa3b2">Thân trước, thân sau là hình chữ nhật; hai vai (tay áo) là hình vuông. Nét đứt là vùng đặt tên, số, cờ, logo. Đổi màu và họa tiết trong Photoshop theo phong cách DALETIC.</text>
+<g transform="translate(40 100)"><defs><clipPath id="b40"><rect width="380" height="500"/></clipPath></defs>
+<g clip-path="url(#b40)"><rect width="380" height="500" fill="#0e6b63"/>
+<path d="M190.0 150L0 270V500H380V270Z" fill="#15181f"/><path d="M168.72 118.46000000000001 L-31.28 248.46" stroke="#ffffff" stroke-width="26"/><path d="M211.28 118.46000000000001 L411.28 248.46" stroke="#ffffff" stroke-width="26"/><path d="M141.84 78.62 L-58.160000000000004 208.62" stroke="#ffffff" stroke-width="26"/><path d="M238.16 78.62 L438.16 208.62" stroke="#ffffff" stroke-width="26"/></g>
+<rect width="380" height="500" fill="none" stroke="#fff" stroke-width="2"/><rect x="265" y="262" width="70" height="24" rx="3" fill="none" stroke="#fff" stroke-dasharray="4 3" opacity=".85"/><text x="300" y="278" font-size="11" fill="#fff" text-anchor="middle">cờ / logo đội</text><rect x="100" y="330" width="180" height="50" rx="4" fill="none" stroke="#fff" stroke-dasharray="5 4" opacity=".85"/><text x="190" y="360" font-size="13" fill="#fff" text-anchor="middle">logo tài trợ / DALETIC.VN</text><path d="M130 0Q190 34 250 0" fill="none" stroke="#fff" stroke-dasharray="4 3"/><text x="190" y="52" font-size="11" fill="#fff" text-anchor="middle" opacity=".8">cổ (khoét sau khi cắt)</text>
+<text x="190.0" y="530" text-anchor="middle" font-size="16" fill="#9aa3b2" font-weight="700">THÂN TRƯỚC</text>
+<text x="190.0" y="550" text-anchor="middle" font-size="12" fill="#7c8596">hình chữ nhật 380×500</text></g><g transform="translate(470 100)"><defs><clipPath id="b470"><rect width="380" height="500"/></clipPath></defs>
+<g clip-path="url(#b470)"><rect width="380" height="500" fill="#0e6b63"/>
+<path d="M190.0 150L0 270V500H380V270Z" fill="#15181f"/><path d="M168.72 118.46000000000001 L-31.28 248.46" stroke="#ffffff" stroke-width="26"/><path d="M211.28 118.46000000000001 L411.28 248.46" stroke="#ffffff" stroke-width="26"/><path d="M141.84 78.62 L-58.160000000000004 208.62" stroke="#ffffff" stroke-width="26"/><path d="M238.16 78.62 L438.16 208.62" stroke="#ffffff" stroke-width="26"/></g>
+<rect width="380" height="500" fill="none" stroke="#fff" stroke-width="2"/><rect x="110" y="190" width="160" height="30" rx="4" fill="none" stroke="#fff" stroke-dasharray="5 4" opacity=".85"/><text x="190" y="210" font-size="13" fill="#fff" text-anchor="middle">TÊN CẦU THỦ</text><rect x="130" y="235" width="120" height="150" rx="4" fill="none" stroke="#fff" stroke-dasharray="5 4" opacity=".85"/><text x="190" y="325" font-size="46" fill="#fff" text-anchor="middle" font-weight="700" opacity=".9">10</text>
+<text x="190.0" y="530" text-anchor="middle" font-size="16" fill="#9aa3b2" font-weight="700">THÂN SAU</text>
+<text x="190.0" y="550" text-anchor="middle" font-size="12" fill="#7c8596">hình chữ nhật 380×500</text></g>
+<g transform="translate(930 100)"><defs><clipPath id="s100"><rect width="240" height="240"/></clipPath></defs>
+<g clip-path="url(#s100)"><rect width="240" height="240" fill="#0e6b63"/><path d="M-10 84 L250 56" stroke="#ffffff" stroke-width="24"/><path d="M-10 154 L250 126" stroke="#ffffff" stroke-width="24"/><rect y="206" width="240" height="34" fill="#15181f"/></g>
+<rect width="240" height="240" fill="none" stroke="#fff" stroke-width="2"/>
+<text x="120.0" y="270" text-anchor="middle" font-size="16" fill="#9aa3b2" font-weight="700">VAI / TAY TRÁI</text>
+<text x="120.0" y="290" text-anchor="middle" font-size="12" fill="#7c8596">hình vuông 240×240</text></g><g transform="translate(1250 100)"><defs><clipPath id="s100"><rect width="240" height="240"/></clipPath></defs>
+<g clip-path="url(#s100)"><rect width="240" height="240" fill="#0e6b63"/><path d="M-10 84 L250 56" stroke="#ffffff" stroke-width="24"/><path d="M-10 154 L250 126" stroke="#ffffff" stroke-width="24"/><rect y="206" width="240" height="34" fill="#15181f"/></g>
+<rect width="240" height="240" fill="none" stroke="#fff" stroke-width="2"/>
+<text x="120.0" y="270" text-anchor="middle" font-size="16" fill="#9aa3b2" font-weight="700">VAI / TAY PHẢI</text>
+<text x="120.0" y="290" text-anchor="middle" font-size="12" fill="#7c8596">hình vuông 240×240</text></g>
+<g transform="translate(40 668)"><rect width="40" height="26" rx="4" fill="#0e6b63" stroke="#fff"/><text x="50" y="18" font-size="14" fill="#cfd5e0">Xanh cổ vịt #0E6B63</text></g><g transform="translate(320 668)"><rect width="40" height="26" rx="4" fill="#ffffff" stroke="#fff"/><text x="50" y="18" font-size="14" fill="#cfd5e0">Trắng #FFFFFF</text></g><g transform="translate(600 668)"><rect width="40" height="26" rx="4" fill="#15181f" stroke="#fff"/><text x="50" y="18" font-size="14" fill="#cfd5e0">Đen #15181F</text></g>
+<text x="40" y="735" font-size="13" fill="#7c8596">Kích thước chỉ là tỉ lệ minh họa. Cần chuẩn hóa theo từng size (S–4XL) và xưởng in trước khi sản xuất.</text>
+</svg>
