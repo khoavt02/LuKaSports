@@ -42,11 +42,11 @@ if ( $is_promo ) :
 			<div class="sk-new__promo">
 				<span class="sk-new__slab" aria-hidden="true"></span>
 				<div class="sk-new__text">
-					<p class="sk-new__eyebrow"><?php esc_html_e( 'Vừa lên kệ', 'lukasports' ); ?></p>
-					<h2 id="sk-new-title" class="sk-new__title sk-display"><?php esc_html_e( 'Sản phẩm mới', 'lukasports' ); ?></h2>
-					<p class="sk-new__lead"><?php esc_html_e( 'Những mẫu áo đấu và phụ kiện ra sân vừa được cập nhật — xem ngay trước khi lên đồ cho cả đội.', 'lukasports' ); ?></p>
+					<p class="sk-new__eyebrow"><?php esc_html_e( 'Khám phá thêm', 'lukasports' ); ?></p>
+					<h2 id="sk-new-title" class="sk-new__title sk-display"><?php esc_html_e( 'Các mẫu đã ra mắt', 'lukasports' ); ?></h2>
+					<p class="sk-new__lead"><?php esc_html_e( 'Những mẫu áo đấu đã lên kệ trước đó — xem thêm trước khi lên đồ cho cả đội.', 'lukasports' ); ?></p>
 				</div>
-				<a class="sk-btn sk-btn--primary sk-btn--md sk-new__btn" href="<?php echo esc_url( add_query_arg( 'orderby', 'date', $shop_url ) ); ?>"><?php esc_html_e( 'Xem hàng mới', 'lukasports' ); ?></a>
+				<a class="sk-btn sk-btn--primary sk-btn--md sk-new__btn" href="<?php echo esc_url( add_query_arg( 'orderby', 'date', $shop_url ) ); ?>"><?php esc_html_e( 'Xem tất cả mẫu', 'lukasports' ); ?></a>
 			</div>
 			<div class="sk-new__grid">
 				<?php

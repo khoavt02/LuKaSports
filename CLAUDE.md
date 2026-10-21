@@ -63,7 +63,7 @@ Commit/push/deploy chỉ khi chủ shop yêu cầu. Luôn `bin/backup.sh` trư�
 - 3 trang chính sách là 3 URL riêng, có thanh tab chuyển qua lại.
 - Không bịa số liệu/cam kết. Thông tin liên hệ lấy từ DALETIC → Settings: hotline 0819.66.6868, fanpage facebook.com/profile.php?id=61569257930689, địa chỉ showroom: 66 Hồng Tiến, Bồ Đề, Long Biên, Hà Nội.
 - Ảnh đăng lên web không được có logo Nike/hãng khác.
-- Mục trang chủ "Mẫu bán chạy" lấy bộ sưu tập DALETIC.VN 2026 trước; "Sản phẩm mới" luôn đứng đầu bằng sản phẩm mới nhất và không lặp mục trên.
+- Trang chủ: mục "Mẫu mới nhất" (bộ sưu tập DALETIC.VN 2026) xếp **mới nhất trước**, 18 mẫu = 3 hàng, mẫu cũ ở dưới; mục "Các mẫu đã ra mắt" ngay sau đó lấy tiếp các mẫu chưa hiện, không lặp. Mọi trang danh sách mặc định "Mới nhất". Mẫu mới đăng luôn đứng đầu.
 
 ## Thẻ sản phẩm (badge)
 

@@ -310,12 +310,9 @@ function lukasports_category_image_id( $term, $prefer = 'thumb' ) {
 }
 
 /**
- * Products "Sản phẩm mới" on the homepage should skip: whatever
- * "Mẫu bán chạy" already showed (featured-collection.php), except the
- * single newest product, which always leads the new-arrivals row.
+ * Products the homepage "Các mẫu đã ra mắt" row should skip: everything the
+ * "Mẫu mới nhất" row (featured-collection.php) already showed.
  */
 function lukasports_home_new_exclusions() {
-	$shown  = $GLOBALS['lukasports_home_shown'] ?? array();
-	$newest = function_exists( 'wc_get_products' ) ? wc_get_products( array( 'status' => 'publish', 'limit' => 1, 'orderby' => 'date', 'order' => 'DESC', 'return' => 'ids' ) ) : array();
-	return array_values( array_diff( $shown, $newest ) );
+	return array_values( $GLOBALS['lukasports_home_shown'] ?? array() );
 }
