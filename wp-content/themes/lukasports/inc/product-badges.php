@@ -25,6 +25,7 @@ function lukasports_badge_options() {
 		'yeu-thich' => array( __( 'Yêu thích', 'lukasports' ), 'fav' ),
 		'noi-bat'   => array( __( 'Nổi bật', 'lukasports' ), 'star' ),
 		'xu-huong'  => array( __( 'Xu hướng', 'lukasports' ), 'trend' ),
+		'svip'      => array( __( 'SVIP', 'lukasports' ), 'svip' ),
 		'doc-quyen' => array( __( 'Độc quyền', 'lukasports' ), 'exclusive' ),
 		'tron-bo'   => array( __( 'Trọn bộ', 'lukasports' ), 'set' ),
 		'quan-tam'  => array( __( 'Quan tâm nhiều', 'lukasports' ), 'interest' ),
