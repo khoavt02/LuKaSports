@@ -66,7 +66,7 @@ foreach ( $items as list( $slug, $name, $colors, $short ) ) {
 			$attribute( 'sport', 'Bóng đá' ),
 			$attribute( 'season', '2025-2026' ),
 			$attribute( 'gender', 'Unisex' ),
-			$attribute( 'color', $colors ),
+			$attribute( 'color', $colors, true ),
 			$attribute( 'size', $sizes, true ),
 		)
 	);
