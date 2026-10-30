@@ -51,6 +51,8 @@ $designs = array(
 	array( 'bo-dong-phuc-daletic-thanh-lam-phong-toc', 'Bộ Đồng Phục DALETIC Thanh Lam Phong Tốc', array( 'Trắng', 'Xanh Ngọc' ), 'Trọn bộ áo trắng dải chevron xanh ngọc chạy chéo ngực, hai sườn sọc ngang, tay xanh ngọc, số đen, cờ đỏ sao vàng ở ngực; quần xanh ngọc và tất trắng.', true, 'thanh-lam' ),
 	array( 'bo-dong-phuc-daletic-thanh-lam-bach-ngoc', 'Bộ Đồng Phục DALETIC Thanh Lam Bạch Ngọc', array( 'Trắng', 'Xanh Ngọc', 'Đỏ' ), 'Trọn bộ áo trắng tay xanh ngọc, đường cong đỏ đô uốn từ cổ xuống sườn, số đỏ đô, cờ đỏ sao vàng ở ngực; quần và tất trắng, in tên và số cầu thủ.', true, 'thanh-lam' ),
 	array( 'bo-dong-phuc-daletic-thanh-lam-luc-diep', 'Bộ Đồng Phục DALETIC Thanh Lam Lục Diệp', array( 'Xanh Lá', 'Trắng' ), 'Trọn bộ áo xanh lục nhạt sọc giữa xanh lục đậm, ba vạch trên tay áo, số xanh rêu, cờ đỏ sao vàng ở ngực; quần đen và tất trắng, in tên và số cầu thủ.', true, 'thanh-lam' ),
+	array( 'bo-dong-phuc-daletic-chien-giap-bach-lam', 'Bộ Đồng Phục DALETIC Chiến Giáp Bạch Lam', array( 'Trắng', 'Xanh Navy', 'Đỏ' ), 'Trọn bộ áo trắng vân sọc xanh, giáp hình học xanh – đỏ trên vai và hai sườn, số navy, cờ đỏ sao vàng ở ngực; quần navy và tất trắng, in tên và số cầu thủ.', true, 'chien-giap' ),
+	array( 'bo-dong-phuc-daletic-chien-giap-ngoc-hac', 'Bộ Đồng Phục DALETIC Chiến Giáp Ngọc Hắc', array( 'Xanh Ngọc', 'Đen', 'Trắng' ), 'Trọn bộ áo xanh ngọc phối vai và sườn đen, mảng trắng chéo cùng khối giáp hình học, số đỏ, cờ đỏ sao vàng ở ngực; quần xanh ngọc và tất trắng, in tên và số cầu thủ.', true, 'chien-giap' ),
 	array( 'bo-dong-phuc-daletic-xich-lam-kham-gom', 'Bộ Đồng Phục DALETIC Xích Lam Khảm Gốm', array( 'Xanh Navy', 'Đỏ' ), 'Trọn bộ áo navy họa tiết khảm gốm nhiều mảng đỏ đô xen kẽ theo dải dọc, cổ và tay trắng, chữ và số vàng, cờ đỏ sao vàng ở ngực; quần navy và tất trắng, in tên và số cầu thủ.', true, 'xich-lam' ),
 	array( 'bo-dong-phuc-daletic-xich-lam-soc-doc', 'Bộ Đồng Phục DALETIC Xích Lam Sọc Dọc', array( 'Đỏ', 'Xanh Navy' ), 'Trọn bộ áo sọc dọc đỏ – xanh navy kinh điển, cổ và tay trắng, chữ và số vàng, cờ đỏ sao vàng ở ngực; quần navy và tất trắng, in tên và số cầu thủ.', true, 'xich-lam' ),
 	array( 'bo-dong-phuc-daletic-xich-lam-soc-cheo', 'Bộ Đồng Phục DALETIC Xích Lam Sọc Chéo', array( 'Trắng', 'Xanh Navy', 'Đỏ' ), 'Trọn bộ áo sọc dọc trắng, navy và đỏ đô phủ nét chéo mảnh tạo hiệu ứng chuyển động, cờ đỏ sao vàng ở ngực; quần navy và tất trắng, in tên và số cầu thủ.', true, 'xich-lam' ),
@@ -67,6 +69,7 @@ if ( ! $category ) {
 // Collections a design can belong to (6th element of a design; default 2026).
 $collection_defs = array(
 	'daletic-vn-2026' => array( 'DALETIC.VN 2026', 'Các mẫu áo do DALETIC tự thiết kế và sản xuất.' ),
+	'chien-giap'      => array( 'Chiến Giáp', 'Dòng thiết kế khối giáp hình học trên vai và hai sườn, phong cách công nghệ mạnh mẽ.' ),
 	'thanh-lam'       => array( 'Thanh Lam', 'Dòng thiết kế xanh ngọc, xanh lục và trắng thanh nhã với vân nước, tinh thể và đường cong mềm.' ),
 	'luc-bao'         => array( 'Lục Bảo', 'Dòng thiết kế xanh lục đậm phối trắng, họa tiết lục giác, sọc và đường cong tinh gọn.' ),
 	'xich-lam'        => array( 'Xích Lam', 'Dòng thiết kế đỏ – xanh navy lấy cảm hứng từ sọc dọc kinh điển của bóng đá châu Âu, phối họa tiết hiện đại.' ),
